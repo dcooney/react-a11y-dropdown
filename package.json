@@ -2,7 +2,7 @@
   "name": "react-a11y-dropdown",
   "description": "Accessible dropdown component for React.",
   "author": "dcooney",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "private": false,
   "main": "dist/index.js",
   "module": "dist/index.js",

@@ -2,13 +2,15 @@
 
 An accessible and unopinionated dropdown component for [React](https://www.reactjs.org) for full keyboard support.
 
-**important note**: This component does not style the contents of the dropdown. It's simply a wrapper for existing components and will inherit application styling.
+[Usage Example](https://dcooney.github.io/react-a11y-dropdown/)
+
+**Important note**: This component does not style the contents of the dropdown. It's simply a wrapper for existing components and will inherit application styling.
 
 ## Features
 
--  Creates a button to toggle the state (open/closed) of the drop menu.
--  Adds the required aria attributes to button and dropdown component.
--  Enables keyboard controls to tab and arrow seemlessly through dropdown items.
+-  Creates a button to toggle the state (open/closed) of the dropdown menu.
+-  Adds required aria attributes to button and dropdown components.
+-  Enables keyboard controls to tab and arrow seemlessly through items within the dropdown.
 
 ## Install
 
