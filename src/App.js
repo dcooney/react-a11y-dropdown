@@ -6,12 +6,12 @@ export default function App() {
          <h1 className="text-3xl font-bold mb-1">React A11y DropDown</h1>
          <h2 className="text-2xl font-thin opacity-75 pb-5 border-b mb-5">
             An accessible and unopinionated dropdown component for{' '}
-            <a href="https://www.reactjs.org">React</a> for full keyboard
+            <a href="https://www.reactjs.org">React</a> with full keyboard
             support.
          </h2>
          <p className="font-normal mb-5">
             Use the tab key in combination with your keyboard up/down arrows to
-            navugate through the drop menu's and content.
+            navigate through the drop menu's and content.
          </p>
          <div className="flex flex-nowrap gap-5">
             <DropDown id="my-dropdown" label="Show Options">
