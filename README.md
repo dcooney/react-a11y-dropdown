@@ -1,14 +1,14 @@
 # React A11y DropDown
 
-An accessible and unopinionated dropdown component for (React)[] for full keyboard support.
+An accessible and unopinionated dropdown component for [React](https://www.reactjs.org) for full keyboard support.
 
 **important note**: This component does not style the contents of the dropdown. It's simply a wrapper for existing components and will inherit application styling.
 
 ## Features
 
-- Creates a button to toggle the state (open/closed) of the drop menu.
-- Adds the required aria attributes to button and dropdown component.
-- Enables keyboard controls to tab and arrow seemlessly through dropdown items.
+-  Creates a button to toggle the state (open/closed) of the drop menu.
+-  Adds the required aria attributes to button and dropdown component.
+-  Enables keyboard controls to tab and arrow seemlessly through dropdown items.
 
 ## Install
 
@@ -26,21 +26,21 @@ yarn add react-a11y-dropdown
 import DropDown from 'react-a11y-dropdown'
 
 export default function App() {
-  return (
-    <DropDown label="Development Resources">
-      <ul>
-        <li>
-          <a href="https://github.com/">Github</a>
-        </li>
-        <li>
-          <a href="https://www.npmjs.com/">NPM</a>
-        </li>
-        <li>
-          <a href="https://www.reactjs.org">React</a>
-        </li>
-      </ul>
-    </DropDown>
-  )
+   return (
+      <DropDown label="Development Resources">
+         <ul>
+            <li>
+               <a href="https://github.com/">Github</a>
+            </li>
+            <li>
+               <a href="https://www.npmjs.com/">NPM</a>
+            </li>
+            <li>
+               <a href="https://www.reactjs.org">React</a>
+            </li>
+         </ul>
+      </DropDown>
+   )
 }
 ```
 
@@ -55,8 +55,8 @@ The `DropDown` component accepts the following props.
 
 ```javascript
 return (
-  <DropDown label="Button Label">
-    <div>...children</div>
-  </DropDown>
+   <DropDown label="Button Label">
+      <div>...children</div>
+   </DropDown>
 )
 ```
