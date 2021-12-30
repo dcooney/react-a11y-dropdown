@@ -156,22 +156,30 @@ export default function DropDown(props) {
   }
 
   return (
-    <div ref={containerRef} className="react-a11y-dropdown" id={id ? id : null}>
-      <button
-        ref={triggerRef}
-        className="react-a11y-dropdown--button"
-        aria-expanded={expanded ? 'true' : 'false'}
-        onClick={() => setExpanded((expanded) => !expanded)}
-        dangerouslySetInnerHTML={createMarkup(label)}
-      ></button>
-      <div
-        className="react-a11y-dropdown--menu"
-        ref={menuRef}
-        aria-hidden={expanded ? 'false' : 'true'}
-      >
-        {children}
-      </div>
-    </div>
+    <>
+      {!!label && (
+        <div
+          ref={containerRef}
+          className="react-a11y-dropdown"
+          id={id ? id : null}
+        >
+          <button
+            ref={triggerRef}
+            className="react-a11y-dropdown--button"
+            aria-expanded={expanded ? 'true' : 'false'}
+            onClick={() => setExpanded((expanded) => !expanded)}
+            dangerouslySetInnerHTML={createMarkup(label)}
+          ></button>
+          <div
+            className="react-a11y-dropdown--menu"
+            ref={menuRef}
+            aria-hidden={expanded ? 'false' : 'true'}
+          >
+            {children}
+          </div>
+        </div>
+      )}
+    </>
   )
 }
 

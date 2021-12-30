@@ -4,14 +4,26 @@ import './App.css'
 export default function App() {
   return (
     <div className="menu">
-      <DropDown id="my-id1" label="My Button" direction="horizontal">
-        <div>
-          <button>One</button>
-          <button>Two</button>
-          <button>Three</button>
-        </div>
+      <DropDown id="my-id1" label="Show Options" direction="horizontal">
+        <ul>
+          <li>
+            <button>One</button>
+          </li>
+          <li>
+            <button>Two</button>
+          </li>
+          <li>
+            <button>Three</button>
+          </li>
+          <li>
+            <button>Four</button>
+          </li>
+          <li>
+            <button>Five</button>
+          </li>
+        </ul>
       </DropDown>
-      <DropDown id="my-id-2" label={`My Button #2 <span>defwefer</span>`}>
+      <DropDown id="my-id-2" label="Show Form Elements">
         <div>
           <button>One #2</button>
           <button>Two #2</button>
@@ -23,10 +35,7 @@ export default function App() {
           </div>
         </div>
       </DropDown>
-      <DropDown
-        id="my-id-3"
-        label={`My Button #2 <span>No Focusable Elements</span>`}
-      >
+      <DropDown label={`No Focusable Elements <span>💪</span>`}>
         <div>
           <p>
             This is a paragraph in the drop menu. Nothing needs to heppen here.
