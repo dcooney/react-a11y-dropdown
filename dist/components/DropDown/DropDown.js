@@ -184,7 +184,7 @@ function DropDown(props) {
     };
   }
 
-  return /*#__PURE__*/_react.default.createElement("div", {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, !!label && /*#__PURE__*/_react.default.createElement("div", {
     ref: containerRef,
     className: "react-a11y-dropdown",
     id: id ? id : null
@@ -198,7 +198,7 @@ function DropDown(props) {
     className: "react-a11y-dropdown--menu",
     ref: menuRef,
     "aria-hidden": expanded ? 'false' : 'true'
-  }, children));
+  }, children)));
 }
 
 DropDown.propTypes = {
