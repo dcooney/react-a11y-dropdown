@@ -2,6 +2,16 @@
 	box-sizing: border-box;
 }
 body{
-	padding: 0;
+	padding: 0; 
 	margin: 0;
+}
+
+body > div{
+	padding: 20px;
+}
+
+.menu{
+	display: flex;
+	margin: 0 0 25px;
+	gap: 10px;
 }

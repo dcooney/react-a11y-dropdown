@@ -1,0 +1,30 @@
+.react-a11y-dropdown{
+  width: auto;
+  position: relative;
+}
+.react-a11y-dropdown--button{
+
+}
+.react-a11y-dropdown--menu{
+	display: block;
+  visibility: hidden;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: transform 0.2s cubic-bezier(0.24, 0.22, 0.015, 1.56),
+    opacity 0.1s ease-in-out, visibility 0.1s ease-in-out;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  z-index: 9999;
+  position: absolute;
+  top: 110%;
+  left: -12px;
+  width: 200px;
+  max-height: 350px;
+  overflow-y: auto;
+}
+.react-a11y-dropdown--menu[aria-hidden=false]{
+	  visibility: visible;
+	  opacity: 1;
+  }

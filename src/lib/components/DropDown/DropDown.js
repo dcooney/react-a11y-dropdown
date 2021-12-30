@@ -1,6 +1,6 @@
 import React, {useRef, useState, useEffect} from 'react'
-import styled from 'styled-components'
 import PropTypes from 'prop-types'
+import './styles.css'
 
 /**
  * Accessibile Dropdown component.
@@ -136,7 +136,7 @@ export default function DropDown(props) {
    */
   function setFocus(element) {
     if (!element) {
-      return;
+      return
     }
     setTimeout(() => {
       element.focus({preventScroll: true})
@@ -156,21 +156,22 @@ export default function DropDown(props) {
   }
 
   return (
-    <Container id={id ? id : null} ref={containerRef}>
-      <Button
+    <div ref={containerRef} className="react-a11y-dropdown" id={id ? id : null}>
+      <button
         ref={triggerRef}
+        className="react-a11y-dropdown--button"
         aria-expanded={expanded ? 'true' : 'false'}
         onClick={() => setExpanded((expanded) => !expanded)}
         dangerouslySetInnerHTML={createMarkup(label)}
-      ></Button>
-      <Menu
+      ></button>
+      <div
+        className="react-a11y-dropdown--menu"
         ref={menuRef}
         aria-hidden={expanded ? 'false' : 'true'}
-        expanded={expanded}
       >
         {children}
-      </Menu>
-    </Container>
+      </div>
+    </div>
   )
 }
 
@@ -179,29 +180,3 @@ DropDown.propTypes = {
   label: PropTypes.string.isRequired,
   children: PropTypes.object
 }
-
-const Container = styled.div`
-  width: auto;
-  position: relative;
-`
-const Button = styled.button``
-
-const Menu = styled.div`
-  display: block;
-  visibility: ${(props) => (props.expanded ? 'visible' : 'hidden')};
-  opacity: ${(props) => (props.expanded ? '1' : '0')};
-  transform: scale(0.95);
-  transition: transform 0.2s cubic-bezier(0.24, 0.22, 0.015, 1.56),
-    opacity 0.1s ease-in-out, visibility 0.1s ease-in-out;
-  padding: 10px;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  z-index: 9999;
-  position: absolute;
-  top: 110%;
-  left: -12px;
-  width: 200px;
-  max-height: 350px;
-  overflow-y: auto;
-`
