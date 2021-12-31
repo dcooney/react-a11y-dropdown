@@ -1,8 +1,8 @@
 import DropDown from './lib/components/DropDown'
-import MenuOne from './components/MenuOne'
-import MenuTwo from './components/MenuTwo'
-import MenuThree from './components/MenuThree'
-import Intro from './components/Intro'
+import MenuOne from './pages/home/MenuOne'
+import MenuTwo from './pages/home/MenuTwo'
+import MenuThree from './pages/home/MenuThree'
+import Intro from './pages/home/Intro'
 
 export default function App() {
    return (

@@ -12,7 +12,6 @@
 .react-a11y-dropdown {
   position: relative;
 }
-
 .react-a11y-dropdown:not(.unstyled) {
   width: auto;
   padding-bottom: 1px;
@@ -22,14 +21,13 @@
 .react-a11y-dropdown--button {
   cursor: pointer;
 }
-
 .react-a11y-dropdown--button:not(.unstyled) {
   font-size: 14px;
-  color: var(--react-ally-color);
-  background-color: var(--react-ally-bkg);
-  border: 1px solid var(--react-ally-border);
-  border-radius: var(--react-ally-radius);
-  padding: var(--react-ally-padding);
+  color: #333;
+  background-color: #f7f7f7;
+  border: #333;
+  border-radius: 3px;
+  padding: 10px;
   margin: 0;
 }
 

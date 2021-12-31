@@ -5,15 +5,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = DropDown;
 
-require("core-js/modules/web.dom-collections.iterator.js");
-
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _react = _interopRequireWildcard(require("react"));
 
 var _classnames = _interopRequireDefault(require("classnames"));
 
-require("./styles.css");
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+var _templateObject, _templateObject2, _templateObject3;
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
@@ -21,6 +21,13 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+const Wrapper = _styledComponents.default.div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n   width: auto;\n   padding-bottom: 1px;\n   position: relative;\n"])));
+
+const Button = _styledComponents.default.button(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n   cursor: pointer;\n   font-size: 14px;\n   color: #333;\n   background-color: #f7f7f7;\n   border: #333;\n   border-radius: 3px;\n   padding: 10px;\n   margin: 0;\n"])));
+
+const Drop = _styledComponents.default.div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n   visibility: ", ";\n   opacity: ", ";\n   z-index: 9999;\n   position: absolute;\n   top: 100%;\n   left: 0;\n   display: block;\n   transform: scale(", ");\n   transition: transform 0.2s cubic-bezier(0.24, 0.22, 0.015, 1.56),\n      opacity 0.15s ease-in-out, visibility 0.15s ease-in-out;\n   background-color: #fff;\n   border: 1px solid #ccc;\n   border-radius: 3px;\n   box-shadow: 0 10px 20px rgba(88, 92, 95, 0.1);\n   padding: 10px;\n   width: 225px;\n   min-width: 100%;\n   max-height: 350px;\n   overflow-y: auto;\n   top: ", ";\n"])), props => props.expanded ? 'visible' : 'hidden', props => props.expanded ? '1' : '0', props => props.expanded ? '1' : ' 0.95', props => props.expanded ? '100%' : '110%');
 /**
  * Accessibile Dropdown component.
  *
@@ -28,6 +35,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @param   {object}  props.children Container children.
  * @returns {Element}                The DropDown component.
  */
+
+
 function DropDown(props) {
   const {
     id,
@@ -45,11 +54,13 @@ function DropDown(props) {
   const triggerRef = (0, _react.useRef)();
   const focusable = 'a[href], button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])';
   (0, _react.useEffect)(() => {
+    console.log('hello');
     /**
      * Handle keyboard controls.
      *
      * @param {Event} event The click event.
      */
+
     function keyboardControls(event) {
       const active = document.activeElement;
       const elements = menuRef.current.querySelectorAll(focusable); // Exit if elements are not focusable.
@@ -190,19 +201,23 @@ function DropDown(props) {
     };
   }
 
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, !!label && /*#__PURE__*/_react.default.createElement("div", {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, !!label && /*#__PURE__*/_react.default.createElement(Wrapper, {
     ref: containerRef,
     className: (0, _classnames.default)('react-a11y-dropdown', !useStyles ? 'unstyled' : null, className && className),
+    useStyles: useStyles,
     id: id ? id : null
-  }, /*#__PURE__*/_react.default.createElement("button", {
+  }, /*#__PURE__*/_react.default.createElement(Button, {
     ref: triggerRef,
     className: (0, _classnames.default)('react-a11y-dropdown--button', !useStyles ? 'unstyled' : null, buttonClassName && buttonClassName),
+    useStyles: useStyles,
     "aria-expanded": expanded ? 'true' : 'false',
     onClick: () => setExpanded(expanded => !expanded),
     dangerouslySetInnerHTML: createMarkup(label)
-  }), /*#__PURE__*/_react.default.createElement("div", {
-    className: (0, _classnames.default)('react-a11y-dropdown--menu', !useStyles ? 'unstyled' : null, dropdownClassName && dropdownClassName, expanded ? 'expanded' : null),
+  }), /*#__PURE__*/_react.default.createElement(Drop, {
     ref: menuRef,
+    className: (0, _classnames.default)('react-a11y-dropdown--menu', !useStyles ? 'unstyled' : null, dropdownClassName && dropdownClassName, expanded ? 'expanded' : null),
+    expanded: expanded,
+    useStyles: useStyles,
     "aria-hidden": expanded ? 'false' : 'true'
   }, children)));
 }

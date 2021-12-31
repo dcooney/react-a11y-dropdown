@@ -1,9 +1,9 @@
 {
   "name": "react-a11y-dropdown",
-  "description": "Accessible dropdown component for React.",
+  "description": "An accessible dropdown component for React.",
   "homepage": "https://dcooney.github.io/react-a11y-dropdown/",
   "author": "dcooney",
-  "version": "0.1.5",
+  "version": "0.1.55",
   "private": false,
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -14,10 +14,6 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dcooney/react-a11y-dropdown.git"
-  },
-  "dependencies": {
-    "@babel/polyfill": "^7.12.1",
-    "classnames": "^2.3.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -44,14 +40,21 @@
       "last 1 safari version"
     ]
   },
+  "peerDependencies": {
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.12.1",
+    "classnames": "^2.3.1",
+    "styled-components": "^5.3.3"
+  },
   "devDependencies": {
-    "@babel/cli": "^7.13.14",
-    "@babel/core": "^7.13.14",
-    "@babel/preset-env": "^7.13.12",
-    "autoprefixer": "^10.4.1",
-    "postcss": "^8.4.5",
+    "@babel/cli": "^7.16.7",
+    "@babel/core": "^7.16.7",
+    "@babel/preset-env": "^7.16.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-scripts": "4.0.3"
+    "react-scripts": "5.0.0"
   }
 }
