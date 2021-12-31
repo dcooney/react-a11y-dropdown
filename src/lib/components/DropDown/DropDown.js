@@ -130,7 +130,7 @@ export default function DropDown(props) {
                ref={containerRef}
                className={classNames(
                   'react-a11y-dropdown',
-                  useStyles ? 'styled' : null,
+                  !useStyles ? 'unstyled' : null,
                   className && className
                )}
                id={id ? id : null}
@@ -139,6 +139,7 @@ export default function DropDown(props) {
                   ref={triggerRef}
                   className={classNames(
                      'react-a11y-dropdown--button',
+                     !useStyles ? 'unstyled' : null,
                      buttonClassName && buttonClassName
                   )}
                   aria-expanded={expanded ? 'true' : 'false'}
@@ -148,6 +149,7 @@ export default function DropDown(props) {
                <div
                   className={classNames(
                      'react-a11y-dropdown--menu',
+                     !useStyles ? 'unstyled' : null,
                      dropdownClassName && dropdownClassName,
                      expanded ? 'expanded' : null
                   )}

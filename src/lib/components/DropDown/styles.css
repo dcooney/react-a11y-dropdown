@@ -8,15 +8,23 @@
   --react-ally-padding: 10px;
 }
 
-.react-a11y-dropdown.styled {
-  width: auto;
+/* Wrapper */
+.react-a11y-dropdown {
   position: relative;
-  padding-bottom: 2px;
 }
 
-.styled .react-a11y-dropdown--button {
-  font-size: 14px;
+.react-a11y-dropdown:not(.unstyled) {
+  width: auto;
+  padding-bottom: 1px;
+}
+
+/* Button */
+.react-a11y-dropdown--button {
   cursor: pointer;
+}
+
+.react-a11y-dropdown--button:not(.unstyled) {
+  font-size: 14px;
   color: var(--react-ally-color);
   background-color: var(--react-ally-bkg);
   border: 1px solid var(--react-ally-border);
@@ -25,16 +33,24 @@
   margin: 0;
 }
 
-.styled .react-a11y-dropdown--button:hover,
-.styled .react-a11y-dropdown--button:focus {
+.react-a11y-dropdown--button:not(.unstyled):hover,
+.react-a11y-dropdown--button:not(.unstyled):focus {
   color: var(--react-ally-color-dark);
   border: 1px solid var(--react-ally-border-hover);
 }
 
-.styled .react-a11y-dropdown--menu {
-  display: block;
+/* Drop Menu */
+.react-a11y-dropdown--menu {
   visibility: hidden;
   opacity: 0;
+  z-index: 9999;
+  position: absolute;
+  top: 100%;
+  left: 0;
+}
+
+.react-a11y-dropdown--menu:not(.unstyled) {
+  display: block;
   transform: scale(0.95);
   transition: transform 0.2s cubic-bezier(0.24, 0.22, 0.015, 1.56),
     opacity 0.15s ease-in-out, visibility 0.15s ease-in-out;
@@ -43,19 +59,19 @@
   border-radius: var(--react-ally-radius);
   box-shadow: 0 10px 20px rgba(88, 92, 95, 0.1);
   padding: var(--react-ally-padding);
-  z-index: 9999;
-  position: absolute;
-  top: 110%;
-  left: 0;
   width: 225px;
   min-width: 100%;
   max-height: 350px;
   overflow-y: auto;
+  top: 110%;
 }
 
-.styled .react-a11y-dropdown--menu[aria-hidden=false] {
+.react-a11y-dropdown--menu[aria-hidden=false] {
   visibility: visible;
   opacity: 1;
+}
+
+.react-a11y-dropdown--menu[aria-hidden=false]:not(.unstyled) {
   top: 100%;
   transform: scale(1);
 }
