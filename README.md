@@ -50,14 +50,18 @@ export default function App() {
 
 The `DropDown` component accepts the following props.
 
-| Syntax | Description                                           | Type   | Reuired |
-| ------ | ----------------------------------------------------- | ------ | ------- |
-| id     | An optional ID for the rendered HTML element.         | string | No      |
-| label  | The label for thegenerated button - HTML is accepted. | string | Yes     |
+| Prop              | Description                                           | Type    | Default | Required |
+| ----------------- | ----------------------------------------------------- | ------- | ------- | -------- |
+| label             | The label for thegenerated button - HTML is accepted. | string  | null    | Yes      |
+| id                | An optional ID for the rendered HTML element.         | string  | null    | No       |
+| className         | Custom classnames for the dropdown component wrapper. | string  | null    | No       |
+| buttonClassName   | Custom classnames for the button trigger element.     | string  | null    | No       |
+| dropdownClassName | Custom classnames for the dropdown element.           | string  | null    | No       |
+| useStyles         | Use built-in CSS styles from component.               | boolean | true    | No       |
 
 ```javascript
 return (
-   <DropDown label="Button Label">
+   <DropDown label="Button Label" id="dropdown" className="my-dropdown">
       <div>...children</div>
    </DropDown>
 )

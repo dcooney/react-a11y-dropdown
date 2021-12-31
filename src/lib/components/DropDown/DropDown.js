@@ -1,7 +1,8 @@
-import React, {useRef, useState, useEffect} from 'react'
 import PropTypes from 'prop-types'
+import React, {useEffect, useRef, useState} from 'react'
+import {createMarkup, getActiveIndex, setFocus} from '../../functions'
+import classNames from 'classnames'
 import './styles.css'
-
 /**
  * Accessibile Dropdown component.
  *
@@ -10,7 +11,15 @@ import './styles.css'
  * @returns {Element}                The DropDown component.
  */
 export default function DropDown(props) {
-   const {id, label, children} = props
+   const {
+      id,
+      label,
+      children,
+      useStyles,
+      className,
+      buttonClassName,
+      dropdownClassName
+   } = props
    const [expanded, setExpanded] = useState(false)
    const loaded = useRef(false)
    const containerRef = useRef()
@@ -114,64 +123,34 @@ export default function DropDown(props) {
       }
    }
 
-   /**
-    * Get the current index position for the active element.
-    *
-    * @param   {HTMLElement} el       The current element to compare.
-    * @param   {NodeList}    elements The list of elements.
-    * @returns {Boolean}              The current index position in array.
-    */
-   function getActiveIndex(el, elements) {
-      const array = Array.prototype.slice.call(elements) // Convert NodeList to array.
-      return {
-         index: array.indexOf(el),
-         length: array.length - 1
-      }
-   }
-
-   /**
-    * Set focus on element.
-    *
-    * @param {HTMLElement} element The element to recieve focus.
-    */
-   function setFocus(element) {
-      if (!element) {
-         return
-      }
-      setTimeout(() => {
-         element.focus({preventScroll: true})
-      }, 25)
-   }
-
-   /**
-    * Create HTML from a string.
-    *
-    * @param   {string} html The string to set as HTML.
-    * @returns {string}      Returns a string to render as HTML.
-    */
-   function createMarkup(html) {
-      return {
-         __html: html
-      }
-   }
-
    return (
       <>
          {!!label && (
             <div
                ref={containerRef}
-               className="react-a11y-dropdown"
+               className={classNames(
+                  'react-a11y-dropdown',
+                  useStyles ? 'styled' : null,
+                  className && className
+               )}
                id={id ? id : null}
             >
                <button
                   ref={triggerRef}
-                  className="react-a11y-dropdown--button"
+                  className={classNames(
+                     'react-a11y-dropdown--button',
+                     buttonClassName && buttonClassName
+                  )}
                   aria-expanded={expanded ? 'true' : 'false'}
                   onClick={() => setExpanded((expanded) => !expanded)}
                   dangerouslySetInnerHTML={createMarkup(label)}
                ></button>
                <div
-                  className="react-a11y-dropdown--menu"
+                  className={classNames(
+                     'react-a11y-dropdown--menu',
+                     dropdownClassName && dropdownClassName,
+                     expanded ? 'expanded' : null
+                  )}
                   ref={menuRef}
                   aria-hidden={expanded ? 'false' : 'true'}
                >
@@ -186,5 +165,13 @@ export default function DropDown(props) {
 DropDown.propTypes = {
    id: PropTypes.string,
    label: PropTypes.string.isRequired,
-   children: PropTypes.object
+   children: PropTypes.object,
+   useStyles: PropTypes.bool,
+   className: PropTypes.string,
+   buttonClassName: PropTypes.string,
+   dropdownClassName: PropTypes.string
+}
+
+DropDown.defaultProps = {
+   useStyles: true
 }
