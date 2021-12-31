@@ -1,6 +1,6 @@
 export default function MenuOne() {
    return (
-      <ul>
+      <ul className="text-sm">
          <li>
             <a href="#" className="block w-full text-left p-1 hover:underline">
                Link One

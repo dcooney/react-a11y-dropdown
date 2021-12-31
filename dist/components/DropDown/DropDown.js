@@ -7,17 +7,21 @@ exports.default = DropDown;
 
 require("core-js/modules/web.dom-collections.iterator.js");
 
-var _react = _interopRequireWildcard(require("react"));
-
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
-require("./styles.css");
+var _react = _interopRequireWildcard(require("react"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _functions = require("../../functions");
+
+var _classnames = _interopRequireDefault(require("classnames"));
+
+require("./styles.css");
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * Accessibile Dropdown component.
@@ -30,7 +34,11 @@ function DropDown(props) {
   const {
     id,
     label,
-    children
+    children,
+    useStyles,
+    className,
+    buttonClassName,
+    dropdownClassName
   } = props;
   const [expanded, setExpanded] = (0, _react.useState)(false);
   const loaded = (0, _react.useRef)(false);
@@ -55,16 +63,16 @@ function DropDown(props) {
       const {
         index,
         length
-      } = getActiveIndex(active, elements);
+      } = (0, _functions.getActiveIndex)(active, elements);
 
       if (event.which === 40) {
         if (active === triggerRef.current) {
           // Focused on trigger then expand the menu.
-          setFocus(elements[0]);
+          (0, _functions.setFocus)(elements[0]);
           setExpanded(true);
         } else {
           const next = index === length ? 0 : index + 1;
-          elements[next] && setFocus(elements[next]);
+          elements[next] && (0, _functions.setFocus)(elements[next]);
         }
 
         event.preventDefault();
@@ -77,7 +85,7 @@ function DropDown(props) {
           setExpanded(false);
         } else {
           const prev = index === 0 ? length : index - 1;
-          elements[prev] && setFocus(elements[prev]);
+          elements[prev] && (0, _functions.setFocus)(elements[prev]);
         }
 
         event.preventDefault();
@@ -135,67 +143,19 @@ function DropDown(props) {
       setExpanded(false);
     }
   }
-  /**
-   * Get the current index position for the active element.
-   *
-   * @param   {HTMLElement} el       The current element to compare.
-   * @param   {NodeList}    elements The list of elements.
-   * @returns {Boolean}              The current index position in array.
-   */
-
-
-  function getActiveIndex(el, elements) {
-    const array = Array.prototype.slice.call(elements); // Convert NodeList to array.
-
-    return {
-      index: array.indexOf(el),
-      length: array.length - 1
-    };
-  }
-  /**
-   * Set focus on element.
-   *
-   * @param {HTMLElement} element The element to recieve focus.
-   */
-
-
-  function setFocus(element) {
-    if (!element) {
-      return;
-    }
-
-    setTimeout(() => {
-      element.focus({
-        preventScroll: true
-      });
-    }, 25);
-  }
-  /**
-   * Create HTML from a string.
-   *
-   * @param   {string} html The string to set as HTML.
-   * @returns {string}      Returns a string to render as HTML.
-   */
-
-
-  function createMarkup(html) {
-    return {
-      __html: html
-    };
-  }
 
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, !!label && /*#__PURE__*/_react.default.createElement("div", {
     ref: containerRef,
-    className: "react-a11y-dropdown",
+    className: (0, _classnames.default)('react-a11y-dropdown', !useStyles ? 'unstyled' : null, className && className),
     id: id ? id : null
   }, /*#__PURE__*/_react.default.createElement("button", {
     ref: triggerRef,
-    className: "react-a11y-dropdown--button",
+    className: (0, _classnames.default)('react-a11y-dropdown--button', !useStyles ? 'unstyled' : null, buttonClassName && buttonClassName),
     "aria-expanded": expanded ? 'true' : 'false',
     onClick: () => setExpanded(expanded => !expanded),
-    dangerouslySetInnerHTML: createMarkup(label)
+    dangerouslySetInnerHTML: (0, _functions.createMarkup)(label)
   }), /*#__PURE__*/_react.default.createElement("div", {
-    className: "react-a11y-dropdown--menu",
+    className: (0, _classnames.default)('react-a11y-dropdown--menu', !useStyles ? 'unstyled' : null, dropdownClassName && dropdownClassName, expanded ? 'expanded' : null),
     ref: menuRef,
     "aria-hidden": expanded ? 'false' : 'true'
   }, children)));
@@ -204,5 +164,12 @@ function DropDown(props) {
 DropDown.propTypes = {
   id: _propTypes.default.string,
   label: _propTypes.default.string.isRequired,
-  children: _propTypes.default.object
+  children: _propTypes.default.object,
+  useStyles: _propTypes.default.bool,
+  className: _propTypes.default.string,
+  buttonClassName: _propTypes.default.string,
+  dropdownClassName: _propTypes.default.string
+};
+DropDown.defaultProps = {
+  useStyles: true
 };

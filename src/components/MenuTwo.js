@@ -1,7 +1,8 @@
 export default function MenuTwo() {
    return (
       <div>
-         <ul className="mb-2">
+         <h3 className="mb-1 text-lg font-bold p-1 border-b">Menu Items</h3>
+         <ul className="mb-2 text-sm py-2">
             <li>
                <button className="w-full text-left p-1 hover:underline">
                   Item One
@@ -18,7 +19,7 @@ export default function MenuTwo() {
                </button>
             </li>
          </ul>
-         <div className="mt-3 p-3 bg-gray-100 rounded-sm border">
+         <div className="p-3 bg-gray-100 rounded-sm border">
             <label
                htmlFor="input"
                className="block uppercase font-bold text-xs m-0 mb-2"

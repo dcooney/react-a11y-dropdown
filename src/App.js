@@ -8,7 +8,7 @@ export default function App() {
    return (
       <div className="container mx-auto">
          <Intro />
-         <div className="flex flex-nowrap gap-4 self-start text-md">
+         <div className="flex flex-nowrap items-center gap-4 self-start text-md">
             <DropDown
                id="my-dropdown"
                label="Show Links"
