@@ -11,8 +11,6 @@ var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _functions = require("../../functions");
-
 var _classnames = _interopRequireDefault(require("classnames"));
 
 require("./styles.css");
@@ -63,16 +61,16 @@ function DropDown(props) {
       const {
         index,
         length
-      } = (0, _functions.getActiveIndex)(active, elements);
+      } = getActiveIndex(active, elements);
 
       if (event.which === 40) {
         if (active === triggerRef.current) {
           // Focused on trigger then expand the menu.
-          (0, _functions.setFocus)(elements[0]);
+          setFocus(elements[0]);
           setExpanded(true);
         } else {
           const next = index === length ? 0 : index + 1;
-          elements[next] && (0, _functions.setFocus)(elements[next]);
+          elements[next] && setFocus(elements[next]);
         }
 
         event.preventDefault();
@@ -85,7 +83,7 @@ function DropDown(props) {
           setExpanded(false);
         } else {
           const prev = index === 0 ? length : index - 1;
-          elements[prev] && (0, _functions.setFocus)(elements[prev]);
+          elements[prev] && setFocus(elements[prev]);
         }
 
         event.preventDefault();
@@ -143,6 +141,54 @@ function DropDown(props) {
       setExpanded(false);
     }
   }
+  /**
+   * Get the current index position for the active element.
+   *
+   * @param   {HTMLElement} el       The current element to compare.
+   * @param   {NodeList}    elements The list of elements.
+   * @returns {Boolean}              The current index position in array.
+   */
+
+
+  function getActiveIndex(el, elements) {
+    const array = Array.prototype.slice.call(elements); // Convert NodeList to array.
+
+    return {
+      index: array.indexOf(el),
+      length: array.length - 1
+    };
+  }
+  /**
+   * Set focus on element.
+   *
+   * @param {HTMLElement} element The element to recieve focus.
+   */
+
+
+  function setFocus(element) {
+    if (!element) {
+      return;
+    }
+
+    setTimeout(() => {
+      element.focus({
+        preventScroll: true
+      });
+    }, 25);
+  }
+  /**
+   * Create HTML from a string.
+   *
+   * @param   {string} html The string to set as HTML.
+   * @returns {string}      Returns a string to render as HTML.
+   */
+
+
+  function createMarkup(html) {
+    return {
+      __html: html
+    };
+  }
 
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, !!label && /*#__PURE__*/_react.default.createElement("div", {
     ref: containerRef,
@@ -153,7 +199,7 @@ function DropDown(props) {
     className: (0, _classnames.default)('react-a11y-dropdown--button', !useStyles ? 'unstyled' : null, buttonClassName && buttonClassName),
     "aria-expanded": expanded ? 'true' : 'false',
     onClick: () => setExpanded(expanded => !expanded),
-    dangerouslySetInnerHTML: (0, _functions.createMarkup)(label)
+    dangerouslySetInnerHTML: createMarkup(label)
   }), /*#__PURE__*/_react.default.createElement("div", {
     className: (0, _classnames.default)('react-a11y-dropdown--menu', !useStyles ? 'unstyled' : null, dropdownClassName && dropdownClassName, expanded ? 'expanded' : null),
     ref: menuRef,

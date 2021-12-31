@@ -1,5 +1,7 @@
 # CHANGELOG
 
-0.2.0
+0.1.5
 
--  Added `styles` prop to remove all component styling.
+-  UPDATE: Added `useStyles` prop to remove all component styling.
+-  UPDATE: Added new props to attach custom classNames to component wrappers.
+-  UPDATE: Reduced component dependencies.
