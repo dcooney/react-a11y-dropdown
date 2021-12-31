@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import React, {useEffect, useRef, useState} from 'react'
 import classNames from 'classnames'
 import './styles.css'
+
 /**
  * Accessibile Dropdown component.
  *
