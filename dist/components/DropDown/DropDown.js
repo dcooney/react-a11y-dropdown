@@ -1,329 +1,256 @@
-'use strict'
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
-   value: true
-})
-exports.default = DropDown
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = DropDown;
 
-var _propTypes = _interopRequireDefault(require('prop-types'))
+var _classnames = _interopRequireDefault(require("classnames"));
 
-var _react = _interopRequireWildcard(require('react'))
+var _propTypes = _interopRequireDefault(require("prop-types"));
 
-var _classnames = _interopRequireDefault(require('classnames'))
+var _react = _interopRequireWildcard(require("react"));
 
-var _styledComponents = _interopRequireDefault(require('styled-components'))
+var _defaults = _interopRequireDefault(require("./defaults"));
 
-var _templateObject, _templateObject2, _templateObject3
+var _styles = require("./styles");
 
-function _getRequireWildcardCache(nodeInterop) {
-   if (typeof WeakMap !== 'function') return null
-   var cacheBabelInterop = new WeakMap()
-   var cacheNodeInterop = new WeakMap()
-   return (_getRequireWildcardCache = function _getRequireWildcardCache(
-      nodeInterop
-   ) {
-      return nodeInterop ? cacheNodeInterop : cacheBabelInterop
-   })(nodeInterop)
-}
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
-function _interopRequireWildcard(obj, nodeInterop) {
-   if (!nodeInterop && obj && obj.__esModule) {
-      return obj
-   }
-   if (obj === null || (typeof obj !== 'object' && typeof obj !== 'function')) {
-      return {default: obj}
-   }
-   var cache = _getRequireWildcardCache(nodeInterop)
-   if (cache && cache.has(obj)) {
-      return cache.get(obj)
-   }
-   var newObj = {}
-   var hasPropertyDescriptor =
-      Object.defineProperty && Object.getOwnPropertyDescriptor
-   for (var key in obj) {
-      if (key !== 'default' && Object.prototype.hasOwnProperty.call(obj, key)) {
-         var desc = hasPropertyDescriptor
-            ? Object.getOwnPropertyDescriptor(obj, key)
-            : null
-         if (desc && (desc.get || desc.set)) {
-            Object.defineProperty(newObj, key, desc)
-         } else {
-            newObj[key] = obj[key]
-         }
-      }
-   }
-   newObj.default = obj
-   if (cache) {
-      cache.set(obj, newObj)
-   }
-   return newObj
-}
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function _interopRequireDefault(obj) {
-   return obj && obj.__esModule ? obj : {default: obj}
-}
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _taggedTemplateLiteral(strings, raw) {
-   if (!raw) {
-      raw = strings.slice(0)
-   }
-   return Object.freeze(
-      Object.defineProperties(strings, {raw: {value: Object.freeze(raw)}})
-   )
-}
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
-const Wrapper = _styledComponents.default.div(
-   _templateObject ||
-      (_templateObject = _taggedTemplateLiteral([
-         '\n   width: auto;\n   padding-bottom: 1px;\n   position: relative;\n'
-      ]))
-)
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
-const Button = _styledComponents.default.button(
-   _templateObject2 ||
-      (_templateObject2 = _taggedTemplateLiteral([
-         '\n   cursor: pointer;\n   font-size: 14px;\n   color: #333;\n   background-color: #f7f7f7;\n   border: #333;\n   border-radius: 3px;\n   padding: 10px;\n   margin: 0;\n'
-      ]))
-)
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-const Drop = _styledComponents.default.div(
-   _templateObject3 ||
-      (_templateObject3 = _taggedTemplateLiteral([
-         '\n   visibility: ',
-         ';\n   opacity: ',
-         ';\n   z-index: 9999;\n   position: absolute;\n   top: 100%;\n   left: 0;\n   display: block;\n   transform: scale(',
-         ');\n   transition: transform 0.2s cubic-bezier(0.24, 0.22, 0.015, 1.56),\n      opacity 0.15s ease-in-out, visibility 0.15s ease-in-out;\n   background-color: #fff;\n   border: 1px solid #ccc;\n   border-radius: 3px;\n   box-shadow: 0 10px 20px rgba(88, 92, 95, 0.1);\n   padding: 10px;\n   width: 225px;\n   min-width: 100%;\n   max-height: 350px;\n   overflow-y: auto;\n   top: ',
-         ';\n'
-      ])),
-   (props) => (props.expanded ? 'visible' : 'hidden'),
-   (props) => (props.expanded ? '1' : '0'),
-   (props) => (props.expanded ? '1' : ' 0.95'),
-   (props) => (props.expanded ? '100%' : '110%')
-)
 /**
  * Accessibile Dropdown component.
  *
- * @param   {object}  props          The component props.
- * @param   {object}  props.children Container children.
- * @returns {Element}                The DropDown component.
+ * @param   {object}  props                   The component props.
+ * @param   {string}  props.id                An optional ID for the dropdown.
+ * @param   {string}  props.label             The button text for opening the dropdown.
+ * @param   {object}  props.children          Component children.
+ * @param   {boolean} props.useStyles         Should the component use the OOTB styling.
+ * @param   {string}  props.className         Custom classnames for the dropdown container.
+ * @param   {string}  props.buttonClassName   Custom classnames for the button element.
+ * @param   {string}  props.dropdownClassName Custom classnames for the dropdown/menu element.
+ * @param   {object}  props.config            Override styling configuration for the component.
+ * @returns {Element}                         The DropDown component.
  */
-
 function DropDown(props) {
-   const {
-      id,
-      label,
-      children,
-      useStyles,
-      className,
-      buttonClassName,
-      dropdownClassName
-   } = props
-   const [expanded, setExpanded] = (0, _react.useState)(false)
-   const loaded = (0, _react.useRef)(false)
-   const containerRef = (0, _react.useRef)()
-   const menuRef = (0, _react.useRef)()
-   const triggerRef = (0, _react.useRef)()
-   const focusable =
-      'a[href], button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])'
-   ;(0, _react.useEffect)(() => {
-      /**
-       * Handle keyboard controls.
-       *
-       * @param {Event} event The click event.
-       */
+  const {
+    id,
+    label,
+    children,
+    useStyles,
+    className,
+    buttonClassName,
+    dropdownClassName,
+    config
+  } = props;
+  const [expanded, setExpanded] = (0, _react.useState)(false);
+  const loaded = (0, _react.useRef)(false);
+  const containerRef = (0, _react.useRef)();
+  const menuRef = (0, _react.useRef)();
+  const buttonRef = (0, _react.useRef)();
+  const focusable = 'a[href], button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])'; // Get color and styling config.
 
-      function keyboardControls(event) {
-         const active = document.activeElement
-         const elements = menuRef.current.querySelectorAll(focusable) // Exit if elements are not focusable.
+  const {
+    button,
+    dropdown,
+    wrapper
+  } = config ? config : {};
 
-         if (!containerRef.current.contains(active) || elements.length === 0) {
-            return
-         }
+  const buttonStyles = _objectSpread(_objectSpread({}, _defaults.default.button), button);
 
-         const {index, length} = getActiveIndex(active, elements)
+  const menuStyles = _objectSpread(_objectSpread({}, _defaults.default.dropdown), dropdown);
 
-         if (event.which === 40) {
-            if (active === triggerRef.current) {
-               // Focused on trigger then expand the menu.
-               setFocus(elements[0])
-               setExpanded(true)
-            } else {
-               const next = index === length ? 0 : index + 1
-               elements[next] && setFocus(elements[next])
-            }
+  const wrapperStyles = _objectSpread(_objectSpread({}, _defaults.default.wrapper), wrapper);
 
-            event.preventDefault()
-            return false
-         }
+  (0, _react.useEffect)(() => {
+    /**
+     * Handle keyboard controls.
+     *
+     * @param {Event} event The click event.
+     */
+    function keyboardControls(event) {
+      const active = document.activeElement;
+      const elements = menuRef.current.querySelectorAll(focusable); // Exit if elements are not focusable.
 
-         if (event.which === 38) {
-            if (active === triggerRef.current) {
-               // Focused on trigger then collapse the menu.
-               setExpanded(false)
-            } else {
-               const prev = index === 0 ? length : index - 1
-               elements[prev] && setFocus(elements[prev])
-            }
-
-            event.preventDefault()
-            return false
-         }
+      if (!containerRef.current.contains(active) || elements.length === 0) {
+        return;
       }
 
-      if (!loaded.current) {
-         document.addEventListener('click', clickOutside)
-         document.addEventListener('keyup', focusOutside)
-         document.addEventListener('keydown', keyboardControls)
-         document.addEventListener('keydown', escClick)
-         loaded.current = true
+      const {
+        index,
+        length
+      } = getActiveIndex(active, elements);
+
+      if (event.which === 40) {
+        if (active === buttonRef.current) {
+          // Focused on trigger then expand the menu.
+          setFocus(elements[0]);
+          setExpanded(true);
+        } else {
+          const next = index === length ? 0 : index + 1;
+          elements[next] && setFocus(elements[next]);
+        }
+
+        event.preventDefault();
+        return false;
       }
 
-      return () => {
-         document.removeEventListener('click', clickOutside)
-         document.removeEventListener('keyup', focusOutside)
-         document.removeEventListener('keydown', keyboardControls)
-         document.removeEventListener('keydown', escClick)
+      if (event.which === 38) {
+        if (active === buttonRef.current) {
+          // Focused on trigger then collapse the menu.
+          setExpanded(false);
+        } else {
+          const prev = index === 0 ? length : index - 1;
+          elements[prev] && setFocus(elements[prev]);
+        }
+
+        event.preventDefault();
+        return false;
       }
-   }, [])
-   /**
-    * Close menu when clicking outside.
-    *
-    * @param {Event} event The click event.
-    */
+    }
 
-   function clickOutside(event) {
-      if (
-         !menuRef.current.contains(event.target) &&
-         !triggerRef.current.contains(event.target)
-      ) {
-         setExpanded(false)
-      }
-   }
-   /**
-    * Checks for focus outside of component.
-    *
-    * @param {Event} event The click event.
-    */
+    if (!loaded.current) {
+      document.addEventListener('click', clickOutside);
+      document.addEventListener('keyup', focusOutside);
+      document.addEventListener('keydown', keyboardControls);
+      document.addEventListener('keydown', escClick);
+      loaded.current = true;
+    }
 
-   function focusOutside(event) {
-      if (!containerRef.current.contains(event.target)) {
-         setExpanded(false)
-      }
-   }
-   /**
-    * Detect an escape key press and close.
-    *
-    * @param {Event} event The click event.
-    */
+    return () => {
+      document.removeEventListener('click', clickOutside);
+      document.removeEventListener('keyup', focusOutside);
+      document.removeEventListener('keydown', keyboardControls);
+      document.removeEventListener('keydown', escClick);
+    };
+  }, []);
+  /**
+   * Close menu when clicking outside.
+   *
+   * @param {Event} event The click event.
+   */
 
-   function escClick(event) {
-      if (event.key === 'Escape') {
-         setExpanded(false)
-      }
-   }
-   /**
-    * Get the current index position for the active element.
-    *
-    * @param   {HTMLElement} el       The current element to compare.
-    * @param   {NodeList}    elements The list of elements.
-    * @returns {Boolean}              The current index position in array.
-    */
+  function clickOutside(event) {
+    if (!menuRef.current.contains(event.target) && !buttonRef.current.contains(event.target)) {
+      setExpanded(false);
+    }
+  }
+  /**
+   * Checks for focus outside of component.
+   *
+   * @param {Event} event The click event.
+   */
 
-   function getActiveIndex(el, elements) {
-      const array = Array.prototype.slice.call(elements) // Convert NodeList to array.
 
-      return {
-         index: array.indexOf(el),
-         length: array.length - 1
-      }
-   }
-   /**
-    * Set focus on element.
-    *
-    * @param {HTMLElement} element The element to recieve focus.
-    */
+  function focusOutside(event) {
+    if (!containerRef.current.contains(event.target)) {
+      setExpanded(false);
+    }
+  }
+  /**
+   * Detect an escape key press and close.
+   *
+   * @param {Event} event The click event.
+   */
 
-   function setFocus(element) {
-      if (!element) {
-         return
-      }
 
-      setTimeout(() => {
-         element.focus({
-            preventScroll: true
-         })
-      }, 25)
-   }
-   /**
-    * Create HTML from a string.
-    *
-    * @param   {string} html The string to set as HTML.
-    * @returns {string}      Returns a string to render as HTML.
-    */
+  function escClick(event) {
+    if (event.key === 'Escape') {
+      setExpanded(false);
+    }
+  }
+  /**
+   * Get the current index position for the active element.
+   *
+   * @param   {HTMLElement} el       The current element to compare.
+   * @param   {NodeList}    elements The list of elements.
+   * @returns {Boolean}              The current index position in array.
+   */
 
-   function createMarkup(html) {
-      return {
-         __html: html
-      }
-   }
 
-   return /*#__PURE__*/ _react.default.createElement(
-      _react.default.Fragment,
-      null,
-      !!label &&
-         /*#__PURE__*/ _react.default.createElement(
-            Wrapper,
-            {
-               ref: containerRef,
-               className: (0, _classnames.default)(
-                  'react-a11y-dropdown',
-                  !useStyles ? 'unstyled' : null,
-                  className && className
-               ),
-               useStyles: useStyles,
-               id: id ? id : null
-            },
-            /*#__PURE__*/ _react.default.createElement(Button, {
-               ref: triggerRef,
-               className: (0, _classnames.default)(
-                  'react-a11y-dropdown--button',
-                  !useStyles ? 'unstyled' : null,
-                  buttonClassName && buttonClassName
-               ),
-               useStyles: useStyles,
-               'aria-expanded': expanded ? 'true' : 'false',
-               onClick: () => setExpanded((expanded) => !expanded),
-               dangerouslySetInnerHTML: createMarkup(label)
-            }),
-            /*#__PURE__*/ _react.default.createElement(
-               Drop,
-               {
-                  ref: menuRef,
-                  className: (0, _classnames.default)(
-                     'react-a11y-dropdown--menu',
-                     !useStyles ? 'unstyled' : null,
-                     dropdownClassName && dropdownClassName,
-                     expanded ? 'expanded' : null
-                  ),
-                  expanded: expanded,
-                  useStyles: useStyles,
-                  'aria-hidden': expanded ? 'false' : 'true'
-               },
-               children
-            )
-         )
-   )
+  function getActiveIndex(el, elements) {
+    const array = Array.prototype.slice.call(elements); // Convert NodeList to array.
+
+    return {
+      index: array.indexOf(el),
+      length: array.length - 1
+    };
+  }
+  /**
+   * Set focus on element.
+   *
+   * @param {HTMLElement} element The element to recieve focus.
+   */
+
+
+  function setFocus(element) {
+    if (!element) {
+      return;
+    }
+
+    setTimeout(() => {
+      element.focus({
+        preventScroll: true
+      });
+    }, 25);
+  }
+  /**
+   * Create HTML from a string.
+   *
+   * @param   {string} html The string to set as HTML.
+   * @returns {string}      Returns a string to render as HTML.
+   */
+
+
+  function createMarkup(html) {
+    return {
+      __html: html
+    };
+  }
+
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, !!label && /*#__PURE__*/_react.default.createElement(_styles.Wrapper, {
+    ref: containerRef,
+    className: (0, _classnames.default)('react-a11y-dropdown', className && className),
+    useStyles: useStyles,
+    styles: wrapperStyles,
+    id: id ? id : null
+  }, /*#__PURE__*/_react.default.createElement(_styles.Button, {
+    ref: buttonRef,
+    className: (0, _classnames.default)('react-a11y-dropdown--button', buttonClassName && buttonClassName),
+    useStyles: useStyles,
+    styles: buttonStyles,
+    "aria-expanded": expanded ? 'true' : 'false',
+    onClick: () => setExpanded(expanded => !expanded),
+    dangerouslySetInnerHTML: createMarkup(label)
+  }), /*#__PURE__*/_react.default.createElement(_styles.Menu, {
+    ref: menuRef,
+    className: (0, _classnames.default)('react-a11y-dropdown--menu', dropdownClassName && dropdownClassName, expanded ? 'expanded' : null),
+    useStyles: useStyles,
+    styles: menuStyles,
+    expanded: expanded,
+    "aria-hidden": expanded ? 'false' : 'true'
+  }, children)));
 }
 
 DropDown.propTypes = {
-   id: _propTypes.default.string,
-   label: _propTypes.default.string.isRequired,
-   children: _propTypes.default.object,
-   useStyles: _propTypes.default.bool,
-   className: _propTypes.default.string,
-   buttonClassName: _propTypes.default.string,
-   dropdownClassName: _propTypes.default.string
-}
+  id: _propTypes.default.string,
+  label: _propTypes.default.string.isRequired,
+  children: _propTypes.default.object,
+  useStyles: _propTypes.default.bool,
+  className: _propTypes.default.string,
+  buttonClassName: _propTypes.default.string,
+  dropdownClassName: _propTypes.default.string,
+  config: _propTypes.default.object
+};
 DropDown.defaultProps = {
-   useStyles: true
-}
+  useStyles: true
+};
