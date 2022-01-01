@@ -24,7 +24,7 @@ module.exports = {
       left: '0',
       margin: '0',
       maxHeight: '300px',
-      minWidth: 'none',
+      minWidth: 'auto',
       overflowY: 'auto',
       padding: '10px',
       position: 'absolute',
