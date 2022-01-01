@@ -15,6 +15,18 @@ export default function App() {
                className="drop"
                buttonClassName="button"
                dropdownClassName="menu"
+               config={{
+                  button: {
+                     background: '#fff',
+                     text: '#121212',
+                     border: '#121212',
+                     hover: {
+                        background: '#121212',
+                        border: '#121212',
+                        text: '#fff'
+                     }
+                  }
+               }}
             >
                <MenuOne />
             </DropDown>

@@ -1,9 +1,13 @@
 {
   "name": "react-a11y-dropdown",
-  "description": "An accessible dropdown component for React.",
-  "homepage": "https://dcooney.github.io/react-a11y-dropdown/",
-  "author": "dcooney",
   "version": "0.1.55",
+  "description": "An accessible dropdown component for React.",
+  "license": "MIT",
+  "homepage": "https://dcooney.github.io/react-a11y-dropdown/",
+  "contributors": [
+    "Darren Cooney <darren.cooney@gmail.com> (https://github.com/dcooney)"
+  ],
+  "author": "dcooney",
   "private": false,
   "main": "dist/index.js",
   "module": "dist/index.js",

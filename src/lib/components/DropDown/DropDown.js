@@ -1,53 +1,22 @@
+import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import React, {useEffect, useRef, useState} from 'react'
-import classNames from 'classnames'
-import styled from 'styled-components'
-
-const Wrapper = styled.div`
-   width: auto;
-   padding-bottom: 1px;
-   position: relative;
-`
-const Button = styled.button`
-   cursor: pointer;
-   font-size: 14px;
-   color: #333;
-   background-color: #f7f7f7;
-   border: #333;
-   border-radius: 3px;
-   padding: 10px;
-   margin: 0;
-`
-
-const Drop = styled.div`
-   visibility: ${(props) => (props.expanded ? 'visible' : 'hidden')};
-   opacity: ${(props) => (props.expanded ? '1' : '0')};
-   z-index: 9999;
-   position: absolute;
-   top: 100%;
-   left: 0;
-   display: block;
-   transform: scale(${(props) => (props.expanded ? '1' : ' 0.95')});
-   transition: transform 0.2s cubic-bezier(0.24, 0.22, 0.015, 1.56),
-      opacity 0.15s ease-in-out, visibility 0.15s ease-in-out;
-   background-color: #fff;
-   border: 1px solid #ccc;
-   border-radius: 3px;
-   box-shadow: 0 10px 20px rgba(88, 92, 95, 0.1);
-   padding: 10px;
-   width: 225px;
-   min-width: 100%;
-   max-height: 350px;
-   overflow-y: auto;
-   top: ${(props) => (props.expanded ? '100%' : '110%')};
-`
+import defaults from './defaults'
+import {Button, Menu, Wrapper} from './styles'
 
 /**
  * Accessibile Dropdown component.
  *
- * @param   {object}  props          The component props.
- * @param   {object}  props.children Container children.
- * @returns {Element}                The DropDown component.
+ * @param   {object}  props                   The component props.
+ * @param   {string}  props.id                An optional ID for the dropdown.
+ * @param   {string}  props.label             The button text for opening the dropdown.
+ * @param   {object}  props.children          Component children.
+ * @param   {boolean} props.useStyles         Should the component use the OOTB styling.
+ * @param   {string}  props.className         Custom classnames for the dropdown container.
+ * @param   {string}  props.buttonClassName   Custom classnames for the button element.
+ * @param   {string}  props.dropdownClassName Custom classnames for the dropdown/menu element.
+ * @param   {object}  props.config            Override styling configuration for the component.
+ * @returns {Element}                         The DropDown component.
  */
 export default function DropDown(props) {
    const {
@@ -57,18 +26,23 @@ export default function DropDown(props) {
       useStyles,
       className,
       buttonClassName,
-      dropdownClassName
+      dropdownClassName,
+      config
    } = props
    const [expanded, setExpanded] = useState(false)
    const loaded = useRef(false)
    const containerRef = useRef()
    const menuRef = useRef()
-   const triggerRef = useRef()
+   const buttonRef = useRef()
    const focusable =
       'a[href], button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])'
 
+   // Get color and styling config.
+   const {button, dropdown} = config ? config : {}
+   const buttonStyles = {...defaults.button, ...button}
+   const menuStyles = {...defaults.dropdown, ...dropdown}
+
    useEffect(() => {
-      console.log('hello')
       /**
        * Handle keyboard controls.
        *
@@ -86,7 +60,7 @@ export default function DropDown(props) {
          const {index, length} = getActiveIndex(active, elements)
 
          if (event.which === 40) {
-            if (active === triggerRef.current) {
+            if (active === buttonRef.current) {
                // Focused on trigger then expand the menu.
                setFocus(elements[0])
                setExpanded(true)
@@ -99,7 +73,7 @@ export default function DropDown(props) {
          }
 
          if (event.which === 38) {
-            if (active === triggerRef.current) {
+            if (active === buttonRef.current) {
                // Focused on trigger then collapse the menu.
                setExpanded(false)
             } else {
@@ -135,7 +109,7 @@ export default function DropDown(props) {
    function clickOutside(event) {
       if (
          !menuRef.current.contains(event.target) &&
-         !triggerRef.current.contains(event.target)
+         !buttonRef.current.contains(event.target)
       ) {
          setExpanded(false)
       }
@@ -210,38 +184,37 @@ export default function DropDown(props) {
                ref={containerRef}
                className={classNames(
                   'react-a11y-dropdown',
-                  !useStyles ? 'unstyled' : null,
                   className && className
                )}
                useStyles={useStyles}
                id={id ? id : null}
             >
                <Button
-                  ref={triggerRef}
+                  ref={buttonRef}
                   className={classNames(
                      'react-a11y-dropdown--button',
-                     !useStyles ? 'unstyled' : null,
                      buttonClassName && buttonClassName
                   )}
                   useStyles={useStyles}
+                  styles={buttonStyles}
                   aria-expanded={expanded ? 'true' : 'false'}
                   onClick={() => setExpanded((expanded) => !expanded)}
                   dangerouslySetInnerHTML={createMarkup(label)}
                ></Button>
-               <Drop
+               <Menu
                   ref={menuRef}
                   className={classNames(
                      'react-a11y-dropdown--menu',
-                     !useStyles ? 'unstyled' : null,
                      dropdownClassName && dropdownClassName,
                      expanded ? 'expanded' : null
                   )}
-                  expanded={expanded}
                   useStyles={useStyles}
+                  styles={menuStyles}
+                  expanded={expanded}
                   aria-hidden={expanded ? 'false' : 'true'}
                >
                   {children}
-               </Drop>
+               </Menu>
             </Wrapper>
          )}
       </>
@@ -255,7 +228,8 @@ DropDown.propTypes = {
    useStyles: PropTypes.bool,
    className: PropTypes.string,
    buttonClassName: PropTypes.string,
-   dropdownClassName: PropTypes.string
+   dropdownClassName: PropTypes.string,
+   config: PropTypes.object
 }
 
 DropDown.defaultProps = {
