@@ -1,8 +1,7 @@
 import styled, {css} from 'styled-components'
 
 const WrapperStyles = css`
-   width: auto;
-   padding-bottom: 1px;
+   width: ${(props) => (props?.styles?.width ? props?.styles?.width : null)};
 `
 export const Wrapper = styled.div`
    position: relative;
@@ -38,8 +37,8 @@ export const Button = styled.button`
 
 export const MenuStyles = css`
    transform: scale(${(props) => (props.expanded ? '1' : ' 0.95')});
-   transition: transform 0.2s cubic-bezier(0.24, 0.22, 0.015, 1.56),
-      opacity 0.15s ease-in-out, visibility 0.15s ease-in-out;
+   transition: ${(props) =>
+      props.transition !== false && props.styles.transition};
    background-color: ${(props) =>
       props.background !== false && props.styles.background};
    border: ${(props) =>
@@ -56,15 +55,16 @@ export const MenuStyles = css`
       props.styles.maxHeight !== false && props.styles.maxHeight};
    overflow-y: ${(props) =>
       props.styles.overflowY !== false && props.styles.overflowY};
-   top: ${(props) => (props.expanded ? '100%' : '110%')};
 `
 export const Menu = styled.div`
-   display: block;
    visibility: ${(props) => (props.expanded ? 'visible' : 'hidden')};
    opacity: ${(props) => (props.expanded ? '1' : '0')};
-   z-index: 9999;
-   position: absolute;
-   top: 100%;
-   left: 0;
+   display: ${(props) =>
+      props.styles.display !== false && props.styles.display};
+   z-index: ${(props) => props.styles.zIndex !== false && props.styles.zIndex};
+   position: ${(props) =>
+      props.styles.position !== false && props.styles.position};
+   top: ${(props) => props.styles.top !== false && props.styles.top};
+   left: ${(props) => props.styles.left !== false && props.styles.left};
    ${(props) => (props.useStyles ? MenuStyles : null)}
 `

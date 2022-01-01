@@ -25,6 +25,9 @@ export default function App() {
                         border: '#121212',
                         text: '#fff'
                      }
+                  },
+                  wrapper: {
+                     width: '200px'
                   }
                }}
             >

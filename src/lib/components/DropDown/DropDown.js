@@ -38,9 +38,10 @@ export default function DropDown(props) {
       'a[href], button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])'
 
    // Get color and styling config.
-   const {button, dropdown} = config ? config : {}
+   const {button, dropdown, wrapper} = config ? config : {}
    const buttonStyles = {...defaults.button, ...button}
    const menuStyles = {...defaults.dropdown, ...dropdown}
+   const wrapperStyles = {...defaults.wrapper, ...wrapper}
 
    useEffect(() => {
       /**
@@ -187,6 +188,7 @@ export default function DropDown(props) {
                   className && className
                )}
                useStyles={useStyles}
+               styles={wrapperStyles}
                id={id ? id : null}
             >
                <Button
