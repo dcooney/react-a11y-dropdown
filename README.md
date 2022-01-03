@@ -145,11 +145,15 @@ The following default CSS properties are passed into the `DropDown` component.
       overflowY: 'auto',
       padding: '10px',
       position: 'absolute',
+      transform: 'scale(0.95)',
       transition:
          'transform 0.25s cubic-bezier(0.24, 0.22, 0.015, 1.56), opacity 0.15s ease-in-out, visibility 0.15s ease-in-out',
       top: '100%',
       width: '250px',
-      zIndex: 99999
+      zIndex: 99999,
+      active: {
+         transform: 'scale(1)'
+      }
    },
    wrapper: {
       width: 'auto'
