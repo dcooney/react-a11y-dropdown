@@ -58,6 +58,7 @@ The `DropDown` component accepts the following props.
 | `buttonClassName`   | Custom classnames for the button trigger element.     | string  | null    | No       |
 | `dropdownClassName` | Custom classnames for the dropdown element.           | string  | null    | No       |
 | `useStyles`         | Use built-in CSS styles from component.               | boolean | true    | No       |
+| `config`            | DropDown CSS styles and cnfiguration object.          | object  | null    | No       |
 
 ```javascript
 return (
@@ -65,7 +66,19 @@ return (
       label="Button Label"
       id="dropdown"
       className="my-dropdown"
-      buttonClassName="my-dropdown--button"
+      buttonClassName="my-dropdown--button",
+      config={{
+         button: {
+            background: '#fff',
+            borderColor: '#121212',
+            color: '#121212',
+            hover: {
+               background: '#121212',
+               borderColor: '#121212',
+               color: '#fff'
+            }
+         }
+      }}
    >
       <YourComponent>{children}</YourComponent>
    </DropDown>

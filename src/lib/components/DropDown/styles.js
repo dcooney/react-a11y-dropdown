@@ -1,7 +1,7 @@
 import styled, {css} from 'styled-components'
 
 const WrapperStyles = css`
-   width: ${(props) => (props?.styles?.width ? props?.styles?.width : null)};
+   width: ${(props) => props.styles.width || null};
 `
 export const Wrapper = styled.div`
    position: relative;
@@ -10,25 +10,20 @@ export const Wrapper = styled.div`
 
 const ButtonStyles = css`
    cursor: pointer;
-   font-size: ${(props) =>
-      props?.styles?.fontSize ? props?.styles?.fontSize : null};
-   color: ${(props) => props.styles.text};
-   background-color: ${(props) =>
-      props.background !== false && props.styles.background};
-   border: ${(props) =>
-      props.border !== false && `1px solid ${props.styles.border}`};
-   border-radius: ${(props) => props.radius !== false && props.styles.radius};
-   padding: ${(props) => props.padding !== false && props.styles.padding};
-   margin: ${(props) => props.margin !== false && props.styles.margin};
+   font-size: ${(props) => getProp(props.styles.fontSize)};
+   color: ${(props) => getProp(props.styles.color)};
+   background: ${(props) => getProp(props.styles.background)};
+   border: ${(props) => getProp(props.styles.border)};
+   border-color: ${(props) => getProp(props.styles.borderColor)};
+   border-radius: ${(props) => getProp(props.styles.borderRadius)};
+   margin: ${(props) => getProp(props.styles.margin)};
+   padding: ${(props) => getProp(props.styles.padding)};
    :hover,
    :focus {
-      color: ${(props) =>
-         props.styles.hover.text !== false && props.styles.hover.text};
-      background-color: ${(props) =>
-         props.styles.hover.background !== false &&
-         props.styles.hover.background};
-      border-color: ${(props) =>
-         props.styles.hover.border !== false && props.styles.hover.border};
+      color: ${(props) => getProp(props.styles.hover.color)};
+      background: ${(props) => getProp(props.styles.hover.background)};
+      border: ${(props) => getProp(props.styles.hover.border)};
+      border-color: ${(props) => getProp(props.styles.hover.borderColor)};
    }
 `
 export const Button = styled.button`
@@ -37,34 +32,36 @@ export const Button = styled.button`
 
 export const MenuStyles = css`
    transform: scale(${(props) => (props.expanded ? '1' : ' 0.95')});
-   transition: ${(props) =>
-      props.transition !== false && props.styles.transition};
-   background-color: ${(props) =>
-      props.background !== false && props.styles.background};
-   border: ${(props) =>
-      props.border !== false && `1px solid ${props.styles.border}`};
-   border-radius: ${(props) => props.radius !== false && props.styles.radius};
-   padding: ${(props) => props.padding !== false && props.styles.padding};
-   margin: ${(props) => props.margin !== false && props.styles.margin};
-   box-shadow: ${(props) =>
-      props.styles.boxShadow !== false && props.styles.boxShadow};
-   width: ${(props) => props.styles.width !== false && props.styles.width};
-   min-width: ${(props) =>
-      props.styles.minWidth !== false && props.styles.minWidth};
-   max-height: ${(props) =>
-      props.styles.maxHeight !== false && props.styles.maxHeight};
-   overflow-y: ${(props) =>
-      props.styles.overflowY !== false && props.styles.overflowY};
+   transition: ${(props) => getProp(props.styles.transition)};
+   background-color: ${(props) => getProp(props.styles.background)};
+   border: ${(props) => getProp(props.styles.border)};
+   bordercolor: ${(props) => getProp(props.styles.borderColor)};
+   border-radius: ${(props) => getProp(props.styles.borderRadius)};
+   padding: ${(props) => getProp(props.styles.padding)};
+   margin: ${(props) => getProp(props.styles.margin)};
+   box-shadow: ${(props) => getProp(props.styles.boxShadow)};
+   width: ${(props) => getProp(props.styles.width)};
+   min-width: ${(props) => getProp(props.styles.minWidth)};
+   max-height: ${(props) => getProp(props.styles.maxHeight)};
+   overflow-y: ${(props) => getProp(props.styles.overflowY)};
 `
 export const Menu = styled.div`
    visibility: ${(props) => (props.expanded ? 'visible' : 'hidden')};
    opacity: ${(props) => (props.expanded ? '1' : '0')};
-   display: ${(props) =>
-      props.styles.display !== false && props.styles.display};
-   z-index: ${(props) => props.styles.zIndex !== false && props.styles.zIndex};
-   position: ${(props) =>
-      props.styles.position !== false && props.styles.position};
-   top: ${(props) => props.styles.top !== false && props.styles.top};
-   left: ${(props) => props.styles.left !== false && props.styles.left};
+   display: ${(props) => getProp(props.styles.display)};
+   z-index: ${(props) => getProp(props.styles.zIndex)};
+   position: ${(props) => getProp(props.styles.position)};
+   top: ${(props) => getProp(props.styles.top)};
+   left: ${(props) => getProp(props.styles.left)};
    ${(props) => (props.useStyles ? MenuStyles : null)}
 `
+
+/**
+ * Get style prop, only return if not false.
+ *
+ * @param   {string||boolean} prop The property to compare.
+ * @returns {string}               The CSS prop value.
+ */
+function getProp(prop) {
+   return prop !== false && prop
+}

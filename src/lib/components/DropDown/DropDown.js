@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
-import React, {useEffect, useRef, useState} from 'react'
+import React, {useEffect, useRef, useState, useImperativeHandle} from 'react'
 import defaults from './defaults'
 import {Button, Menu, Wrapper} from './styles'
 
@@ -18,7 +18,7 @@ import {Button, Menu, Wrapper} from './styles'
  * @param   {object}  props.config            Override styling configuration for the component.
  * @returns {Element}                         The DropDown component.
  */
-export default function DropDown(props) {
+const DropDown = React.forwardRef((props, ref) => {
    const {
       id,
       label,
@@ -101,6 +101,19 @@ export default function DropDown(props) {
          document.removeEventListener('keydown', escClick)
       }
    }, [])
+
+   /**
+    * Allow for setting the expanded state from parent components.
+    * @see https://reactjs.org/docs/hooks-reference.html#useimperativehandle
+    */
+   useImperativeHandle(ref, () => ({
+      /**
+       * Exposed function to close the dropdown.
+       */
+      close() {
+         setExpanded(false)
+      }
+   }))
 
    /**
     * Close menu when clicking outside.
@@ -221,7 +234,9 @@ export default function DropDown(props) {
          )}
       </>
    )
-}
+})
+
+export default DropDown
 
 DropDown.propTypes = {
    id: PropTypes.string,

@@ -15,27 +15,30 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-const WrapperStyles = (0, _styledComponents.css)(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n   width: ", ";\n"])), props => {
-  var _props$styles, _props$styles2;
-
-  return props !== null && props !== void 0 && (_props$styles = props.styles) !== null && _props$styles !== void 0 && _props$styles.width ? props === null || props === void 0 ? void 0 : (_props$styles2 = props.styles) === null || _props$styles2 === void 0 ? void 0 : _props$styles2.width : null;
-});
+const WrapperStyles = (0, _styledComponents.css)(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n   width: ", ";\n"])), props => props.styles.width || null);
 
 const Wrapper = _styledComponents.default.div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n   position: relative;\n   ", "\n"])), props => props.useStyles ? WrapperStyles : null);
 
 exports.Wrapper = Wrapper;
-const ButtonStyles = (0, _styledComponents.css)(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n   cursor: pointer;\n   font-size: ", ";\n   color: ", ";\n   background-color: ", ";\n   border: ", ";\n   border-radius: ", ";\n   padding: ", ";\n   margin: ", ";\n   :hover,\n   :focus {\n      color: ", ";\n      background-color: ", ";\n      border-color: ", ";\n   }\n"])), props => {
-  var _props$styles3, _props$styles4;
-
-  return props !== null && props !== void 0 && (_props$styles3 = props.styles) !== null && _props$styles3 !== void 0 && _props$styles3.fontSize ? props === null || props === void 0 ? void 0 : (_props$styles4 = props.styles) === null || _props$styles4 === void 0 ? void 0 : _props$styles4.fontSize : null;
-}, props => props.styles.text, props => props.background !== false && props.styles.background, props => props.border !== false && "1px solid ".concat(props.styles.border), props => props.radius !== false && props.styles.radius, props => props.padding !== false && props.styles.padding, props => props.margin !== false && props.styles.margin, props => props.styles.hover.text !== false && props.styles.hover.text, props => props.styles.hover.background !== false && props.styles.hover.background, props => props.styles.hover.border !== false && props.styles.hover.border);
+const ButtonStyles = (0, _styledComponents.css)(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n   cursor: pointer;\n   font-size: ", ";\n   color: ", ";\n   background: ", ";\n   border: ", ";\n   border-color: ", ";\n   border-radius: ", ";\n   margin: ", ";\n   padding: ", ";\n   :hover,\n   :focus {\n      color: ", ";\n      background: ", ";\n      border: ", ";\n      border-color: ", ";\n   }\n"])), props => getProp(props.styles.fontSize), props => getProp(props.styles.color), props => getProp(props.styles.background), props => getProp(props.styles.border), props => getProp(props.styles.borderColor), props => getProp(props.styles.borderRadius), props => getProp(props.styles.margin), props => getProp(props.styles.padding), props => getProp(props.styles.hover.color), props => getProp(props.styles.hover.background), props => getProp(props.styles.hover.border), props => getProp(props.styles.hover.borderColor));
 
 const Button = _styledComponents.default.button(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n   ", "\n"])), props => props.useStyles ? ButtonStyles : null);
 
 exports.Button = Button;
-const MenuStyles = (0, _styledComponents.css)(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n   transform: scale(", ");\n   transition: ", ";\n   background-color: ", ";\n   border: ", ";\n   border-radius: ", ";\n   padding: ", ";\n   margin: ", ";\n   box-shadow: ", ";\n   width: ", ";\n   min-width: ", ";\n   max-height: ", ";\n   overflow-y: ", ";\n"])), props => props.expanded ? '1' : ' 0.95', props => props.transition !== false && props.styles.transition, props => props.background !== false && props.styles.background, props => props.border !== false && "1px solid ".concat(props.styles.border), props => props.radius !== false && props.styles.radius, props => props.padding !== false && props.styles.padding, props => props.margin !== false && props.styles.margin, props => props.styles.boxShadow !== false && props.styles.boxShadow, props => props.styles.width !== false && props.styles.width, props => props.styles.minWidth !== false && props.styles.minWidth, props => props.styles.maxHeight !== false && props.styles.maxHeight, props => props.styles.overflowY !== false && props.styles.overflowY);
+const MenuStyles = (0, _styledComponents.css)(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n   transform: scale(", ");\n   transition: ", ";\n   background-color: ", ";\n   border: ", ";\n   bordercolor: ", ";\n   border-radius: ", ";\n   padding: ", ";\n   margin: ", ";\n   box-shadow: ", ";\n   width: ", ";\n   min-width: ", ";\n   max-height: ", ";\n   overflow-y: ", ";\n"])), props => props.expanded ? '1' : ' 0.95', props => getProp(props.styles.transition), props => getProp(props.styles.background), props => getProp(props.styles.border), props => getProp(props.styles.borderColor), props => getProp(props.styles.borderRadius), props => getProp(props.styles.padding), props => getProp(props.styles.margin), props => getProp(props.styles.boxShadow), props => getProp(props.styles.width), props => getProp(props.styles.minWidth), props => getProp(props.styles.maxHeight), props => getProp(props.styles.overflowY));
 exports.MenuStyles = MenuStyles;
 
-const Menu = _styledComponents.default.div(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n   visibility: ", ";\n   opacity: ", ";\n   display: ", ";\n   z-index: ", ";\n   position: ", ";\n   top: ", ";\n   left: ", ";\n   ", "\n"])), props => props.expanded ? 'visible' : 'hidden', props => props.expanded ? '1' : '0', props => props.styles.display !== false && props.styles.display, props => props.styles.zIndex !== false && props.styles.zIndex, props => props.styles.position !== false && props.styles.position, props => props.styles.top !== false && props.styles.top, props => props.styles.left !== false && props.styles.left, props => props.useStyles ? MenuStyles : null);
+const Menu = _styledComponents.default.div(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n   visibility: ", ";\n   opacity: ", ";\n   display: ", ";\n   z-index: ", ";\n   position: ", ";\n   top: ", ";\n   left: ", ";\n   ", "\n"])), props => props.expanded ? 'visible' : 'hidden', props => props.expanded ? '1' : '0', props => getProp(props.styles.display), props => getProp(props.styles.zIndex), props => getProp(props.styles.position), props => getProp(props.styles.top), props => getProp(props.styles.left), props => props.useStyles ? MenuStyles : null);
+/**
+ * Get style prop, only return if not false.
+ *
+ * @param   {string||boolean} prop The property to compare.
+ * @returns {string}               The CSS prop value.
+ */
+
 
 exports.Menu = Menu;
+
+function getProp(prop) {
+  return prop !== false && prop;
+}

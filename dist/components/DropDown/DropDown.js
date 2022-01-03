@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = DropDown;
+exports.default = void 0;
 
 var _classnames = _interopRequireDefault(require("classnames"));
 
@@ -41,7 +41,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
  * @param   {object}  props.config            Override styling configuration for the component.
  * @returns {Element}                         The DropDown component.
  */
-function DropDown(props) {
+const DropDown = /*#__PURE__*/_react.default.forwardRef((props, ref) => {
   const {
     id,
     label,
@@ -133,6 +133,20 @@ function DropDown(props) {
       document.removeEventListener('keydown', escClick);
     };
   }, []);
+  /**
+   * Allow for setting the expanded state from parent components.
+   * @see https://reactjs.org/docs/hooks-reference.html#useimperativehandle
+   */
+
+  (0, _react.useImperativeHandle)(ref, () => ({
+    /**
+     * Exposed function to close the dropdown.
+     */
+    close() {
+      setExpanded(false);
+    }
+
+  }));
   /**
    * Close menu when clicking outside.
    *
@@ -239,8 +253,10 @@ function DropDown(props) {
     expanded: expanded,
     "aria-hidden": expanded ? 'false' : 'true'
   }, children)));
-}
+});
 
+var _default = DropDown;
+exports.default = _default;
 DropDown.propTypes = {
   id: _propTypes.default.string,
   label: _propTypes.default.string.isRequired,
