@@ -9,17 +9,20 @@ import MegaMenu from './pages/home/MegaMenu'
 export default function App() {
    const drop = useRef()
 
-   const handleClick = (e) => {
+   /**
+    * Close the custom dropmenu.
+    */
+   const handleClick = () => {
       drop.current.close()
    }
 
    return (
-      <div className="container mx-auto px-5 text-slate-800 pb-15">
+      <div className="container mx-auto px-5 text-slate-800">
          <Intro />
 
-         <div className="grid grid-cols-2 gap-5 pt-2">
-            <div className="py-5">
-               <h3 className="text-xl font-bold mb-1">Basic</h3>
+         <main className="grid sm:grid-cols-2 gap-5 pt-5 pb-10">
+            <section className="py-3">
+               <h3 className="text-lg sm:text-xl font-bold mb-1">Basic</h3>
                <p className="text-sm mb-5">
                   OOTB functionality without custom configuration.
                </p>
@@ -31,17 +34,19 @@ export default function App() {
                      <MenuTwo />
                   </DropDown>
                </div>
-            </div>
+            </section>
 
-            <div className="py-5">
-               <h3 className="text-xl font-bold mb-1">Custom Configuration</h3>
+            <section className="py-3">
+               <h3 className="text-lg sm:text-xl font-bold mb-1">
+                  Custom Configuration
+               </h3>
                <p className="text-sm mb-5">
                   Using the <span className="bg-blue-50 p-1">config</span> prop
                   to style the dropdown button and menu.
                </p>
                <div className="flex flex-nowrap items-center gap-4 self-start">
                   <DropDown
-                     label="Mega Menu <span>&darr;</span>"
+                     label="Mega Menu"
                      config={{
                         button: {
                            background: '#38699b',
@@ -59,8 +64,13 @@ export default function App() {
                         dropdown: {
                            background: '#f3f7fb',
                            border: '1px solid #d6dfe9',
-                           width: '475px',
-                           maxHeight: 'none'
+                           width: '500px',
+                           transition:
+                              'transform 0.25s cubic-bezier(0.24, 0.22, 0.015, 1.56), opacity 0.15s ease-in-out, visibility 0.15s ease-in-out',
+                           top: '95%',
+                           active: {
+                              top: '102%'
+                           }
                         }
                      }}
                   >
@@ -94,7 +104,7 @@ export default function App() {
                               color: '#fff'
                            }
                         },
-                        wrapper: {
+                        container: {
                            width: '150px'
                         },
                         dropdown: {
@@ -102,24 +112,32 @@ export default function App() {
                            background: '#fff',
                            borderColor: '#c34426',
                            borderRadius: '0 0 6px 6px',
-                           transform: 'none'
+                           transform: null
                         }
                      }}
                   >
                      <div>
                         <MenuOne />
-                        <div className="flex justify-end text-xs">
-                           <button onClick={() => handleClick()}>Close</button>
+                        <div className="flex justify-end text-xs mt-2">
+                           <button
+                              className="hover:underline"
+                              onClick={() => handleClick()}
+                           >
+                              Close
+                           </button>
                         </div>
                      </div>
                   </DropDown>
                </div>
-            </div>
+            </section>
 
-            <div className="py-5">
-               <h3 className="text-xl font-bold mb-1">No Focusable Elements</h3>
+            <section className="py-3">
+               <h3 className="text-lg sm:text-xl font-bold mb-1">
+                  No Focusable Elements
+               </h3>
                <p className="text-sm mb-5">
-                  Dropdowns without interactive elements.
+                  Dropdowns without interactive elements can be used for
+                  informational purposes.
                </p>
                <div className="flex flex-nowrap items-center gap-4 self-start">
                   <DropDown label="Dropdown #1">
@@ -129,22 +147,43 @@ export default function App() {
                      <MenuThree />
                   </DropDown>
                </div>
-            </div>
+            </section>
 
-            <div className="py-5">
-               <h3 className="text-xl font-bold mb-1">Unstyled</h3>
+            <section className="py-3">
+               <h3 className="text-lg sm:text-xl font-bold mb-1">Unstyled</h3>
                <p className="text-sm mb-5">
                   Using the <span className="bg-blue-50 p-1">useStyles</span>{' '}
-                  prop to remove default CSS styling from the component.
+                  prop to remove default CSS styling from the component (width,
+                  colors, animation etc.).
                </p>
                <DropDown
                   label="Click Here <span>&darr;</span>"
+                  buttonClassName="font-semibold p-1"
                   useStyles={false}
+                  config={{
+                     dropdown: {
+                        top: null
+                     }
+                  }}
                >
                   <MenuOne />
                </DropDown>
-            </div>
-         </div>
+            </section>
+         </main>
+         <footer className="pt-5 border-t">
+            <ul className="flex gap-5 text-sm">
+               <li>
+                  <a href="https://www.npmjs.com/package/react-a11y-dropdown">
+                     &rarr; NPM
+                  </a>
+               </li>
+               <li>
+                  <a href="https://github.com/dcooney/react-a11y-dropdown">
+                     &rarr; Github
+                  </a>
+               </li>
+            </ul>
+         </footer>
       </div>
    )
 }

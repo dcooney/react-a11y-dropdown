@@ -1,29 +1,24 @@
 export default function MenuOne() {
    return (
       <ul className="text-sm">
-         <li>
+         <li className="border-b py-1">
             <a href="#" className="block w-full text-left p-1 hover:underline">
                Link One
             </a>
          </li>
-         <li>
+         <li className="border-b py-1">
             <a href="#" className="block w-full text-left p-1 hover:underline">
                Link Two
             </a>
          </li>
-         <li>
+         <li className="border-b py-1">
             <a href="#" className="block w-full text-left p-1 hover:underline">
                Link Three
             </a>
          </li>
-         <li>
+         <li className="py-1">
             <a href="#" className="block w-full text-left p-1 hover:underline">
                Link Four
-            </a>
-         </li>
-         <li>
-            <a href="#" className="block w-full text-left p-1 hover:underline">
-               Link Five
             </a>
          </li>
       </ul>

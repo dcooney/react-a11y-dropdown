@@ -2,7 +2,7 @@ import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import React, {useEffect, useRef, useState, useImperativeHandle} from 'react'
 import defaults from './defaults'
-import {Button, Menu, Wrapper} from './styles'
+import {Button, Menu, Container} from './styles'
 
 /**
  * Accessibile Dropdown component.
@@ -38,10 +38,30 @@ const DropDown = React.forwardRef((props, ref) => {
       'a[href], button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])'
 
    // Get color and styling config.
-   const {button, dropdown, wrapper} = config ? config : {}
-   const buttonStyles = {...defaults.button, ...button}
-   const menuStyles = {...defaults.dropdown, ...dropdown}
-   const wrapperStyles = {...defaults.wrapper, ...wrapper}
+   const {container, button, dropdown} = config ? config : {}
+   const buttonStyles = {
+      ...defaults.button,
+      ...button,
+      hover: {
+         ...defaults.button.hover,
+         ...button?.hover
+      },
+      active: {
+         ...defaults.button.active,
+         ...button?.active
+      }
+   }
+   const menuStyles = {
+      ...defaults.dropdown,
+      ...dropdown,
+      active: {
+         ...defaults.dropdown.active,
+         ...dropdown?.active
+      }
+   }
+   const containerStyles = {...defaults.container, ...container}
+
+   console.log(menuStyles)
 
    useEffect(() => {
       /**
@@ -194,7 +214,7 @@ const DropDown = React.forwardRef((props, ref) => {
    return (
       <>
          {!!label && (
-            <Wrapper
+            <Container
                ref={containerRef}
                className={classNames(
                   'react-a11y-dropdown',
@@ -202,7 +222,7 @@ const DropDown = React.forwardRef((props, ref) => {
                   expanded ? 'expanded' : null
                )}
                useStyles={useStyles}
-               styles={wrapperStyles}
+               styles={containerStyles}
                id={id ? id : null}
             >
                <Button
@@ -232,7 +252,7 @@ const DropDown = React.forwardRef((props, ref) => {
                >
                   {children}
                </Menu>
-            </Wrapper>
+            </Container>
          )}
       </>
    )

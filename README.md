@@ -54,7 +54,7 @@ The `DropDown` component accepts the following props.
 | ------------------- | ----------------------------------------------------------- | ------- | ------- | -------- |
 | `label`             | The label for thegenerated button - HTML is accepted.       | string  | null    | Yes      |
 | `id`                | An optional ID for the rendered HTML element.               | string  | null    | No       |
-| `className`         | Custom classnames for the dropdown component wrapper.       | string  | null    | No       |
+| `className`         | Custom classnames for the dropdown component container.     | string  | null    | No       |
 | `buttonClassName`   | Custom classnames for the button trigger element.           | string  | null    | No       |
 | `dropdownClassName` | Custom classnames for the dropdown element.                 | string  | null    | No       |
 | `useStyles`         | Use built-in CSS styles from component.                     | boolean | true    | No       |
@@ -140,22 +140,24 @@ The following default CSS properties are passed into the `DropDown` component.
       display: 'block',
       left: '0',
       margin: '0',
-      maxHeight: '300px',
-      minWidth: 'auto',
+      maxHeight: null,
+      minWidth: null,
       overflowY: 'auto',
       padding: '10px',
       position: 'absolute',
       transform: 'scale(0.95)',
       transition:
-         'transform 0.25s cubic-bezier(0.24, 0.22, 0.015, 1.56), opacity 0.15s ease-in-out, visibility 0.15s ease-in-out',
+         'all 0.15s ease-in-out',
       top: '100%',
       width: '250px',
       zIndex: 99999,
       active: {
-         transform: 'scale(1)'
+         left: null,
+         top: null,
+         transform: 'scale(1)',
       }
    },
-   wrapper: {
+   container: {
       width: 'auto'
    }
 }

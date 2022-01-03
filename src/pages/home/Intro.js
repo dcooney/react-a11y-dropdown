@@ -1,6 +1,6 @@
 export default function Intro() {
    return (
-      <div className="text-slate-800">
+      <header className="text-slate-800">
          <h1 className="text-3xl sm:text-4xl font-black mb-2 pt-6">
             React A11y DropDown
          </h1>
@@ -38,9 +38,9 @@ export default function Intro() {
             </a>
          </div>
          <p className="mb-5 text-sm">
-            Use the tab key in combination with your keyboard up/down arrows to
-            navigate through the example dropdown menu's below &darr;
+            Use the tab key along with your keyboard up/down arrows to navigate
+            through the example dropdown menu's below &darr;
          </p>
-      </div>
+      </header>
    )
 }
