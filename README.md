@@ -1,6 +1,6 @@
 # React A11y DropDown
 
-An accessible and unopinionated dropdown component for [React](https://www.reactjs.org) for full keyboard support.
+An accessible and unopinionated dropdown component for [React](https://www.reactjs.org) with full keyboard support.
 
 [Usage Example](https://dcooney.github.io/react-a11y-dropdown/)
 
@@ -9,8 +9,8 @@ An accessible and unopinionated dropdown component for [React](https://www.react
 ## Features
 
 -  Creates a button to toggle the state (open/closed) of the dropdown menu.
--  Adds required aria attributes to button and dropdown components.
--  Enables keyboard controls to tab and arrow seemlessly through items within the dropdown.
+-  Adds required aria attributes to the button and dropdown components.
+-  Enables keyboard controls to tab and arrow seemlessly through focusable elements within the dropdown.
 
 ## Install
 
@@ -50,15 +50,15 @@ export default function App() {
 
 The `DropDown` component accepts the following props.
 
-| Prop                | Description                                           | Type    | Default | Required |
-| ------------------- | ----------------------------------------------------- | ------- | ------- | -------- |
-| `label`             | The label for thegenerated button - HTML is accepted. | string  | null    | Yes      |
-| `id`                | An optional ID for the rendered HTML element.         | string  | null    | No       |
-| `className`         | Custom classnames for the dropdown component wrapper. | string  | null    | No       |
-| `buttonClassName`   | Custom classnames for the button trigger element.     | string  | null    | No       |
-| `dropdownClassName` | Custom classnames for the dropdown element.           | string  | null    | No       |
-| `useStyles`         | Use built-in CSS styles from component.               | boolean | true    | No       |
-| `config`            | DropDown CSS styles and cnfiguration object.          | object  | null    | No       |
+| Prop                | Description                                                 | Type    | Default | Required |
+| ------------------- | ----------------------------------------------------------- | ------- | ------- | -------- |
+| `label`             | The label for thegenerated button - HTML is accepted.       | string  | null    | Yes      |
+| `id`                | An optional ID for the rendered HTML element.               | string  | null    | No       |
+| `className`         | Custom classnames for the dropdown component wrapper.       | string  | null    | No       |
+| `buttonClassName`   | Custom classnames for the button trigger element.           | string  | null    | No       |
+| `dropdownClassName` | Custom classnames for the dropdown element.                 | string  | null    | No       |
+| `useStyles`         | Use built-in CSS styles from component.                     | boolean | true    | No       |
+| `config`            | Modify the component CSS styles via [config prop](#config). | object  | null    | No       |
 
 ```javascript
 return (
@@ -84,3 +84,74 @@ return (
    </DropDown>
 )
 ```
+
+## Config
+
+The `DropDown` component can be fully styled passing in updated options via the `config` prop.
+
+```javascript
+return (
+   <DropDown
+      label="Show Menu"
+      config={{
+         button: {
+            background: '#fff',
+            border: false,
+            color: "#ff0000',
+            hover: {
+               background: '#121212',
+               color: "#fff',
+            }
+         }
+      }}
+   >
+      <YourComponent>{children}</YourComponent>
+   </DropDown>
+)
+```
+
+**Config Defaults**
+Below are the default CSS properties passed into the `DropDown` component.
+
+```javascript
+{
+   button: {
+      background: '#eef1f4',
+      border: '1px solid #d6d9dc',
+      borderRadius: '3px',
+      color: '#5f6062',
+      fontSize: '14px',
+      margin: '0',
+      padding: '10px',
+      hover: {
+         background: '#eaedef',
+         borderColor: '#c1c3c6',
+         color: '#303031'
+      }
+   },
+   dropdown: {
+      background: '#fff',
+      border: '1px solid #d6d9dc',
+      borderRadius: '3px',
+      boxShadow: '0 10px 20px rgba(88, 92, 95, 0.1)',
+      display: 'block',
+      left: '0',
+      margin: '0',
+      maxHeight: '300px',
+      minWidth: 'auto',
+      overflowY: 'auto',
+      padding: '10px',
+      position: 'absolute',
+      transition:
+         'transform 0.25s cubic-bezier(0.24, 0.22, 0.015, 1.56), opacity 0.15s ease-in-out, visibility 0.15s ease-in-out',
+      top: '100%',
+      width: '250px',
+      zIndex: 99999
+   },
+   wrapper: {
+      width: 'auto'
+   }
+}
+```
+
+**Note**: Setting a property to `false` will prevent the CSS property from being attached to the component.

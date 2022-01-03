@@ -13,7 +13,7 @@ export default function App() {
    }
 
    return (
-      <div className="container mx-auto">
+      <div className="container mx-auto px-5">
          <Intro />
          <div className="flex flex-nowrap items-center gap-4 self-start text-md">
             <DropDown
@@ -53,6 +53,12 @@ export default function App() {
             <DropDown label={`No Focusable Elements <span>💪</span>`}>
                <MenuThree />
             </DropDown>
+         </div>
+
+         <hr />
+         <div className="py-5">
+            <h3 className="text-lg font-bold mb-1">Unstyled</h3>
+            <p className="text-sm mb-5">dededee</p>
             <DropDown label="Unstyled Dropdown" useStyles={false}>
                <MenuOne />
             </DropDown>

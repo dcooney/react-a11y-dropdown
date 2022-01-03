@@ -19,7 +19,6 @@ module.exports = {
    dropdown: {
       background: '#fff',
       border: '1px solid #d6d9dc',
-      borderColor: '#d6d9dc',
       borderRadius: '3px',
       boxShadow: '0 10px 20px rgba(88, 92, 95, 0.1)',
       display: 'block',
