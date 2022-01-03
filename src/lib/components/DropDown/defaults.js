@@ -16,10 +16,15 @@ module.exports = {
       hover: {
          background: '#eaedef',
          borderColor: '#c1c3c6',
-         color: '#242526',
-         borderRadius: null
+         borderRadius: null,
+         color: '#242526'
       },
-      active: {}
+      active: {
+         background: null,
+         borderColor: null,
+         borderRadius: null,
+         color: null
+      }
    },
    dropdown: {
       background: '#fff',

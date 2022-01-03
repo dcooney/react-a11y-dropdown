@@ -25,14 +25,12 @@ const ButtonStyles = css`
    :focus {
       color: ${(props) => getProp(props.styles.hover.color)};
       background: ${(props) => getProp(props.styles.hover.background)};
-      border: ${(props) => getProp(props.styles.hover.border)};
       border-color: ${(props) => getProp(props.styles.hover.borderColor)};
       border-radius: ${(props) => getProp(props.styles.hover.borderRadius)};
    }
    &.active {
       color: ${(props) => getProp(props.styles.active.color)};
       background: ${(props) => getProp(props.styles.active.background)};
-      border: ${(props) => getProp(props.styles.active.border)};
       border-color: ${(props) => getProp(props.styles.active.borderColor)};
       border-radius: ${(props) => getProp(props.styles.active.borderRadius)};
    }
