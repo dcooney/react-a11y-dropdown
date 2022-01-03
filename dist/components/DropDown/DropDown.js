@@ -60,16 +60,21 @@ const DropDown = /*#__PURE__*/_react.default.forwardRef((props, ref) => {
   const focusable = 'a[href], button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])'; // Get color and styling config.
 
   const {
+    container,
     button,
-    dropdown,
-    wrapper
+    dropdown
   } = config ? config : {};
 
-  const buttonStyles = _objectSpread(_objectSpread({}, _defaults.default.button), button);
+  const buttonStyles = _objectSpread(_objectSpread(_objectSpread({}, _defaults.default.button), button), {}, {
+    hover: _objectSpread(_objectSpread({}, _defaults.default.button.hover), button === null || button === void 0 ? void 0 : button.hover),
+    active: _objectSpread(_objectSpread({}, _defaults.default.button.active), button === null || button === void 0 ? void 0 : button.active)
+  });
 
-  const menuStyles = _objectSpread(_objectSpread({}, _defaults.default.dropdown), dropdown);
+  const menuStyles = _objectSpread(_objectSpread(_objectSpread({}, _defaults.default.dropdown), dropdown), {}, {
+    active: _objectSpread(_objectSpread({}, _defaults.default.dropdown.active), dropdown === null || dropdown === void 0 ? void 0 : dropdown.active)
+  });
 
-  const wrapperStyles = _objectSpread(_objectSpread({}, _defaults.default.wrapper), wrapper);
+  const containerStyles = _objectSpread(_objectSpread({}, _defaults.default.container), container);
 
   (0, _react.useEffect)(() => {
     /**
@@ -231,15 +236,15 @@ const DropDown = /*#__PURE__*/_react.default.forwardRef((props, ref) => {
     };
   }
 
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, !!label && /*#__PURE__*/_react.default.createElement(_styles.Wrapper, {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, !!label && /*#__PURE__*/_react.default.createElement(_styles.Container, {
     ref: containerRef,
-    className: (0, _classnames.default)('react-a11y-dropdown', className && className),
+    className: (0, _classnames.default)('react-a11y-dropdown', className && className, expanded ? 'expanded' : null),
     useStyles: useStyles,
-    styles: wrapperStyles,
+    styles: containerStyles,
     id: id ? id : null
   }, /*#__PURE__*/_react.default.createElement(_styles.Button, {
     ref: buttonRef,
-    className: (0, _classnames.default)('react-a11y-dropdown--button', buttonClassName && buttonClassName),
+    className: (0, _classnames.default)('react-a11y-dropdown--button', buttonClassName && buttonClassName, expanded ? 'active' : null),
     useStyles: useStyles,
     styles: buttonStyles,
     "aria-expanded": expanded ? 'true' : 'false',
@@ -247,7 +252,7 @@ const DropDown = /*#__PURE__*/_react.default.forwardRef((props, ref) => {
     dangerouslySetInnerHTML: createMarkup(label)
   }), /*#__PURE__*/_react.default.createElement(_styles.Menu, {
     ref: menuRef,
-    className: (0, _classnames.default)('react-a11y-dropdown--menu', dropdownClassName && dropdownClassName, expanded ? 'expanded' : null),
+    className: (0, _classnames.default)('react-a11y-dropdown--menu', dropdownClassName && dropdownClassName, expanded ? 'active' : null),
     useStyles: useStyles,
     styles: menuStyles,
     expanded: expanded,

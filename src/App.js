@@ -1,6 +1,7 @@
 import React, {useRef} from 'react'
 import DropDown from './lib/components/DropDown'
-import Intro from './pages/home/Intro'
+import Header from './pages/home/Header'
+import Footer from './pages/home/Footer'
 import MenuOne from './pages/home/MenuOne'
 import MenuThree from './pages/home/MenuThree'
 import MenuTwo from './pages/home/MenuTwo'
@@ -17,14 +18,15 @@ export default function App() {
    }
 
    return (
-      <div className="container mx-auto px-5 text-slate-800">
-         <Intro />
+      <div className="container mx-auto px-5 md:px-10 text-slate-800">
+         <Header />
 
-         <main className="grid sm:grid-cols-2 gap-5 pt-5 pb-10">
-            <section className="py-3">
-               <h3 className="text-lg sm:text-xl font-bold mb-1">Basic</h3>
+         <main className="grid sm:grid-cols-2 xl:grid-cols-4 gap-5 pt-5 pb-10">
+            <section className="py-3 xl:py-5 xl:py-5">
+               <h3 className="text-lg sm:text-xl font-bold mb-1">Default</h3>
                <p className="text-sm mb-5">
-                  OOTB functionality without custom configuration.
+                  Component default functionality without any custom
+                  configurations.
                </p>
                <div className="flex flex-nowrap items-center gap-4 self-start">
                   <DropDown label="Dropdown #1">
@@ -36,7 +38,7 @@ export default function App() {
                </div>
             </section>
 
-            <section className="py-3">
+            <section className="py-3 xl:py-5">
                <h3 className="text-lg sm:text-xl font-bold mb-1">
                   Custom Configuration
                </h3>
@@ -56,8 +58,13 @@ export default function App() {
                            fontWeight: 'bold',
                            padding: '10px 14px',
                            hover: {
-                              background: '#457ab1',
-                              borderColor: '#457ab1',
+                              background: '#4680bb',
+                              borderColor: '#4680bb',
+                              color: '#fff'
+                           },
+                           active: {
+                              background: '#4680bb',
+                              borderColor: '#4680bb',
                               color: '#fff'
                            }
                         },
@@ -131,7 +138,7 @@ export default function App() {
                </div>
             </section>
 
-            <section className="py-3">
+            <section className="py-3 xl:py-5">
                <h3 className="text-lg sm:text-xl font-bold mb-1">
                   No Focusable Elements
                </h3>
@@ -149,12 +156,12 @@ export default function App() {
                </div>
             </section>
 
-            <section className="py-3">
+            <section className="py-3 xl:py-5">
                <h3 className="text-lg sm:text-xl font-bold mb-1">Unstyled</h3>
                <p className="text-sm mb-5">
-                  Using the <span className="bg-blue-50 p-1">useStyles</span>{' '}
-                  prop to remove default CSS styling from the component (width,
-                  colors, animation etc.).
+                  Set <span className="bg-blue-50 p-1">useStyles</span> to
+                  <span className="bg-blue-50 p-1">false</span> prop to remove
+                  component CSS (width, colors, animation etc.).
                </p>
                <DropDown
                   label="Click Here <span>&darr;</span>"
@@ -170,20 +177,7 @@ export default function App() {
                </DropDown>
             </section>
          </main>
-         <footer className="pt-5 border-t">
-            <ul className="flex gap-5 text-sm">
-               <li>
-                  <a href="https://www.npmjs.com/package/react-a11y-dropdown">
-                     &rarr; NPM
-                  </a>
-               </li>
-               <li>
-                  <a href="https://github.com/dcooney/react-a11y-dropdown">
-                     &rarr; Github
-                  </a>
-               </li>
-            </ul>
-         </footer>
+         <Footer />
       </div>
    )
 }

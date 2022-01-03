@@ -4,13 +4,14 @@ An accessible and unopinionated dropdown component for [React](https://www.react
 
 [Usage Example](https://dcooney.github.io/react-a11y-dropdown/)
 
-**Important note**: This component does not style the contents of the dropdown. It's simply a wrapper for existing components and will inherit application styling.
+**Important note**: This component does not style the contents of the dropdown. It's a wrapper for your existing components and will inherit application styling when required.
 
 ## Features
 
 -  Creates a button to toggle the state (open/closed) of the dropdown menu.
--  Adds required aria attributes to the button and dropdown components.
--  Enables keyboard controls to tab and arrow seemlessly through focusable elements within the dropdown.
+-  Adds required `aria` attributes to the button and dropdown components.
+-  Enables keyboard controls to tab and arrow seemlessly through focusable elements within the dropdown component.
+-  Provides `esc` key support for exiting a dropdown.
 
 ## Install
 
@@ -19,7 +20,7 @@ An accessible and unopinionated dropdown component for [React](https://www.react
 npm i react-a11y-dropdown
 
 # With Yarn
-yarn add react-a11y-dropdown
+yarn add react-a11y-dropdownv
 ```
 
 ## Usage
@@ -112,7 +113,7 @@ return (
 
 **Config Defaults**
 
-The following default CSS properties are passed into the `DropDown` component.
+The following default CSS properties are passed into the `DropDown` component and cann be modified using the `config` prop.
 
 ```javascript
 {
@@ -122,21 +123,24 @@ The following default CSS properties are passed into the `DropDown` component.
       borderRadius: '3px',
       color: '#494a4c',
       fontSize: '14px',
-      fontWeight: 'normal',
+      fontWeight: '400',
       margin: '0',
       padding: '10px',
+      transition: null,
       width: 'auto',
       hover: {
          background: '#eaedef',
          borderColor: '#c1c3c6',
-         color: '#242526'
-      }
+         color: '#242526',
+         borderRadius: null
+      },
+      active: {}
    },
    dropdown: {
       background: '#fff',
       border: '1px solid #d6d9dc',
       borderRadius: '3px',
-      boxShadow: '0 10px 20px rgba(88, 92, 95, 0.1)',
+      boxShadow: '0 8px 16px rgba(88, 92, 95, 0.15)',
       display: 'block',
       left: '0',
       margin: '0',
@@ -146,15 +150,14 @@ The following default CSS properties are passed into the `DropDown` component.
       padding: '10px',
       position: 'absolute',
       transform: 'scale(0.95)',
-      transition:
-         'all 0.15s ease-in-out',
+      transition: 'all 0.15s ease',
       top: '100%',
       width: '250px',
       zIndex: 99999,
       active: {
          left: null,
          top: null,
-         transform: 'scale(1)',
+         transform: 'scale(1)'
       }
    },
    container: {

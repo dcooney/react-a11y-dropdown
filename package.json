@@ -1,9 +1,9 @@
 {
   "name": "react-a11y-dropdown",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "An accessible dropdown component for React.",
   "license": "MIT",
-  "homepage": "https://dcooney.github.io/react-a11y-dropdown/",
+  "homepage": "https://dcooney.github.io/react-a11y-dropdown/demo/",
   "contributors": [
     "Darren Cooney <darren.cooney@gmail.com> (https://github.com/dcooney)"
   ],
@@ -21,7 +21,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "docs": "react-scripts build",
+    "demo": "react-scripts build",
     "build": "rm -rf dist && NODE_ENV=production babel src/lib --out-dir dist --copy-files",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

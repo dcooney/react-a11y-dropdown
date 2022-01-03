@@ -61,8 +61,6 @@ const DropDown = React.forwardRef((props, ref) => {
    }
    const containerStyles = {...defaults.container, ...container}
 
-   console.log(menuStyles)
-
    useEffect(() => {
       /**
        * Handle keyboard controls.
