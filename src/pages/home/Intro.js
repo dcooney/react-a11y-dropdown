@@ -37,6 +37,10 @@ export default function Intro() {
                </span>
             </a>
          </div>
+         <p className="mb-5 text-sm">
+            Use the tab key in combination with your keyboard up/down arrows to
+            navigate through the example dropdown menu's below &darr;
+         </p>
       </div>
    )
 }

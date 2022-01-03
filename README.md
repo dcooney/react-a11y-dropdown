@@ -66,15 +66,15 @@ return (
       label="Button Label"
       id="dropdown"
       className="my-dropdown"
-      buttonClassName="my-dropdown--button",
+      buttonClassName="text-md text-blue-600 bg-blue-50",
       config={{
          button: {
             background: '#fff',
-            borderColor: '#121212',
-            color: '#121212',
+            borderColor: '#cccccc',
+            color: '#111111',
             hover: {
-               background: '#121212',
-               borderColor: '#121212',
+               background: '#111111',
+               borderColor: '#111111',
                color: '#fff'
             }
          }
@@ -96,7 +96,7 @@ return (
       config={{
          button: {
             background: '#fff',
-            border: false,
+            border: null,
             color: "#ff0000',
             hover: {
                background: '#121212',
@@ -111,7 +111,8 @@ return (
 ```
 
 **Config Defaults**
-Below are the default CSS properties passed into the `DropDown` component.
+
+The following default CSS properties are passed into the `DropDown` component.
 
 ```javascript
 {
@@ -119,14 +120,16 @@ Below are the default CSS properties passed into the `DropDown` component.
       background: '#eef1f4',
       border: '1px solid #d6d9dc',
       borderRadius: '3px',
-      color: '#5f6062',
+      color: '#494a4c',
       fontSize: '14px',
+      fontWeight: 'normal',
       margin: '0',
       padding: '10px',
+      width: 'auto',
       hover: {
          background: '#eaedef',
          borderColor: '#c1c3c6',
-         color: '#303031'
+         color: '#242526'
       }
    },
    dropdown: {
@@ -154,4 +157,4 @@ Below are the default CSS properties passed into the `DropDown` component.
 }
 ```
 
-**Note**: Setting a property to `false` will prevent the CSS property from being attached to the component.
+**Note**: Setting a property to `null` will prevent the CSS property from being attached to the component.

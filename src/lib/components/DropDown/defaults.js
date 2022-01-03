@@ -6,14 +6,23 @@ module.exports = {
       background: '#eef1f4',
       border: '1px solid #d6d9dc',
       borderRadius: '3px',
-      color: '#5f6062',
+      color: '#494a4c',
       fontSize: '14px',
+      fontWeight: '400',
       margin: '0',
       padding: '10px',
+      width: 'auto',
       hover: {
          background: '#eaedef',
          borderColor: '#c1c3c6',
-         color: '#303031'
+         color: '#242526',
+         borderRadius: null
+      },
+      active: {
+         background: null,
+         borderColor: null,
+         color: null,
+         borderRadius: null
       }
    },
    dropdown: {
@@ -29,11 +38,15 @@ module.exports = {
       overflowY: 'auto',
       padding: '10px',
       position: 'absolute',
+      transform: 'scale(0.95)',
       transition:
          'transform 0.25s cubic-bezier(0.24, 0.22, 0.015, 1.56), opacity 0.15s ease-in-out, visibility 0.15s ease-in-out',
       top: '100%',
       width: '250px',
-      zIndex: 99999
+      zIndex: 99999,
+      active: {
+         transform: 'scale(1)'
+      }
    },
    wrapper: {
       width: 'auto'

@@ -11,6 +11,7 @@ export const Wrapper = styled.div`
 const ButtonStyles = css`
    cursor: pointer;
    font-size: ${(props) => getProp(props.styles.fontSize)};
+   font-weight: ${(props) => getProp(props.styles.fontWeight)};
    color: ${(props) => getProp(props.styles.color)};
    background: ${(props) => getProp(props.styles.background)};
    border: ${(props) => getProp(props.styles.border)};
@@ -18,24 +19,35 @@ const ButtonStyles = css`
    border-radius: ${(props) => getProp(props.styles.borderRadius)};
    margin: ${(props) => getProp(props.styles.margin)};
    padding: ${(props) => getProp(props.styles.padding)};
+   width: ${(props) => getProp(props.styles.width)};
    :hover,
    :focus {
       color: ${(props) => getProp(props.styles.hover.color)};
       background: ${(props) => getProp(props.styles.hover.background)};
       border: ${(props) => getProp(props.styles.hover.border)};
       border-color: ${(props) => getProp(props.styles.hover.borderColor)};
+      border-radius: ${(props) => getProp(props.styles.hover.borderRadius)};
+   }
+   &.active {
+      color: ${(props) => getProp(props.styles.active.color)};
+      background: ${(props) => getProp(props.styles.active.background)};
+      border: ${(props) => getProp(props.styles.active.border)};
+      border-color: ${(props) => getProp(props.styles.active.borderColor)};
+      border-radius: ${(props) => getProp(props.styles.active.borderRadius)};
    }
 `
 export const Button = styled.button`
    ${(props) => (props.useStyles ? ButtonStyles : null)}
 `
 
+export const MenuTransform = css``
+
 export const MenuStyles = css`
-   transform: scale(${(props) => (props.expanded ? '1' : ' 0.95')});
+   transform: ${(props) => getProp(props.styles.transform)};
    transition: ${(props) => getProp(props.styles.transition)};
    background-color: ${(props) => getProp(props.styles.background)};
    border: ${(props) => getProp(props.styles.border)};
-   bordercolor: ${(props) => getProp(props.styles.borderColor)};
+   border-color: ${(props) => getProp(props.styles.borderColor)};
    border-radius: ${(props) => getProp(props.styles.borderRadius)};
    padding: ${(props) => getProp(props.styles.padding)};
    margin: ${(props) => getProp(props.styles.margin)};
@@ -44,6 +56,10 @@ export const MenuStyles = css`
    min-width: ${(props) => getProp(props.styles.minWidth)};
    max-height: ${(props) => getProp(props.styles.maxHeight)};
    overflow-y: ${(props) => getProp(props.styles.overflowY)};
+
+   &.active {
+      transform: ${(props) => getProp(props.styles.active.transform)};
+   }
 `
 export const Menu = styled.div`
    visibility: ${(props) => (props.expanded ? 'visible' : 'hidden')};
@@ -57,11 +73,11 @@ export const Menu = styled.div`
 `
 
 /**
- * Get style prop, only return if not false.
+ * Get style prop, only return if not null.
  *
  * @param   {string||boolean} prop The property to compare.
  * @returns {string}               The CSS prop value.
  */
 function getProp(prop) {
-   return prop !== false && prop
+   return prop !== null && prop
 }

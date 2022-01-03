@@ -198,7 +198,8 @@ const DropDown = React.forwardRef((props, ref) => {
                ref={containerRef}
                className={classNames(
                   'react-a11y-dropdown',
-                  className && className
+                  className && className,
+                  expanded ? 'expanded' : null
                )}
                useStyles={useStyles}
                styles={wrapperStyles}
@@ -208,7 +209,8 @@ const DropDown = React.forwardRef((props, ref) => {
                   ref={buttonRef}
                   className={classNames(
                      'react-a11y-dropdown--button',
-                     buttonClassName && buttonClassName
+                     buttonClassName && buttonClassName,
+                     expanded ? 'active' : null
                   )}
                   useStyles={useStyles}
                   styles={buttonStyles}
@@ -221,7 +223,7 @@ const DropDown = React.forwardRef((props, ref) => {
                   className={classNames(
                      'react-a11y-dropdown--menu',
                      dropdownClassName && dropdownClassName,
-                     expanded ? 'expanded' : null
+                     expanded ? 'active' : null
                   )}
                   useStyles={useStyles}
                   styles={menuStyles}
