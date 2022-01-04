@@ -233,6 +233,7 @@ const DropDown = React.forwardRef((props, ref) => {
                   useStyles={useStyles}
                   styles={buttonStyles}
                   aria-expanded={expanded ? 'true' : 'false'}
+                  aria-haspopup="true"
                   onClick={() => setExpanded((expanded) => !expanded)}
                   dangerouslySetInnerHTML={createMarkup(label)}
                ></Button>
