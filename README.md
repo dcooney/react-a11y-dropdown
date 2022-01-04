@@ -2,7 +2,7 @@
 
 An accessible and unopinionated dropdown component for [React](https://www.reactjs.org) with full keyboard support.
 
-[Usage Example](https://dcooney.github.io/react-a11y-dropdown/demo/)
+[Usage Example](https://dcooney.github.io/react-a11y-dropdown/)
 
 **Important note**: This component does not style the contents of the dropdown. It's a wrapper for your existing components and will inherit application styling when required.
 
