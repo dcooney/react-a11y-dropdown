@@ -130,11 +130,16 @@ The following default CSS properties are passed into the `DropDown` component an
       width: 'auto',
       hover: {
          background: '#eaedef',
+         borderRadius: null,
          borderColor: '#c1c3c6',
-         color: '#242526',
-         borderRadius: null
+         color: '#242526'
       },
-      active: {}
+      active: {
+         background: null,
+         borderColor: null,
+         borderRadius: null,
+         color: null
+      }
    },
    dropdown: {
       background: '#fff',
