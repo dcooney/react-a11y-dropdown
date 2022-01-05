@@ -6,6 +6,8 @@ import MenuOne from './pages/home/MenuOne'
 import MenuThree from './pages/home/MenuThree'
 import MenuTwo from './pages/home/MenuTwo'
 import MegaMenu from './pages/home/MegaMenu'
+import MenuSearch from './pages/home/MenuSearch'
+import MenuFour from './pages/home/MenuFour'
 
 export default function App() {
    const drop = useRef()
@@ -21,7 +23,7 @@ export default function App() {
       <div className="container mx-auto px-5 md:px-10 text-slate-800">
          <Header />
 
-         <main className="grid sm:grid-cols-2 xl:grid-cols-4 gap-5 pt-5 pb-10">
+         <main className="grid sm:grid-cols-2 xl:grid-cols-3 gap-10 pt-5 pb-10">
             <section className="py-3 xl:py-5 xl:py-5">
                <h3 className="text-lg sm:text-xl font-bold mb-1">Default</h3>
                <p className="text-sm mb-5">
@@ -32,7 +34,7 @@ export default function App() {
                   <DropDown label="Dropdown #1">
                      <MenuOne />
                   </DropDown>
-                  <DropDown label="Dropdown #2">
+                  <DropDown label="Dropdown #2" id="drop-2">
                      <MenuTwo />
                   </DropDown>
                </div>
@@ -40,7 +42,7 @@ export default function App() {
 
             <section className="py-3 xl:py-5">
                <h3 className="text-lg sm:text-xl font-bold mb-1">
-                  Custom Configuration
+                  Custom Styling
                </h3>
                <p className="text-sm mb-5">
                   Using the <span className="bg-blue-50 p-1">config</span> prop
@@ -115,19 +117,21 @@ export default function App() {
                            width: '150px'
                         },
                         dropdown: {
-                           width: '150px',
-                           background: '#fff',
+                           width: '100%',
+                           background: '#c34426',
                            borderColor: '#c34426',
                            borderRadius: '0 0 6px 6px',
+                           padding: '0 10px 10px 10px',
+                           transition: null,
                            transform: null
                         }
                      }}
                   >
                      <div>
-                        <MenuOne />
+                        <MenuFour />
                         <div className="flex justify-end text-xs mt-2">
                            <button
-                              className="hover:underline"
+                              className="text-white hover:underline"
                               onClick={() => handleClick()}
                            >
                               Close
@@ -139,6 +143,22 @@ export default function App() {
             </section>
 
             <section className="py-3 xl:py-5">
+               <h3 className="text-lg sm:text-xl font-bold mb-1">Unstyled</h3>
+               <p className="text-sm mb-5">
+                  Set <span className="bg-blue-50 p-1">useStyles: false</span>{' '}
+                  to remove component CSS (width, colors, background, animation
+                  etc.).
+               </p>
+               <DropDown
+                  label="Click Here <span>&darr;</span>"
+                  buttonClassName="font-semibold p-1"
+                  useStyles={false}
+               >
+                  <MenuOne />
+               </DropDown>
+            </section>
+
+            <section className="py-3 xl:py-5">
                <h3 className="text-lg sm:text-xl font-bold mb-1">
                   No Focusable Elements
                </h3>
@@ -147,33 +167,25 @@ export default function App() {
                   informational purposes.
                </p>
                <div className="flex flex-nowrap items-center gap-4 self-start">
-                  <DropDown label="Dropdown #1">
+                  <DropDown label="Dropdown #1" isMenu={false}>
                      <MenuThree />
                   </DropDown>
-                  <DropDown label="Dropdown #2">
+                  <DropDown label="Dropdown #2" isMenu={false}>
                      <MenuThree />
                   </DropDown>
                </div>
             </section>
 
             <section className="py-3 xl:py-5">
-               <h3 className="text-lg sm:text-xl font-bold mb-1">Unstyled</h3>
+               <h3 className="text-lg sm:text-xl font-bold mb-1">
+                  Letter Navigation
+               </h3>
                <p className="text-sm mb-5">
-                  Set <span className="bg-blue-50 p-1">useStyles</span> to
-                  <span className="bg-blue-50 p-1">false</span> prop to remove
-                  component CSS (width, colors, animation etc.).
+                  Place focus in the dropdown menu and use your keyboard to
+                  search the menu items by first letter.
                </p>
-               <DropDown
-                  label="Click Here <span>&darr;</span>"
-                  buttonClassName="font-semibold p-1"
-                  useStyles={false}
-                  config={{
-                     dropdown: {
-                        top: null
-                     }
-                  }}
-               >
-                  <MenuOne />
+               <DropDown label="Open Menu" search={true}>
+                  <MenuSearch />
                </DropDown>
             </section>
          </main>

@@ -69,6 +69,7 @@ export const Menu = styled.div`
    top: ${(props) => getProp(props.styles.top)};
    visibility: ${(props) => (props.expanded ? 'visible' : 'hidden')};
    z-index: ${(props) => getProp(props.styles.zIndex)};
+   pointer-events: ${(props) => (props.expanded ? 'auto' : 'none')};
    ${(props) => (props.useStyles ? MenuStyles : null)}
 `
 

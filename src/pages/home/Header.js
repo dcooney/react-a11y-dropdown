@@ -39,7 +39,7 @@ export default function Intro() {
          </div>
          <p className="mb-5 text-sm">
             Use the tab key along with your keyboard up/down arrows to navigate
-            through the example dropdown menu's below &darr;
+            through the dropdown examples below &darr;
          </p>
       </header>
    )

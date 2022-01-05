@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/react-a11y-dropdown/static/js/main.c2b755e7.js",
+    "main.js": "/react-a11y-dropdown/static/js/main.d8a34234.js",
     "index.html": "/react-a11y-dropdown/index.html",
-    "main.c2b755e7.js.map": "/react-a11y-dropdown/static/js/main.c2b755e7.js.map"
+    "main.d8a34234.js.map": "/react-a11y-dropdown/static/js/main.d8a34234.js.map"
   },
   "entrypoints": [
-    "static/js/main.c2b755e7.js"
+    "static/js/main.d8a34234.js"
   ]
 }
