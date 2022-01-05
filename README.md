@@ -194,8 +194,6 @@ I've done my best to only provide styling for things that were absolutely necess
 
 **Rendered Markup**
 
-Closed
-
 ```HTML
 <!-- Closed -->
 <div class="react-a11y-dropdown">
