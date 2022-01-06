@@ -28,7 +28,7 @@ This component follows the best practices that have been set out by the W3.org w
 npm i react-a11y-dropdown
 
 # With Yarn
-yarn add react-a11y-dropdownv
+yarn add react-a11y-dropdown
 ```
 
 ## Usage
@@ -62,7 +62,7 @@ The `DropDown` component accepts the following props.
 | Prop                | Description                                                                             | Type    | Default | Required |
 | ------------------- | --------------------------------------------------------------------------------------- | ------- | ------- | -------- |
 | `id`                | The component ID - if not specified an ID will be generated randomly.                   | string  | null    | Yes      |
-| `label`             | The label for thegenerated button - HTML is accepted.                                   | string  | null    | Yes      |
+| `label`             | The text for the generated button toggle - HTML is accepted.                            | string  | null    | Yes      |
 | `className`         | Custom classnames for the dropdown component container.                                 | string  | null    | No       |
 | `buttonClassName`   | Custom classnames for the button trigger element.                                       | string  | null    | No       |
 | `dropdownClassName` | Custom classnames for the dropdown element.                                             | string  | null    | No       |
@@ -133,15 +133,15 @@ The following default CSS properties are passed into the `DropDown` component an
       borderRadius: '3px',
       color: '#494a4c',
       fontSize: '14px',
-      fontWeight: '400',
+      fontWeight: null,
       margin: '0',
-      padding: '10px',
+      padding: '8px 12px',
       transition: null,
-      width: 'auto',
+      width: null,
       hover: {
          background: '#eaedef',
-         borderRadius: null,
          borderColor: '#c1c3c6',
+         borderRadius: null,
          color: '#242526'
       },
       active: {
@@ -155,24 +155,26 @@ The following default CSS properties are passed into the `DropDown` component an
       background: '#fff',
       border: '1px solid #d6d9dc',
       borderRadius: '3px',
-      boxShadow: '0 8px 16px rgba(88, 92, 95, 0.15)',
+      bottom: null,
+      boxShadow: '0 8px 16px rgba(88, 92, 95, 0.1)',
       display: 'block',
       left: '0',
-      margin: '0',
-      maxHeight: null,
-      minWidth: null,
-      overflowY: 'auto',
+      margin: '5px 0 0',
       padding: '10px',
       position: 'absolute',
-      transform: 'scale(0.95)',
+      right: null,
+      transform: null,
       transition: 'all 0.15s ease',
       top: '100%',
       width: '250px',
       zIndex: 99999,
       active: {
+         bottom: null,
+         display: null,
          left: null,
+         right: null,
          top: null,
-         transform: 'scale(1)'
+         transform: null
       }
    },
    container: {

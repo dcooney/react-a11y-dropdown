@@ -1,15 +1,28 @@
+import React, {useRef} from 'react'
+import DropDown from '../../lib/components/DropDown'
+
+const listStyle = 'my-2 ml-4 mb-3'
+
 export default function Intro() {
+   const drop = useRef()
+
+   /**
+    * Close the custom dropmenu.
+    */
+   const handleClick = () => {
+      drop.current.close()
+   }
    return (
       <header className="text-slate-800">
          <h1 className="text-3xl sm:text-4xl font-black mb-2 pt-6">
             React A11y DropDown
          </h1>
-         <div className="block sm:flex justify-between gap-2 pb-5 border-b mb-5">
-            <h2 className="text-slate-600	text-xl font-light pr-2 mb-4 sm:mb-0">
-               An accessible and unopinionated dropdown component for{' '}
+         <div className="block sm:flex justify-between gap-2 pb-5">
+            <h2 className="text-slate-600	text-xl font-light pr-2 mb-5 sm:mb-0">
+               An fully accessible and unopinionated dropdown component for{' '}
                <a
                   href="https://www.reactjs.org"
-                  className="underline hover:no-underline text-sky-700"
+                  className="underline hover:no-underline text-sky-600"
                >
                   React
                </a>{' '}
@@ -37,10 +50,69 @@ export default function Intro() {
                </span>
             </a>
          </div>
-         <p className="mb-5 text-sm">
-            Use the tab key along with your keyboard up/down arrows to navigate
-            through the dropdown examples below &darr;
-         </p>
+         <div className="flex items-center py-5 border-t border-b">
+            <p className="text-sm px-1">View the examples below:</p>
+            <DropDown
+               ref={drop}
+               label="Test Instructions"
+               buttonClassName="tracking-tight"
+               isMenu={false}
+               config={{
+                  button: {
+                     background: null,
+                     border: null,
+                     padding: '5px',
+                     fontSize: '0.875rem',
+                     fontWeight: '700',
+                     color: '#1e293b',
+                     hover: {
+                        background: null,
+                        color: '#000'
+                     }
+                  },
+                  dropdown: {
+                     width: '300px',
+                     padding: '20px 25px 20px 20px'
+                  }
+               }}
+            >
+               <ul className="text-xs leading-5 list-disc border-b">
+                  <li className={listStyle}>
+                     Click a button to toggle the corrosponding dropdown menu.
+                  </li>
+                  <li className={listStyle}>
+                     With a dropdown menu closed and the focus on a button,
+                     press the down arrow to open the menu and move focus to the
+                     first item in the menu.
+                  </li>
+                  <li className={listStyle}>
+                     With a menu opened, press the down, up, home and end arrows
+                     to cycle the focus through the items.
+                  </li>
+                  <li className={listStyle}>
+                     With a menu opened, use the letter navigation by pressing a
+                     letter key to navigate to items that start with whatever
+                     letter you've typed.
+                  </li>
+                  <li className={listStyle}>
+                     With a menu opened move focus outside of the menu — by
+                     clicking anywhere outside or pressing Tab to close the
+                     dropdown.
+                  </li>
+                  <li className={listStyle}>
+                     With a menu opened and focus inside the menu, press the
+                     Escape key or Shit + Tab to close the menu and return focus
+                     to the trigger.
+                  </li>
+               </ul>
+               <button
+                  className="text-slate-700 text-xs hover:underline mt-3"
+                  onClick={() => handleClick()}
+               >
+                  Close Window
+               </button>
+            </DropDown>
+         </div>
       </header>
    )
 }

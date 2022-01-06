@@ -21,12 +21,26 @@ const ButtonStyles = css`
    padding: ${(props) => getProp(props.styles.padding)};
    transition: ${(props) => getProp(props.styles.transition)};
    width: ${(props) => getProp(props.styles.width)};
+   &:after {
+      content: '';
+      display: inline-block;
+      margin-left: 6px;
+      position: relative;
+      top: 3px;
+      border-color: currentColor transparent transparent;
+      border-width: 5px 4px;
+      border-style: solid;
+      opacity: 0.55;
+   }
    :hover,
    :focus {
       color: ${(props) => getProp(props.styles.hover.color)};
       background: ${(props) => getProp(props.styles.hover.background)};
       border-color: ${(props) => getProp(props.styles.hover.borderColor)};
       border-radius: ${(props) => getProp(props.styles.hover.borderRadius)};
+      &:after {
+         opacity: 0.75;
+      }
    }
    &.active {
       color: ${(props) => getProp(props.styles.active.color)};
@@ -44,29 +58,29 @@ export const MenuStyles = css`
    border: ${(props) => getProp(props.styles.border)};
    border-color: ${(props) => getProp(props.styles.borderColor)};
    border-radius: ${(props) => getProp(props.styles.borderRadius)};
+   bottom: ${(props) => getProp(props.styles.bottom)};
    box-shadow: ${(props) => getProp(props.styles.boxShadow)};
+   display: ${(props) => getProp(props.styles.display)};
    left: ${(props) => getProp(props.styles.left)};
    margin: ${(props) => getProp(props.styles.margin)};
-   max-height: ${(props) => getProp(props.styles.maxHeight)};
-   min-width: ${(props) => getProp(props.styles.minWidth)};
-   overflow-y: ${(props) => getProp(props.styles.overflowY)};
    padding: ${(props) => getProp(props.styles.padding)};
+   right: ${(props) => getProp(props.styles.right)};
    top: ${(props) => getProp(props.styles.top)};
    transform: ${(props) => getProp(props.styles.transform)};
    transition: ${(props) => getProp(props.styles.transition)};
    width: ${(props) => getProp(props.styles.width)};
    &.active {
+      bottom: ${(props) => getProp(props.styles.active.bottom)};
+      display: ${(props) => getProp(props.styles.active.display)};
       left: ${(props) => getProp(props.styles.active.left)};
+      right: ${(props) => getProp(props.styles.active.right)};
       top: ${(props) => getProp(props.styles.active.top)};
       transform: ${(props) => getProp(props.styles.active.transform)};
    }
 `
 export const Menu = styled.div`
-   display: ${(props) => getProp(props.styles.display)};
-   left: ${(props) => getProp(props.styles.left)};
    opacity: ${(props) => (props.expanded ? '1' : '0')};
    position: ${(props) => getProp(props.styles.position)};
-   top: ${(props) => getProp(props.styles.top)};
    visibility: ${(props) => (props.expanded ? 'visible' : 'hidden')};
    z-index: ${(props) => getProp(props.styles.zIndex)};
    pointer-events: ${(props) => (props.expanded ? 'auto' : 'none')};
