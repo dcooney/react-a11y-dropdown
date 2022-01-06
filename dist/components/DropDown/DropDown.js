@@ -99,12 +99,7 @@ const DropDown = /*#__PURE__*/_react.default.forwardRef((props, ref) => {
 
     function keyboardControls(event) {
       const active = document.activeElement;
-      const target = event.target; // Exit if elements are not focusable.
-
-      if (!containerRef.current.contains(active) || elements.length === 0) {
-        return;
-      }
-
+      const target = event.target;
       const {
         index,
         length
@@ -112,7 +107,20 @@ const DropDown = /*#__PURE__*/_react.default.forwardRef((props, ref) => {
       const {
         shiftKey,
         key
-      } = event;
+      } = event; // Exit if elements are not focusable.
+
+      if (!containerRef.current.contains(active) || elements.length === 0) {
+        switch (key) {
+          // Exit if esc and no focusable elements.
+          case 'Esc':
+          case 'Escape':
+            // Escape
+            setExpanded(false);
+            break;
+        }
+
+        return;
+      }
 
       if (shiftKey) {
         // Shift + Tab
@@ -183,68 +191,25 @@ const DropDown = /*#__PURE__*/_react.default.forwardRef((props, ref) => {
     if (!loaded.current) {
       document.addEventListener('click', clickOutside);
       document.addEventListener('keyup', focusOutside);
-      document.addEventListener('keydown', keyboardControls);
-      containerRef.current.addEventListener('focusout', focusOut);
+      document.addEventListener('keydown', keyboardControls); //containerRef.current.addEventListener('focusout', focusOut)
+
       loaded.current = true;
     }
 
     return () => {
       document.removeEventListener('click', clickOutside);
       document.removeEventListener('keyup', focusOutside);
-      document.removeEventListener('keydown', keyboardControls);
-      containerRef.current.removeEventListener('focusout', focusOut);
+      document.removeEventListener('keydown', keyboardControls); //containerRef.current.removeEventListener('focusout', focusOut)
     };
   }, []);
-  /**
-   * Search the menu elements by first letter.
-   *
-   * @param {string} current The currently active element.
-   * @param {string} char    The character to search.
-   * @returns null
-   */
-
-  function searchByFirstLetter(current, char) {
-    const elements = menuRef.current.querySelectorAll(focusable);
-    let start = 0;
-    let index = 0;
-
-    if (char.length > 1 || !elements) {
-      return;
-    }
-
-    const array = Array.prototype.slice.call(elements); // First letters.
-
-    const letters = array && array.map(item => {
-      return item !== null && item !== void 0 && item.textContent ? item.textContent.trim()[0].toLowerCase() : '';
-    }); // Get start item from the position of the current item.
-
-    start = array.indexOf(current) + 1;
-
-    if (start >= array.length) {
-      start = 0;
-    } // Check menu elements.
-
-
-    index = letters.indexOf(char.toLowerCase(), start); // Search from beginning.
-
-    if (index === -1) {
-      index = letters.indexOf(char.toLowerCase(), 0);
-    } // Match found, set focus
-
-
-    if (index > -1) {
-      setFocus(array[index]);
-    }
-  }
   /**
    * Click handler to toggle the dropdown menu.
    *
    * @param {Event} event The click event.
    */
 
-
   function toggleMenu(e) {
-    e.currentTarget.blur();
+    //e.currentTarget.blur()
     const elements = menuRef.current.querySelectorAll(focusable);
 
     if (elements && !expanded) {
@@ -306,6 +271,48 @@ const DropDown = /*#__PURE__*/_react.default.forwardRef((props, ref) => {
     }
   }
   /**
+   * Search the menu elements by first letter.
+   *
+   * @param {string} current The currently active element.
+   * @param {string} char    The character to search.
+   * @returns null
+   */
+
+
+  function searchByFirstLetter(current, char) {
+    const elements = menuRef.current.querySelectorAll(focusable);
+    let start = 0;
+    let index = 0;
+
+    if (char.length > 1 || !elements) {
+      return;
+    }
+
+    const array = Array.prototype.slice.call(elements); // First letters.
+
+    const letters = array && array.map(item => {
+      return item !== null && item !== void 0 && item.textContent ? item.textContent.trim()[0].toLowerCase() : '';
+    }); // Get start item from the position of the current item.
+
+    start = array.indexOf(current) + 1;
+
+    if (start >= array.length) {
+      start = 0;
+    } // Check menu elements.
+
+
+    index = letters.indexOf(char.toLowerCase(), start); // Search from beginning.
+
+    if (index === -1) {
+      index = letters.indexOf(char.toLowerCase(), 0);
+    } // Match found, set focus
+
+
+    if (index > -1) {
+      setFocus(array[index]);
+    }
+  }
+  /**
    * Get the current index position for the active element.
    *
    * @param   {HTMLElement} el       The current element to compare.
@@ -350,7 +357,7 @@ const DropDown = /*#__PURE__*/_react.default.forwardRef((props, ref) => {
 
   function createMarkup(html) {
     return {
-      __html: html
+      __html: "<span>".concat(html, "</span>")
     };
   }
   /**
