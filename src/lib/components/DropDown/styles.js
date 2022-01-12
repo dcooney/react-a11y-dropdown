@@ -4,7 +4,8 @@ const ContainerStyles = css`
    width: ${(props) => getProp(props.styles.width)};
 `
 export const Container = styled.div`
-   position: relative;
+   position: ${(props) =>
+      getProp(props.styles.position) ? props.styles.position : 'static'};
    ${(props) => (props.useStyles ? ContainerStyles : null)}
 `
 
@@ -24,8 +25,9 @@ const ButtonStyles = css`
    &:after {
       content: '';
       display: inline-block;
-      margin-left: 6px;
+      margin: 0 3px;
       position: relative;
+      left: 4px;
       top: 3px;
       border-color: currentColor transparent transparent;
       border-width: 5px 4px;

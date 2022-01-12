@@ -55,6 +55,7 @@ module.exports = {
     }
   },
   container: {
-    width: 'auto'
+    width: 'auto',
+    position: 'relative'
   }
 };

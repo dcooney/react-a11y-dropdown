@@ -1,5 +1,9 @@
 # CHANGELOG
 
+**0.5.2**
+
+-  UPDATE: Added `position` prop to the dropdown `container` that is adjustable via config.
+
 **0.5.1**
 
 -  UPDATE: Updated component styling defaults and `config` props.
@@ -7,10 +11,6 @@
 -  NEW: Added testing instructions.
 -  FIX: Fixed issue with esc not working for elements without a focusable element.
 -  FIX: Issue with esc not working for elements without a focusable element.
-
-**0.2.2**
-
-UPDATE: Improved default styles and config options.
 
 **0.2.1**
 
