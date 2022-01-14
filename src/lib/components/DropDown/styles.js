@@ -81,6 +81,7 @@ export const MenuStyles = css`
    }
 `
 export const Menu = styled.div`
+   display: ${(props) => getProp(props.styles.display)};
    opacity: ${(props) => (props.expanded ? '1' : '0')};
    position: ${(props) => getProp(props.styles.position)};
    visibility: ${(props) => (props.expanded ? 'visible' : 'hidden')};

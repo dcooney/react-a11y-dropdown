@@ -59,17 +59,20 @@ export default function App() {
 
 The `DropDown` component accepts the following props.
 
-| Prop                | Description                                                                             | Type    | Default | Required |
-| ------------------- | --------------------------------------------------------------------------------------- | ------- | ------- | -------- |
-| `id`                | The component ID - if not specified an ID will be generated randomly.                   | string  | null    | Yes      |
-| `label`             | The text for the generated button toggle - HTML is accepted.                            | string  | null    | Yes      |
-| `className`         | Custom classnames for the dropdown component container.                                 | string  | null    | No       |
-| `buttonClassName`   | Custom classnames for the button trigger element.                                       | string  | null    | No       |
-| `dropdownClassName` | Custom classnames for the dropdown element.                                             | string  | null    | No       |
-| `useStyles`         | Use built-in CSS styles from component.                                                 | boolean | true    | No       |
-| `isMenu`            | Is this a menu button group? If true, the appropriate `aria` attributes will be added.  | boolean | true    | No       |
-| `search`            | Enbale searching dropdown menu contents by first letter when dropdown is in open state. | boolean | false   | No       |
-| `config`            | Modify the component CSS styles via [config prop](#config).                             | object  | null    | No       |
+| Prop                      | Description                                                                             | Type    | Default | Required |
+| ------------------------- | --------------------------------------------------------------------------------------- | ------- | ------- | -------- |
+| `id`                      | The component ID - if not specified an ID will be generated randomly.                   | string  | null    | Yes      |
+| `label`                   | The text for the generated button toggle - HTML is accepted.                            | string  | null    | Yes      |
+| `className`               | Classnames for the dropdown component container.                                        | string  | null    | No       |
+| `activeClassName`         | Classnames for the dropdown component container while in it's expanded state.           | string  | null    | No       |
+| `buttonClassName`         | Classnames for the button trigger element.                                              | string  | null    | No       |
+| `activeButtonClassName`   | Classnames for the button trigger element while in it's expanded state.                 | string  | null    | No       |
+| `dropdownClassName`       | Classnames for the dropdown element.                                                    | string  | null    | No       |
+| `activeDropdownClassName` | Classnames for the dropdown element while in it's expanded state.                       | string  | null    | No       |
+| `useStyles`               | Use built-in CSS styles from component.                                                 | boolean | true    | No       |
+| `isMenu`                  | Is this a menu button group? If true, the appropriate `aria` attributes will be added.  | boolean | true    | No       |
+| `search`                  | Enbale searching dropdown menu contents by first letter when dropdown is in open state. | boolean | false   | No       |
+| `config`                  | Modify the component CSS styles via [config prop](#config).                             | object  | null    | No       |
 
 ```jsx
 return (

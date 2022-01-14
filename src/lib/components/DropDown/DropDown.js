@@ -4,21 +4,26 @@ import React, {useEffect, useRef, useState, useImperativeHandle} from 'react'
 import defaults from './defaults'
 import {Button, Menu, Container} from './styles'
 
+// TODO: fix issue with `TypeError: Cannot read properties of null (reading 'contains')` when closing the menu in nextJS (HTMLDocument.clickOutside)
+
 /**
  * Accessibile Dropdown component.
  *
- * @param   {object}  props                   The component props.
- * @param   {string}  props.id                An optional ID for the dropdown.
- * @param   {string}  props.label             The button text for opening the dropdown.
- * @param   {boolean} props.isMenu            Is this a menu button group?
- * @param   {object}  props.children          Component children.
- * @param   {boolean} props.useStyles         Should the component use the OOTB styling.
- * @param   {boolean} props.search            Enbale searching dropdown menu contents by first letter when dropdown is in open state.
- * @param   {string}  props.className         Custom classnames for the dropdown container.
- * @param   {string}  props.buttonClassName   Custom classnames for the button element.
- * @param   {string}  props.dropdownClassName Custom classnames for the dropdown/menu element.
- * @param   {object}  props.config            Override styling configuration for the component.
- * @returns {Element}                         The DropDown component.
+ * @param   {object}  props                       The component props.
+ * @param   {string}  props.id                      An optional ID for the dropdown.
+ * @param   {string}  props.label                   The button text for opening the dropdown.
+ * @param   {boolean} props.isMenu                  Is this a menu button group?
+ * @param   {object}  props.children                Component children.
+ * @param   {boolean} props.useStyles               Should the component use the OOTB styling.
+ * @param   {boolean} props.search                  Enbale searching dropdown menu contents by first letter when dropdown is in open state.
+ * @param   {string}  props.className               Classnames for the dropdown container.
+ * @param   {string}  props.activeClassName         Classnames for the dropdown container whilst active.
+ * @param   {string}  props.buttonClassName         Classnames for the button element.
+ * @param   {string}  props.activeButtonClassName   Classnames for the button element whilst active.
+ * @param   {string}  props.dropdownClassName       Classnames for the dropdown/menu element.
+ * @param   {string}  props.activeDropdownClassName Classnames for the dropdown/menu element whilst active.
+ * @param   {object}  props.config                  Override styling configuration for the component.
+ * @returns {Element}                               The DropDown component.
  */
 const DropDown = React.forwardRef((props, ref) => {
    const {
@@ -29,8 +34,11 @@ const DropDown = React.forwardRef((props, ref) => {
       useStyles,
       search,
       className,
+      activeClassName,
       buttonClassName,
+      activeButtonClassName,
       dropdownClassName,
+      activeDropdownClassName,
       config
    } = props
    const [expanded, setExpanded] = useState(false)
@@ -160,7 +168,6 @@ const DropDown = React.forwardRef((props, ref) => {
          document.addEventListener('click', clickOutside)
          document.addEventListener('keyup', focusOutside)
          document.addEventListener('keydown', keyboardControls)
-         //containerRef.current.addEventListener('focusout', focusOut)
          loaded.current = true
       }
 
@@ -168,7 +175,6 @@ const DropDown = React.forwardRef((props, ref) => {
          document.removeEventListener('click', clickOutside)
          document.removeEventListener('keyup', focusOutside)
          document.removeEventListener('keydown', keyboardControls)
-         //containerRef.current.removeEventListener('focusout', focusOut)
       }
    }, [])
 
@@ -206,8 +212,8 @@ const DropDown = React.forwardRef((props, ref) => {
     */
    function clickOutside(event) {
       if (
-         !menuRef.current.contains(event.target) &&
-         !buttonRef.current.contains(event.target)
+         !menuRef?.current.contains(event.target) &&
+         !buttonRef?.current.contains(event.target)
       ) {
          setExpanded(false)
       }
@@ -220,19 +226,6 @@ const DropDown = React.forwardRef((props, ref) => {
     */
    function focusOutside(event) {
       if (!containerRef.current.contains(event.target)) {
-         setExpanded(false)
-      }
-   }
-
-   /**
-    * Checks for focus leaving the component.
-    *
-    * @param {Event} event The click event.
-    */
-   function focusOut(event) {
-      if (containerRef.current.contains(event.relatedTarget)) {
-         return
-      } else {
          setExpanded(false)
       }
    }
@@ -353,7 +346,8 @@ const DropDown = React.forwardRef((props, ref) => {
                className={classNames(
                   'react-a11y-dropdown',
                   className && className,
-                  expanded ? 'expanded' : null
+                  expanded ? 'expanded' : null,
+                  expanded && activeClassName ? activeClassName : null
                )}
                useStyles={useStyles}
                styles={containerStyles}
@@ -364,7 +358,10 @@ const DropDown = React.forwardRef((props, ref) => {
                   className={classNames(
                      'react-a11y-dropdown--button',
                      buttonClassName && buttonClassName,
-                     expanded ? 'active' : null
+                     expanded ? 'active' : null,
+                     expanded && activeButtonClassName
+                        ? activeButtonClassName
+                        : null
                   )}
                   useStyles={useStyles}
                   styles={buttonStyles}
@@ -380,7 +377,10 @@ const DropDown = React.forwardRef((props, ref) => {
                   className={classNames(
                      'react-a11y-dropdown--menu',
                      dropdownClassName && dropdownClassName,
-                     expanded ? 'active' : null
+                     expanded ? 'active' : null,
+                     expanded && activeDropdownClassName
+                        ? activeDropdownClassName
+                        : null
                   )}
                   useStyles={useStyles}
                   styles={menuStyles}

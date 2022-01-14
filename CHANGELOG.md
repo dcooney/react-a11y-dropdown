@@ -1,5 +1,10 @@
 # CHANGELOG
 
+**0.5.3**
+
+-  UPDATE: Added active classname props for each of the container, button and dropdown elements.
+-  Fix: Fixed issue with JS warning when closing dropmenu in NextJS.
+
 **0.5.2**
 
 -  UPDATE: Added `position` prop to the dropdown `container` that is adjustable via config.
