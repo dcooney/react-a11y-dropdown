@@ -117,7 +117,7 @@ const DropDown = /*#__PURE__*/_react.default.forwardRef((props, ref) => {
         key
       } = event; // Exit if elements are not focusable.
 
-      if (!containerRef.current.contains(active) || elements.length === 0) {
+      if (!(containerRef !== null && containerRef !== void 0 && containerRef.current.contains(active)) || elements.length === 0) {
         switch (key) {
           // Exit if esc and no focusable elements.
           case 'Esc':
@@ -247,6 +247,10 @@ const DropDown = /*#__PURE__*/_react.default.forwardRef((props, ref) => {
    */
 
   function clickOutside(event) {
+    if (!event || !(event !== null && event !== void 0 && event.target)) {
+      return; // exit if event is null.
+    }
+
     if (!(menuRef !== null && menuRef !== void 0 && menuRef.current.contains(event.target)) && !(buttonRef !== null && buttonRef !== void 0 && buttonRef.current.contains(event.target))) {
       setExpanded(false);
     }
@@ -259,7 +263,7 @@ const DropDown = /*#__PURE__*/_react.default.forwardRef((props, ref) => {
 
 
   function focusOutside(event) {
-    if (!containerRef.current.contains(event.target)) {
+    if (!(containerRef !== null && containerRef !== void 0 && containerRef.current.contains(event.target))) {
       setExpanded(false);
     }
   }
@@ -350,7 +354,7 @@ const DropDown = /*#__PURE__*/_react.default.forwardRef((props, ref) => {
 
   function createMarkup(html) {
     return {
-      __html: "<span>".concat(html, "</span>")
+      __html: html
     };
   }
   /**

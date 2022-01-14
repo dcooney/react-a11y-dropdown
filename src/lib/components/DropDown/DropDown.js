@@ -94,7 +94,7 @@ const DropDown = React.forwardRef((props, ref) => {
          const {shiftKey, key} = event
 
          // Exit if elements are not focusable.
-         if (!containerRef.current.contains(active) || elements.length === 0) {
+         if (!containerRef?.current.contains(active) || elements.length === 0) {
             switch (key) {
                // Exit if esc and no focusable elements.
                case 'Esc':
@@ -211,6 +211,9 @@ const DropDown = React.forwardRef((props, ref) => {
     * @param {Event} event The click event.
     */
    function clickOutside(event) {
+      if (!event || !event?.target) {
+         return // exit if event is null.
+      }
       if (
          !menuRef?.current.contains(event.target) &&
          !buttonRef?.current.contains(event.target)
@@ -225,7 +228,7 @@ const DropDown = React.forwardRef((props, ref) => {
     * @param {Event} event The click event.
     */
    function focusOutside(event) {
-      if (!containerRef.current.contains(event.target)) {
+      if (!containerRef?.current.contains(event.target)) {
          setExpanded(false)
       }
    }
@@ -314,7 +317,7 @@ const DropDown = React.forwardRef((props, ref) => {
     */
    function createMarkup(html) {
       return {
-         __html: `<span>${html}</span>`
+         __html: html
       }
    }
 
