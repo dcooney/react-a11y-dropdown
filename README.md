@@ -8,10 +8,10 @@ The goal with **React A11y Dropdown** is to help build accessible dropdown menus
 
 ## Features
 
--  **Button**: Creates a button to toggle the state (open/closed) of the dropdown menu.
--  **Aria Attributes**: Adds required `aria` attributes to the button and dropdown components.
--  **Keyboard Controls**: Enables keyboard controls to tab and arrow key seemlessly through focusable elements within the dropdown component.
--  **Letter Navigation**: Character search by first letter when focus is on an expanded dropdown menu.
+- **Button**: Creates a button to toggle the state (open/closed) of the dropdown menu.
+- **Aria Attributes**: Adds required `aria` attributes to the button and dropdown components.
+- **Keyboard Controls**: Enables keyboard controls to tab and arrow key seemlessly through focusable elements within the dropdown component.
+- **Letter Navigation**: Character search by first letter when focus is on an expanded dropdown menu.
 
 **Note**: This component does not style the contents of the dropdown. Its simply a wrapper for your existing components and will inherit application styling as required.
 
@@ -72,6 +72,7 @@ The `DropDown` component accepts the following props.
 | `useStyles`               | Use built-in CSS styles from component.                                                 | boolean | true    | No       |
 | `isMenu`                  | Is this a menu button group? If true, the appropriate `aria` attributes will be added.  | boolean | true    | No       |
 | `search`                  | Enbale searching dropdown menu contents by first letter when dropdown is in open state. | boolean | false   | No       |
+| `onHover`                 | Allow mouse hover to open dropmenu.                                                     | boolean | false   | No       |
 | `config`                  | Modify the component CSS styles via [config prop](#config).                             | object  | null    | No       |
 
 ```jsx
@@ -188,8 +189,8 @@ The following default CSS properties are passed into the `DropDown` component an
 
 **Notes**
 
--  The `active` object properties are applied when the `DropDown` component is in an expanded state.
--  Setting a property to `null` will prevent the CSS property from being attached to the component.
+- The `active` object properties are applied when the `DropDown` component is in an expanded state.
+- Setting a property to `null` will prevent the CSS property from being attached to the component.
 
 ## CSS Styling
 
@@ -257,5 +258,5 @@ You can always roll your own styles and remove default component styling by sett
 
 Ideas and features to add in future development.
 
--  The ability to add theming and allow for switching preset styles via component prop.
--  Full text search along with letter navigation to enhance the letter searching.
+- The ability to add theming and allow for switching preset styles via component prop.
+- Full text search along with letter navigation to enhance the letter searching.

@@ -1,21 +1,25 @@
 # CHANGELOG
 
+**0.5.5**
+
+- UPDATE: Added support for mouse hover to expand dropdown.
+
 **0.5.3**
 
--  UPDATE: Added active classname props for each of the container, button and dropdown elements.
--  Fix: Fixed issue with JS warning when closing dropmenu in NextJS.
+- UPDATE: Added active classname props for each of the container, button and dropdown elements.
+- Fix: Fixed issue with JS warning when closing dropmenu in NextJS.
 
 **0.5.2**
 
--  UPDATE: Added `position` prop to the dropdown `container` that is adjustable via config.
+- UPDATE: Added `position` prop to the dropdown `container` that is adjustable via config.
 
 **0.5.1**
 
--  UPDATE: Updated component styling defaults and `config` props.
--  UPDATE: Updated demo docs.
--  NEW: Added testing instructions.
--  FIX: Fixed issue with esc not working for elements without a focusable element.
--  FIX: Issue with esc not working for elements without a focusable element.
+- UPDATE: Updated component styling defaults and `config` props.
+- UPDATE: Updated demo docs.
+- NEW: Added testing instructions.
+- FIX: Fixed issue with esc not working for elements without a focusable element.
+- FIX: Issue with esc not working for elements without a focusable element.
 
 **0.2.1**
 

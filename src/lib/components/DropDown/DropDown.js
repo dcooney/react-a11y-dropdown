@@ -9,21 +9,22 @@ import {Button, Menu, Container} from './styles'
 /**
  * Accessibile Dropdown component.
  *
- * @param   {object}  props                       The component props.
- * @param   {string}  props.id                      An optional ID for the dropdown.
- * @param   {string}  props.label                   The button text for opening the dropdown.
- * @param   {boolean} props.isMenu                  Is this a menu button group?
- * @param   {object}  props.children                Component children.
- * @param   {boolean} props.useStyles               Should the component use the OOTB styling.
- * @param   {boolean} props.search                  Enbale searching dropdown menu contents by first letter when dropdown is in open state.
- * @param   {string}  props.className               Classnames for the dropdown container.
- * @param   {string}  props.activeClassName         Classnames for the dropdown container whilst active.
- * @param   {string}  props.buttonClassName         Classnames for the button element.
- * @param   {string}  props.activeButtonClassName   Classnames for the button element whilst active.
- * @param   {string}  props.dropdownClassName       Classnames for the dropdown/menu element.
- * @param   {string}  props.activeDropdownClassName Classnames for the dropdown/menu element whilst active.
- * @param   {object}  props.config                  Override styling configuration for the component.
- * @returns {Element}                               The DropDown component.
+ * @param   {object}   props                       The component props.
+ * @param   {string}   props.id                      An optional ID for the dropdown.
+ * @param   {string}   props.label                   The button text for opening the dropdown.
+ * @param   {boolean}  props.isMenu                  Is this a menu button group?
+ * @param   {object}   props.children                Component children.
+ * @param   {boolean}  props.useStyles               Should the component use the OOTB styling.
+ * @param   {boolean}  props.search                  Enbale searching dropdown menu contents by first letter when dropdown is in open state.
+ * @param   {string}   props.className               Classnames for the dropdown container.
+ * @param   {string}   props.activeClassName         Classnames for the dropdown container whilst active.
+ * @param   {string}   props.buttonClassName         Classnames for the button element.
+ * @param   {string}   props.activeButtonClassName   Classnames for the button element whilst active.
+ * @param   {string}   props.dropdownClassName       Classnames for the dropdown/menu element.
+ * @param   {string}   props.activeDropdownClassName Classnames for the dropdown/menu element whilst active.
+ * @param   {object}   props.config                  Override styling configuration for the component.
+ * @param   {boolean}  props.onHover                 Open the menu on mouse hover.
+ * @returns {Element}                                The DropDown component.
  */
 const DropDown = React.forwardRef((props, ref) => {
    const {
@@ -39,7 +40,8 @@ const DropDown = React.forwardRef((props, ref) => {
       activeButtonClassName,
       dropdownClassName,
       activeDropdownClassName,
-      config
+      config,
+      onHover
    } = props
    const [expanded, setExpanded] = useState(false)
    const [theId] = useState(id ? id : generateId(8)) // Generate random ID if not specified.
@@ -49,6 +51,7 @@ const DropDown = React.forwardRef((props, ref) => {
    const buttonRef = useRef()
    const focusable =
       'a[href], button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])'
+   let hoverIntent = null
 
    // Get styling config.
    const {container, button, dropdown} = config ? config : {}
@@ -77,7 +80,7 @@ const DropDown = React.forwardRef((props, ref) => {
    useEffect(() => {
       const elements = menuRef.current.querySelectorAll(focusable)
       if (elements) {
-         elements.forEach((item) => {
+         elements.forEach(item => {
             item.tabIndex = '-1'
          })
       }
@@ -183,13 +186,36 @@ const DropDown = React.forwardRef((props, ref) => {
     *
     * @param {Event} event The click event.
     */
-   function toggleMenu(e) {
+   function toggleMenu() {
       //e.currentTarget.blur()
       const elements = menuRef.current.querySelectorAll(focusable)
       if (elements && !expanded) {
          setFocus(elements[0])
       }
-      setExpanded((expanded) => !expanded)
+      setExpanded(expanded => !expanded)
+   }
+
+   /**
+    * Show the dropdown menu.
+    */
+   function showMenu() {
+      document.addEventListener('mousemove', hideMenuHover)
+      setExpanded(true)
+   }
+
+   /**
+    * Hide dropmenu if mouseout of container element.
+    *
+    * @param {Event} event The mouse event.
+    */
+   function hideMenuHover(event) {
+      clearTimeout(hoverIntent)
+      hoverIntent = setTimeout(function() {
+         if (!containerRef?.current.contains(event.target)) {
+            setExpanded(false)
+            document.removeEventListener('mousemove', hideMenuHover)
+         }
+      }, 100)
    }
 
    /**
@@ -254,7 +280,7 @@ const DropDown = React.forwardRef((props, ref) => {
       // First letters.
       const letters =
          array &&
-         array.map((item) => {
+         array.map(item => {
             return item?.textContent
                ? item.textContent.trim()[0].toLowerCase()
                : ''
@@ -368,11 +394,13 @@ const DropDown = React.forwardRef((props, ref) => {
                   )}
                   useStyles={useStyles}
                   styles={buttonStyles}
-                  onClick={(e) => toggleMenu(e)}
+                  onClick={() => toggleMenu()}
                   dangerouslySetInnerHTML={createMarkup(label)}
                   aria-expanded={expanded ? 'true' : 'false'}
                   aria-haspopup="true"
                   aria-controls={isMenu ? `menu-${theId}` : null}
+                  onFocus={() => onHover && showMenu()}
+                  onMouseEnter={() => onHover && showMenu()}
                ></Button>
                <Menu
                   ref={menuRef}
@@ -402,21 +430,9 @@ const DropDown = React.forwardRef((props, ref) => {
 
 export default DropDown
 
-DropDown.propTypes = {
-   id: PropTypes.string,
-   label: PropTypes.string.isRequired,
-   isMenu: PropTypes.bool,
-   search: PropTypes.bool,
-   children: PropTypes.object,
-   useStyles: PropTypes.bool,
-   className: PropTypes.string,
-   buttonClassName: PropTypes.string,
-   dropdownClassName: PropTypes.string,
-   config: PropTypes.object
-}
-
 DropDown.defaultProps = {
    isMenu: true,
    useStyles: true,
-   search: false
+   search: false,
+   onHover: false
 }

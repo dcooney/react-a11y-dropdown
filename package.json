@@ -1,6 +1,6 @@
 {
   "name": "react-a11y-dropdown",
-  "version": "0.5.43",
+  "version": "0.5.5",
   "description": "An accessible dropdown component for React.",
   "license": "MIT",
   "homepage": "https://dcooney.github.io/react-a11y-dropdown/",
