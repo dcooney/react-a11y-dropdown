@@ -1,5 +1,10 @@
 # CHANGELOG
 
+**0.5.6**
+
+- NEW: Added new `href` prop to add links to top level items.
+- UPDATE: Reduced hover intent delay for the new hover support.
+
 **0.5.5**
 
 - UPDATE: Added support for mouse hover to expand dropdown.

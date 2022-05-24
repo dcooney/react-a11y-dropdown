@@ -36,7 +36,11 @@ export default function App() {
                   <DropDown label="Example #2" id="drop-2">
                      <MenuTwo />
                   </DropDown>
-                  <DropDown label="Hover" onHover={true}>
+                  <DropDown
+                     label="Hover"
+                     onHover={true}
+                     href="https://google.com"
+                  >
                      <MenuOne />
                   </DropDown>
                </div>

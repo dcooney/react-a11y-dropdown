@@ -47,6 +47,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
  * @param   {string}   props.activeDropdownClassName Classnames for the dropdown/menu element whilst active.
  * @param   {object}   props.config                  Override styling configuration for the component.
  * @param   {boolean}  props.onHover                 Open the menu on mouse hover.
+ * @param   {string}   props.href                    The link to attach to the button element.
  * @returns {Element}                                The DropDown component.
  */
 const DropDown = /*#__PURE__*/_react.default.forwardRef((props, ref) => {
@@ -64,7 +65,8 @@ const DropDown = /*#__PURE__*/_react.default.forwardRef((props, ref) => {
     dropdownClassName,
     activeDropdownClassName,
     config,
-    onHover
+    onHover,
+    href
   } = props;
   const [expanded, setExpanded] = (0, _react.useState)(false);
   const [theId] = (0, _react.useState)(id ? id : generateId(8)); // Generate random ID if not specified.
@@ -251,7 +253,7 @@ const DropDown = /*#__PURE__*/_react.default.forwardRef((props, ref) => {
         setExpanded(false);
         document.removeEventListener('mousemove', hideMenuHover);
       }
-    }, 100);
+    }, 25);
   }
   /**
    * Allow for setting the expanded state from parent components.
@@ -412,6 +414,8 @@ const DropDown = /*#__PURE__*/_react.default.forwardRef((props, ref) => {
     useStyles: useStyles,
     styles: containerStyles
   }, /*#__PURE__*/_react.default.createElement(_styles.Button, {
+    as: href ? 'a' : null,
+    href: href ? href : null,
     ref: buttonRef,
     id: "button-".concat(theId),
     className: (0, _classnames.default)('react-a11y-dropdown--button', buttonClassName && buttonClassName, expanded ? 'active' : null, expanded && activeButtonClassName ? activeButtonClassName : null),
@@ -439,6 +443,20 @@ const DropDown = /*#__PURE__*/_react.default.forwardRef((props, ref) => {
 
 var _default = DropDown;
 exports.default = _default;
+DropDown.propTypes = {
+  id: _propTypes.default.string,
+  label: _propTypes.default.string.isRequired,
+  isMenu: _propTypes.default.bool,
+  search: _propTypes.default.bool,
+  children: _propTypes.default.object,
+  useStyles: _propTypes.default.bool,
+  className: _propTypes.default.string,
+  buttonClassName: _propTypes.default.string,
+  dropdownClassName: _propTypes.default.string,
+  config: _propTypes.default.object,
+  onHover: _propTypes.default.bool,
+  href: _propTypes.default.string
+};
 DropDown.defaultProps = {
   isMenu: true,
   useStyles: true,

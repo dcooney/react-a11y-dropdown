@@ -24,6 +24,7 @@ import {Button, Menu, Container} from './styles'
  * @param   {string}   props.activeDropdownClassName Classnames for the dropdown/menu element whilst active.
  * @param   {object}   props.config                  Override styling configuration for the component.
  * @param   {boolean}  props.onHover                 Open the menu on mouse hover.
+ * @param   {string}   props.href                    The link to attach to the button element.
  * @returns {Element}                                The DropDown component.
  */
 const DropDown = React.forwardRef((props, ref) => {
@@ -41,7 +42,8 @@ const DropDown = React.forwardRef((props, ref) => {
       dropdownClassName,
       activeDropdownClassName,
       config,
-      onHover
+      onHover,
+      href
    } = props
    const [expanded, setExpanded] = useState(false)
    const [theId] = useState(id ? id : generateId(8)) // Generate random ID if not specified.
@@ -215,7 +217,7 @@ const DropDown = React.forwardRef((props, ref) => {
             setExpanded(false)
             document.removeEventListener('mousemove', hideMenuHover)
          }
-      }, 100)
+      }, 25)
    }
 
    /**
@@ -382,6 +384,8 @@ const DropDown = React.forwardRef((props, ref) => {
                styles={containerStyles}
             >
                <Button
+                  as={href ? 'a' : null}
+                  href={href ? href : null}
                   ref={buttonRef}
                   id={`button-${theId}`}
                   className={classNames(
@@ -429,6 +433,21 @@ const DropDown = React.forwardRef((props, ref) => {
 })
 
 export default DropDown
+
+DropDown.propTypes = {
+   id: PropTypes.string,
+   label: PropTypes.string.isRequired,
+   isMenu: PropTypes.bool,
+   search: PropTypes.bool,
+   children: PropTypes.object,
+   useStyles: PropTypes.bool,
+   className: PropTypes.string,
+   buttonClassName: PropTypes.string,
+   dropdownClassName: PropTypes.string,
+   config: PropTypes.object,
+   onHover: PropTypes.bool,
+   href: PropTypes.string
+}
 
 DropDown.defaultProps = {
    isMenu: true,
