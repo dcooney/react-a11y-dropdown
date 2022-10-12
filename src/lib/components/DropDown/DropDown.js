@@ -46,6 +46,8 @@ const DropDown = React.forwardRef((props, ref) => {
       href
    } = props
    const [expanded, setExpanded] = useState(false)
+   const [focusableElements, setFocusableElements] = useState()
+   const focusableElementsRef = useRef(focusableElements)
    const [theId] = useState(id ? id : generateId(8)) // Generate random ID if not specified.
    const loaded = useRef(false)
    const containerRef = useRef()
@@ -79,95 +81,123 @@ const DropDown = React.forwardRef((props, ref) => {
    }
    const containerStyles = {...defaults.container, ...container}
 
-   useEffect(() => {
+   /**
+    * Set all the focusable elements in the dropdown.
+    */
+   function setFocusable() {
       const elements = menuRef.current.querySelectorAll(focusable)
       if (elements) {
          elements.forEach(item => {
             item.tabIndex = '-1'
          })
+         setFocusableElements(elements)
+      }
+   }
+
+   /**
+    * Handle keyboard controls.
+    *
+    * @param {Event} event The click event.
+    */
+   function keyboardControls(event) {
+      const elements = focusableElementsRef.current
+      if (!elements) {
+         return
       }
 
-      /**
-       * Handle keyboard controls.
-       *
-       * @param {Event} event The click event.
-       */
-      function keyboardControls(event) {
-         const active = document.activeElement
-         const target = event.target
-         const {index, length} = getActiveIndex(active, elements)
-         const {shiftKey, key} = event
+      const active = document.activeElement
+      const target = event.target
+      const {index, length} = getActiveIndex(active, elements)
+      const {shiftKey, key} = event
 
-         // Exit if elements are not focusable.
-         if (!containerRef?.current.contains(active) || elements.length === 0) {
-            switch (key) {
-               // Exit if esc and no focusable elements.
-               case 'Esc':
-               case 'Escape': // Escape
-                  setExpanded(false)
-                  break
-            }
+      // Exit if elements are not focusable.
+      if (!containerRef?.current.contains(active) || elements.length === 0) {
+         switch (key) {
+            // Exit if esc and no focusable elements.
+            case 'Esc':
+            case 'Escape': // Escape
+               setExpanded(false)
+               break
+
+            default:
+               break
+         }
+         return
+      }
+
+      if (shiftKey) {
+         // Shift + Tab
+         if (key === 'Tab') {
+            setExpanded(false)
             return
          }
-
-         if (shiftKey) {
-            // Shift + Tab
-            if (key === 'Tab') {
+      } else {
+         switch (key) {
+            case ' ':
+            case 'Enter':
+               //setFocus(buttonRef.current)
+               //setExpanded(false)
+               break
+            case 'Esc':
+            case 'Escape': // Escape
+               setFocus(buttonRef.current)
                setExpanded(false)
-               return
-            }
-         } else {
-            switch (key) {
-               case ' ':
-               case 'Enter':
-                  //setFocus(buttonRef.current)
-                  //setExpanded(false)
-                  break
-               case 'Esc':
-               case 'Escape': // Escape
-                  setFocus(buttonRef.current)
-                  setExpanded(false)
-                  break
+               break
 
-               case 'ArrowDown':
-               case 'Down': // Down arrow.
-                  if (active === buttonRef.current) {
-                     // Focused on trigger then expand the menu.
-                     setFocus(elements[0])
-                     setExpanded(true)
-                  } else {
-                     const next = index === length ? 0 : index + 1
-                     elements[next] && setFocus(elements[next])
-                  }
-                  event.preventDefault()
-                  break
-
-               case 'Up':
-               case 'ArrowUp': // Up arrow.
-                  const prev = index === 0 ? length : index - 1
-                  elements[prev] && setFocus(elements[prev])
-                  event.preventDefault()
-                  break
-
-               case 'Home':
-               case 'PageUp': // Home.
+            case 'ArrowDown':
+            case 'Down': // Down arrow.
+               if (active === buttonRef.current) {
+                  // Focused on trigger then expand the menu.
+                  setFocusable()
                   setFocus(elements[0])
-                  event.preventDefault()
-                  break
+                  setExpanded(true)
+               } else {
+                  const next = index === length ? 0 : index + 1
+                  elements[next] && setFocus(elements[next])
+               }
+               event.preventDefault()
+               break
 
-               case 'End':
-               case 'PageDown': // End.
-                  setFocus(elements[elements.length - 1])
-                  event.preventDefault()
-                  break
+            case 'Up':
+            case 'ArrowUp': // Up arrow.
+               const prev = index === 0 ? length : index - 1
+               elements[prev] && setFocus(elements[prev])
+               event.preventDefault()
+               break
 
-               default:
-                  // Search
-                  search && searchByFirstLetter(target, key)
-                  break
-            }
+            case 'Home':
+            case 'PageUp': // Home.
+               setFocus(elements[0])
+               event.preventDefault()
+               break
+
+            case 'End':
+            case 'PageDown': // End.
+               setFocus(elements[elements.length - 1])
+               event.preventDefault()
+               break
+
+            default:
+               // Search
+               search && searchByFirstLetter(target, key)
+               break
          }
       }
+   }
+
+   /**
+    * Watch for focusable elements change.
+    * @see https://medium.com/geographit/accessing-react-state-in-event-listeners-with-usestate-and-useref-hooks-8cceee73c559
+    *
+    * Note: React state is not able in KeyboardEvents so we store in Ref.
+    */
+   useEffect(() => {
+      focusableElementsRef.current = focusableElements
+   }, [focusableElements])
+
+   // On mount.
+   useEffect(() => {
+      setFocusable()
 
       if (!loaded.current) {
          document.addEventListener('click', clickOutside)
@@ -189,11 +219,16 @@ const DropDown = React.forwardRef((props, ref) => {
     * @param {Event} event The click event.
     */
    function toggleMenu() {
-      //e.currentTarget.blur()
       const elements = menuRef.current.querySelectorAll(focusable)
+      if (!expanded) {
+         // Set focusable elements on menu open.
+         setFocusable()
+      }
       if (elements && !expanded) {
+         // Set initial focus.
          setFocus(elements[0])
       }
+      // Set expanded state.
       setExpanded(expanded => !expanded)
    }
 
@@ -202,6 +237,7 @@ const DropDown = React.forwardRef((props, ref) => {
     */
    function showMenu() {
       document.addEventListener('mousemove', hideMenuHover)
+      setFocusable()
       setExpanded(true)
    }
 
@@ -433,21 +469,6 @@ const DropDown = React.forwardRef((props, ref) => {
 })
 
 export default DropDown
-
-DropDown.propTypes = {
-   id: PropTypes.string,
-   label: PropTypes.string.isRequired,
-   isMenu: PropTypes.bool,
-   search: PropTypes.bool,
-   children: PropTypes.object,
-   useStyles: PropTypes.bool,
-   className: PropTypes.string,
-   buttonClassName: PropTypes.string,
-   dropdownClassName: PropTypes.string,
-   config: PropTypes.object,
-   onHover: PropTypes.bool,
-   href: PropTypes.string
-}
 
 DropDown.defaultProps = {
    isMenu: true,

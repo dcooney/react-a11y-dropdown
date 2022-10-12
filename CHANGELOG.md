@@ -1,5 +1,9 @@
 # CHANGELOG
 
+**0.5.7**
+
+- NEW: Added support for dynamic content in the dropdown by setting the focusable elements on each dropdown open.
+
 **0.5.6**
 
 - NEW: Added new `href` prop to add links to top level items.
