@@ -46,9 +46,7 @@ const DropDown = React.forwardRef((props, ref) => {
       href
    } = props
    const [expanded, setExpanded] = useState(false)
-   const [focusableElements, setFocusableElements] = useState()
-   const focusableElementsRef = useRef(focusableElements)
-   const [theId] = useState(id ? id : generateId(8)) // Generate random ID if not specified.
+   const [theId] = useState(id ? id : generateId(10)) // Generate random ID if not specified.
    const loaded = useRef(false)
    const containerRef = useRef()
    const menuRef = useRef()
@@ -90,7 +88,6 @@ const DropDown = React.forwardRef((props, ref) => {
          elements.forEach(item => {
             item.tabIndex = '-1'
          })
-         setFocusableElements(elements)
       }
    }
 
@@ -100,10 +97,12 @@ const DropDown = React.forwardRef((props, ref) => {
     * @param {Event} event The click event.
     */
    function keyboardControls(event) {
-      const elements = focusableElementsRef.current
+      const elements = menuRef.current.querySelectorAll(focusable)
       if (!elements) {
          return
       }
+
+      setFocusable()
 
       const active = document.activeElement
       const target = event.target
@@ -148,7 +147,6 @@ const DropDown = React.forwardRef((props, ref) => {
             case 'Down': // Down arrow.
                if (active === buttonRef.current) {
                   // Focused on trigger then expand the menu.
-                  setFocusable()
                   setFocus(elements[0])
                   setExpanded(true)
                } else {
@@ -184,16 +182,6 @@ const DropDown = React.forwardRef((props, ref) => {
          }
       }
    }
-
-   /**
-    * Watch for focusable elements change.
-    * @see https://medium.com/geographit/accessing-react-state-in-event-listeners-with-usestate-and-useref-hooks-8cceee73c559
-    *
-    * Note: React state is not able in KeyboardEvents so we store in Ref.
-    */
-   useEffect(() => {
-      focusableElementsRef.current = focusableElements
-   }, [focusableElements])
 
    // On mount.
    useEffect(() => {
@@ -393,8 +381,7 @@ const DropDown = React.forwardRef((props, ref) => {
     */
    function generateId(length) {
       var result = ''
-      var characters =
-         'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+      var characters = '0123456789'
       var charactersLength = characters.length
       for (var i = 0; i < length; i++) {
          result += characters.charAt(
