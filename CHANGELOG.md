@@ -1,5 +1,9 @@
 # CHANGELOG
 
+**0.5.9**
+
+- UPDATE: Bumped required React versions.
+
 **0.5.8**
 
 - NEW: Added support for dynamic content in the dropdown by setting the focusable elements on each dropdown open.
