@@ -1,36 +1,50 @@
 {
   "name": "react-a11y-dropdown",
   "version": "0.5.9",
-  "description": "An accessible dropdown component for React.",
-  "license": "MIT",
+  "description": "An accessible and unopinionated dropdown component for React.",
   "homepage": "https://dcooney.github.io/react-a11y-dropdown/",
-  "contributors": [
-    "Darren Cooney <darren.cooney@gmail.com> (https://github.com/dcooney)"
-  ],
-  "author": "dcooney",
-  "private": false,
+  "source": "src/lib/index.js",
   "main": "dist/index.js",
   "module": "dist/index.js",
-  "files": [
-    "dist",
-    "README.md"
-  ],
+  "unpkg": "dist/index.umd.js",
+  "engines": {
+    "node": ">= 10.0.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dcooney/react-a11y-dropdown.git"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "start": "react-scripts start",
-    "docs": "react-scripts build",
-    "build": "rm -rf dist && NODE_ENV=production babel src/lib --out-dir dist --copy-files && npm run docs",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "microbundle watch",
+    "build": "rm -rf dist && microbundle",
+    "build:demo": "BUILD_PATH='./docs' react-scripts build"
   },
   "eslintConfig": {
     "extends": [
-      "react-app",
-      "react-app/jest"
+      "react-app"
     ]
+  },
+  "peerDependencies": {
+    "react": "^18.2.0"
+  },
+  "dependencies": {
+    "classnames": "^2.3.1",
+    "styled-components": "^5.3.3"
+  },
+  "devDependencies": {
+    "microbundle": "^0.15.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1"
+  },
+  "author": "Darren Cooney (darren.cooney@gmail.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dcooney/react-a11y-dropdown/issues"
   },
   "browserslist": {
     "production": [
@@ -43,22 +57,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "peerDependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
-  "dependencies": {
-    "@babel/polyfill": "^7.12.1",
-    "classnames": "^2.3.1",
-    "styled-components": "^5.3.3"
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.16.7",
-    "@babel/core": "^7.16.7",
-    "@babel/preset-env": "^7.16.7",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "^5.0.0"
   }
 }

@@ -6,6 +6,8 @@ The goal with **React A11y Dropdown** is to help build accessible dropdown menus
 
 &rarr; **[View the Examples](https://dcooney.github.io/react-a11y-dropdown/)**
 
+[![npm](https://img.shields.io/npm/v/react-a11y-dropdown)](https://www.npmjs.com/package/react-a11y-dropdown)
+
 ## Features
 
 - **Button**: Creates a button to toggle the state (open/closed) of the dropdown menu.
@@ -126,7 +128,7 @@ return (
 )
 ```
 
-**Config Defaults**
+### Config Defaults
 
 The following default CSS properties are passed into the `DropDown` component and cann be modified using the `config` prop.
 
@@ -188,7 +190,7 @@ The following default CSS properties are passed into the `DropDown` component an
 }
 ```
 
-**Notes**
+### Notes**
 
 - The `active` object properties are applied when the `DropDown` component is in an expanded state.
 - Setting a property to `null` will prevent the CSS property from being attached to the component.
@@ -199,7 +201,7 @@ Some basic styles are provided via [Styled Components](https://styled-components
 
 I've done my best to only provide styling for things that were absolutely necessary to acheive a modern look and feel for the default component.
 
-**Rendered Markup**
+### Rendered Markup
 
 ```HTML
 <!-- Closed -->
@@ -243,7 +245,7 @@ return (
 )
 ```
 
-**Remove Styles**
+### Remove Styles
 
 You can always roll your own styles and remove default component styling by setting the `useStyles` prop.
 

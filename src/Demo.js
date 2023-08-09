@@ -1,22 +1,22 @@
-import React, {useRef} from 'react'
-import DropDown from './lib/components/DropDown'
-import Footer from './pages/home/Footer'
-import Header from './pages/home/Header'
-import MegaMenu from './pages/home/MegaMenu'
-import MenuFour from './pages/home/MenuFour'
-import MenuOne from './pages/home/MenuOne'
-import MenuSearch from './pages/home/MenuSearch'
-import MenuThree from './pages/home/MenuThree'
-import MenuTwo from './pages/home/MenuTwo'
+import React, { useRef } from 'react'
+import Footer from './components/Footer'
+import Header from './components/Header'
+import MegaMenu from './components/MegaMenu'
+import MenuFour from './components/MenuFour'
+import MenuOne from './components/MenuOne'
+import MenuSearch from './components/MenuSearch'
+import MenuThree from './components/MenuThree'
+import MenuTwo from './components/MenuTwo'
+import DropDown from './lib/DropDown'
 
-export default function App() {
+export default function Demo() {
    const drop = useRef()
 
    /**
     * Close the custom dropmenu.
     */
    const handleClick = () => {
-      drop.current.close()
+      drop?.current?.close()
    }
 
    return (

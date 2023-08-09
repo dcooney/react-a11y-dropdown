@@ -1,5 +1,5 @@
 import React, {useRef} from 'react'
-import DropDown from '../../lib/components/DropDown'
+import DropDown from '../lib/DropDown'
 
 const listStyle = 'my-2 ml-4 mb-3'
 
