@@ -22,7 +22,7 @@ export default function Demo() {
    return (
       <div className="container mx-auto px-5 text-slate-800">
          <Header />
-         <main className="grid sm:grid-cols-12 gap-2 bg-slate-50 p-2 border-b">
+         <main className="grid sm:grid-cols-12 gap-2 bg-slate-50 p-5 border rounded-md">
             <section className="p-6 md:p-8 bg-white sm:col-span-6 lg:col-span-6">
                <h3 className="text-lg font-bold mb-2">Default</h3>
                <p className="text-sm mb-5 border-b border-opacity-50 pb-5 text-slate-600">
@@ -50,7 +50,7 @@ export default function Demo() {
                <h3 className="text-lg font-bold mb-2">Custom Styling</h3>
                <p className="text-sm mb-5 border-b border-opacity-50 pb-5 text-slate-600">
                   Using the <span className="bg-blue-50 p-1">config</span> prop
-                  to style the dropdown button, menu and transitions.
+                  to style the button, menu and dropdown transitions.
                </p>
                <div className="flex flex-wrap items-center gap-3 lg:gap-2 self-start">
                   <DropDown

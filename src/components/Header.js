@@ -29,7 +29,7 @@ export default function Intro() {
                with full keyboard support.
             </h2>
             <a
-               className="self-start inline-block sm:flex gap-1 items-center text-sm text-slate-700 rounded-sm bg-slate-100 border border-slate-300 hover:border-slate-400 px-3 py-2 -mt-1"
+               className="self-start inline-block sm:flex gap-1 items-center text-sm text-slate-700 rounded-[3px] bg-slate-100 border border-slate-300 hover:border-slate-400 px-3 py-2 leading-none -mt-1.5"
                href="https://github.com/dcooney/react-a11y-dropdown"
                target="_blank"
             >
@@ -50,7 +50,7 @@ export default function Intro() {
                </span>
             </a>
          </div>
-         <div className="flex items-center py-5 border-t border-b">
+         <div className="flex items-center py-5 border-t">
             <p className="text-sm px-1">View the examples below:</p>
             <DropDown
                ref={drop}
@@ -78,7 +78,7 @@ export default function Intro() {
             >
                <ul className="text-xs leading-5 list-disc border-b">
                   <li className={listStyle}>
-                     Click a button to toggle the corrosponding dropdown menu.
+                     Click a button to toggle the corresponding dropdown menu.
                   </li>
                   <li className={listStyle}>
                      With a dropdown menu closed and the focus on a button,
