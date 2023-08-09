@@ -19,7 +19,7 @@ export default function Intro() {
          </h1>
          <div className="block sm:flex justify-between gap-2 pb-5">
             <h2 className="text-slate-600	text-xl font-light pr-2 mb-5 sm:mb-0">
-               An fully accessible and unopinionated dropdown component for{' '}
+               An accessible and unopinionated dropdown component for{' '}
                <a
                   href="https://www.reactjs.org"
                   className="underline hover:no-underline text-sky-600"
