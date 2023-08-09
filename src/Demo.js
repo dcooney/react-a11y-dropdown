@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, {useRef} from 'react'
 import Footer from './components/Footer'
 import Header from './components/Header'
 import MegaMenu from './components/MegaMenu'
@@ -37,7 +37,7 @@ export default function Demo() {
                      <MenuTwo />
                   </DropDown>
                   <DropDown
-                     label="Hover"
+                     label="Hover with Link"
                      onHover={true}
                      href="https://google.com"
                   >
