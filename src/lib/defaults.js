@@ -1,7 +1,7 @@
 /**
  * Default component props.
  */
-module.exports = {
+export const defaults = {
    button: {
       background: '#eef1f4',
       border: '1px solid #d6d9dc',

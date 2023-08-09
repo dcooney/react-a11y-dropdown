@@ -1,2 +1,2 @@
-import DropDown from './components/DropDown'
+import DropDown from './DropDown'
 export default DropDown

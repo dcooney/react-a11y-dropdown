@@ -1,40 +1,37 @@
-import classNames from 'classnames'
-import PropTypes from 'prop-types'
-import React, {useEffect, useRef, useState, useImperativeHandle} from 'react'
-import defaults from './defaults'
-import {Button, Menu, Container} from './styles'
-
-// TODO: fix issue with `TypeError: Cannot read properties of null (reading 'contains')` when closing the menu in nextJS (HTMLDocument.clickOutside)
+import cn from 'classnames'
+import React, {useEffect, useImperativeHandle, useRef, useState} from 'react'
+import {defaults} from './defaults'
+import {Button, Container, Menu} from './styles'
 
 /**
- * Accessibile Dropdown component.
+ * Accessible Dropdown component for React.
  *
- * @param   {object}   props                       The component props.
- * @param   {string}   props.id                      An optional ID for the dropdown.
- * @param   {string}   props.label                   The button text for opening the dropdown.
- * @param   {boolean}  props.isMenu                  Is this a menu button group?
- * @param   {object}   props.children                Component children.
- * @param   {boolean}  props.useStyles               Should the component use the OOTB styling.
- * @param   {boolean}  props.search                  Enbale searching dropdown menu contents by first letter when dropdown is in open state.
- * @param   {string}   props.className               Classnames for the dropdown container.
- * @param   {string}   props.activeClassName         Classnames for the dropdown container whilst active.
- * @param   {string}   props.buttonClassName         Classnames for the button element.
- * @param   {string}   props.activeButtonClassName   Classnames for the button element whilst active.
- * @param   {string}   props.dropdownClassName       Classnames for the dropdown/menu element.
- * @param   {string}   props.activeDropdownClassName Classnames for the dropdown/menu element whilst active.
- * @param   {object}   props.config                  Override styling configuration for the component.
- * @param   {boolean}  props.onHover                 Open the menu on mouse hover.
- * @param   {string}   props.href                    The link to attach to the button element.
- * @returns {Element}                                The DropDown component.
+ * @param {object}   props                         The component props.
+ * @param {string}   props.id                      An optional ID for the dropdown.
+ * @param {string}   props.label                   The button text for opening the dropdown.
+ * @param {boolean}  props.isMenu                  Is this a menu button group?
+ * @param {object}   props.children                Component children.
+ * @param {boolean}  props.useStyles               Should the component use the OOTB styling.
+ * @param {boolean}  props.search                  Enbale searching dropdown menu contents by first letter when dropdown is in open state.
+ * @param {string}   props.className               Classnames for the dropdown container.
+ * @param {string}   props.activeClassName         Classnames for the dropdown container whilst active.
+ * @param {string}   props.buttonClassName         Classnames for the button element.
+ * @param {string}   props.activeButtonClassName   Classnames for the button element whilst active.
+ * @param {string}   props.dropdownClassName       Classnames for the dropdown/menu element.
+ * @param {string}   props.activeDropdownClassName Classnames for the dropdown/menu element whilst active.
+ * @param {object}   props.config                  Override styling configuration for the component.
+ * @param {boolean}  props.onHover                 Open the menu on mouse hover.
+ * @param {string}   props.href                    The link to attach to the button element.
+ * @returns {Element}                              The DropDown component.
  */
 const DropDown = React.forwardRef((props, ref) => {
    const {
       id,
       label,
-      isMenu,
+      isMenu = true,
       children,
-      useStyles,
-      search,
+      useStyles = true,
+      search = false,
       className,
       activeClassName,
       buttonClassName,
@@ -42,7 +39,7 @@ const DropDown = React.forwardRef((props, ref) => {
       dropdownClassName,
       activeDropdownClassName,
       config,
-      onHover,
+      onHover = false,
       href
    } = props
    const [expanded, setExpanded] = useState(false)
@@ -85,7 +82,7 @@ const DropDown = React.forwardRef((props, ref) => {
    function setFocusable() {
       const elements = menuRef.current.querySelectorAll(focusable)
       if (elements) {
-         elements.forEach(item => {
+         elements.forEach((item) => {
             item.tabIndex = '-1'
          })
       }
@@ -217,7 +214,7 @@ const DropDown = React.forwardRef((props, ref) => {
          setFocus(elements[0])
       }
       // Set expanded state.
-      setExpanded(expanded => !expanded)
+      setExpanded((expanded) => !expanded)
    }
 
    /**
@@ -236,7 +233,7 @@ const DropDown = React.forwardRef((props, ref) => {
     */
    function hideMenuHover(event) {
       clearTimeout(hoverIntent)
-      hoverIntent = setTimeout(function() {
+      hoverIntent = setTimeout(function () {
          if (!containerRef?.current.contains(event.target)) {
             setExpanded(false)
             document.removeEventListener('mousemove', hideMenuHover)
@@ -306,7 +303,7 @@ const DropDown = React.forwardRef((props, ref) => {
       // First letters.
       const letters =
          array &&
-         array.map(item => {
+         array.map((item) => {
             return item?.textContent
                ? item.textContent.trim()[0].toLowerCase()
                : ''
@@ -397,7 +394,7 @@ const DropDown = React.forwardRef((props, ref) => {
             <Container
                ref={containerRef}
                id={`dropdown-${theId}`}
-               className={classNames(
+               className={cn(
                   'react-a11y-dropdown',
                   className && className,
                   expanded ? 'expanded' : null,
@@ -411,7 +408,7 @@ const DropDown = React.forwardRef((props, ref) => {
                   href={href ? href : null}
                   ref={buttonRef}
                   id={`button-${theId}`}
-                  className={classNames(
+                  className={cn(
                      'react-a11y-dropdown--button',
                      buttonClassName && buttonClassName,
                      expanded ? 'active' : null,
@@ -432,7 +429,7 @@ const DropDown = React.forwardRef((props, ref) => {
                <Menu
                   ref={menuRef}
                   id={`menu-${theId}`}
-                  className={classNames(
+                  className={cn(
                      'react-a11y-dropdown--menu',
                      dropdownClassName && dropdownClassName,
                      expanded ? 'active' : null,
@@ -456,10 +453,3 @@ const DropDown = React.forwardRef((props, ref) => {
 })
 
 export default DropDown
-
-DropDown.defaultProps = {
-   isMenu: true,
-   useStyles: true,
-   search: false,
-   onHover: false
-}

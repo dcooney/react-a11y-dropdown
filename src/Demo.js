@@ -1,28 +1,28 @@
 import React, {useRef} from 'react'
-import DropDown from './lib/components/DropDown'
-import Footer from './pages/home/Footer'
-import Header from './pages/home/Header'
-import MegaMenu from './pages/home/MegaMenu'
-import MenuFour from './pages/home/MenuFour'
-import MenuOne from './pages/home/MenuOne'
-import MenuSearch from './pages/home/MenuSearch'
-import MenuThree from './pages/home/MenuThree'
-import MenuTwo from './pages/home/MenuTwo'
+import Footer from './components/Footer'
+import Header from './components/Header'
+import MegaMenu from './components/MegaMenu'
+import MenuFour from './components/MenuFour'
+import MenuOne from './components/MenuOne'
+import MenuSearch from './components/MenuSearch'
+import MenuThree from './components/MenuThree'
+import MenuTwo from './components/MenuTwo'
+import DropDown from './lib/DropDown'
 
-export default function App() {
+export default function Demo() {
    const drop = useRef()
 
    /**
     * Close the custom dropmenu.
     */
    const handleClick = () => {
-      drop.current.close()
+      drop?.current?.close()
    }
 
    return (
       <div className="container mx-auto px-5 text-slate-800">
          <Header />
-         <main className="grid sm:grid-cols-12 gap-2 bg-slate-50 p-2 border-b">
+         <main className="grid sm:grid-cols-12 gap-2 bg-slate-50 p-5 border rounded-md">
             <section className="p-6 md:p-8 bg-white sm:col-span-6 lg:col-span-6">
                <h3 className="text-lg font-bold mb-2">Default</h3>
                <p className="text-sm mb-5 border-b border-opacity-50 pb-5 text-slate-600">
@@ -37,7 +37,7 @@ export default function App() {
                      <MenuTwo />
                   </DropDown>
                   <DropDown
-                     label="Hover"
+                     label="Hover with Link"
                      onHover={true}
                      href="https://google.com"
                   >
@@ -50,7 +50,7 @@ export default function App() {
                <h3 className="text-lg font-bold mb-2">Custom Styling</h3>
                <p className="text-sm mb-5 border-b border-opacity-50 pb-5 text-slate-600">
                   Using the <span className="bg-blue-50 p-1">config</span> prop
-                  to style the dropdown button, menu and transitions.
+                  to style the button, menu and dropdown transitions.
                </p>
                <div className="flex flex-wrap items-center gap-3 lg:gap-2 self-start">
                   <DropDown
