@@ -26,7 +26,7 @@ export default function Intro() {
                >
                   React
                </a>{' '}
-               with full keyboard support.
+               with keyboard support.
             </h2>
             <a
                className="self-start inline-block sm:flex gap-1 items-center text-sm text-slate-700 rounded-[3px] bg-slate-100 border border-slate-300 hover:border-slate-400 px-3 py-2 leading-none -mt-1.5"
