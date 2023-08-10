@@ -80,7 +80,7 @@ const DropDown = React.forwardRef((props, ref) => {
     * Set all the focusable elements in the dropdown.
     */
    function setFocusable() {
-      const elements = menuRef.current.querySelectorAll(focusable)
+      const elements = menuRef?.current?.querySelectorAll(focusable)
       if (elements) {
          elements.forEach((item) => {
             item.tabIndex = '-1'
@@ -94,7 +94,7 @@ const DropDown = React.forwardRef((props, ref) => {
     * @param {Event} event The click event.
     */
    function keyboardControls(event) {
-      const elements = menuRef.current.querySelectorAll(focusable)
+      const elements = menuRef?.current?.querySelectorAll(focusable)
       if (!elements) {
          return
       }
@@ -204,17 +204,18 @@ const DropDown = React.forwardRef((props, ref) => {
     * @param {Event} event The click event.
     */
    function toggleMenu() {
-      const elements = menuRef.current.querySelectorAll(focusable)
-      if (!expanded) {
-         // Set focusable elements on menu open.
-         setFocusable()
+      const elements = menuRef?.current?.querySelectorAll(focusable)
+      if (elements) {
+         if (!expanded) {
+            // Set focusable elements on menu open.
+            setFocusable()
+
+            // Set initial focus.
+            setFocus(elements[0])
+         }
+         // Set expanded state.
+         setExpanded((expanded) => !expanded)
       }
-      if (elements && !expanded) {
-         // Set initial focus.
-         setFocus(elements[0])
-      }
-      // Set expanded state.
-      setExpanded((expanded) => !expanded)
    }
 
    /**
@@ -264,7 +265,7 @@ const DropDown = React.forwardRef((props, ref) => {
          return // exit if event is null.
       }
       if (
-         !menuRef?.current.contains(event.target) &&
+         !menuRef?.current?.contains(event.target) &&
          !buttonRef?.current.contains(event.target)
       ) {
          setExpanded(false)
@@ -426,26 +427,28 @@ const DropDown = React.forwardRef((props, ref) => {
                   onFocus={() => onHover && showMenu()}
                   onMouseEnter={() => onHover && showMenu()}
                ></Button>
-               <Menu
-                  ref={menuRef}
-                  id={`menu-${theId}`}
-                  className={cn(
-                     'react-a11y-dropdown--menu',
-                     dropdownClassName && dropdownClassName,
-                     expanded ? 'active' : null,
-                     expanded && activeDropdownClassName
-                        ? activeDropdownClassName
-                        : null
-                  )}
-                  useStyles={useStyles}
-                  styles={menuStyles}
-                  expanded={expanded}
-                  aria-hidden={expanded ? 'false' : 'true'}
-                  aria-labelledby={isMenu ? `button-${theId}` : null}
-                  role={isMenu ? `menu` : null}
-               >
-                  {children}
-               </Menu>
+               {!!children && (
+                  <Menu
+                     ref={menuRef}
+                     id={`menu-${theId}`}
+                     className={cn(
+                        'react-a11y-dropdown--menu',
+                        dropdownClassName && dropdownClassName,
+                        expanded ? 'active' : null,
+                        expanded && activeDropdownClassName
+                           ? activeDropdownClassName
+                           : null
+                     )}
+                     useStyles={useStyles}
+                     styles={menuStyles}
+                     expanded={expanded}
+                     aria-hidden={expanded ? 'false' : 'true'}
+                     aria-labelledby={isMenu ? `button-${theId}` : null}
+                     role={isMenu ? `menu` : null}
+                  >
+                     {children}
+                  </Menu>
+               )}
             </Container>
          )}
       </>

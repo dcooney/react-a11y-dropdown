@@ -1,6 +1,6 @@
 {
   "name": "react-a11y-dropdown",
-  "version": "0.5.9",
+  "version": "1.0.0",
   "description": "An accessible and unopinionated dropdown component for React.",
   "homepage": "https://dcooney.github.io/react-a11y-dropdown/",
   "source": "src/lib/index.js",
