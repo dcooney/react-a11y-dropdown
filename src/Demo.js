@@ -15,13 +15,13 @@ export default function Demo() {
       <div className="container mx-auto px-5 text-slate-800">
          <Header />
          <main className="grid sm:grid-cols-12 gap-2.5 bg-slate-50 p-2.5 border rounded-md">
-            <section className="section-wrap sm:col-span-6 lg:col-span-6">
+            <section className="section sm:col-span-6 lg:col-span-6">
                <h3>Default Examples</h3>
-               <p className="text-sm border-b border-opacity-50 pb-4">
+               <p>
                   Basic component functionality without custom configuration or
                   styling.
                </p>
-               <div className="flex flex-wrap items-center gap-3 lg:gap-2 self-start">
+               <div className="flex flex-wrap gap-2.5">
                   <DropDown label="Dropdown Menu">
                      <Menu />
                   </DropDown>
@@ -31,9 +31,9 @@ export default function Demo() {
                </div>
             </section>
 
-            <section className="section-wrap sm:col-span-6 lg:col-span-6">
+            <section className="section sm:col-span-6 lg:col-span-6">
                <h3>Custom Styling</h3>
-               <p className="text-sm border-b border-opacity-50 pb-4">
+               <p>
                   Using the{' '}
                   <a
                      href="https://github.com/dcooney/react-a11y-dropdown#config"
@@ -131,9 +131,9 @@ export default function Demo() {
                </div>
             </section>
 
-            <section className="section-wrap sm:col-span-6 lg:col-span-4">
+            <section className="section sm:col-span-6 lg:col-span-4">
                <h3>Unstyled</h3>
-               <p className="text-sm border-b border-opacity-50 pb-4">
+               <p>
                   Set the <span className="bg-blue-50 p-1">useStyles</span> prop
                   to <span className="bg-blue-50 p-1">false</span> and remove
                   almost all default component CSS (width, colors, backgrounds
@@ -148,26 +148,24 @@ export default function Demo() {
                </DropDown>
             </section>
 
-            <section className="section-wrap sm:col-span-6 lg:col-span-4">
+            <section className="section sm:col-span-6 lg:col-span-4">
                <h3>Informational</h3>
-               <p className="text-sm border-b border-opacity-50 pb-4">
+               <p>
                   Dropdowns without focusable or interactive elements can be
                   used for informational purposes.
                </p>
-               <div className="flex flex-wrap items-center gap-3 lg:gap-2 self-start">
-                  <DropDown
-                     label="Show Info"
-                     isMenu={false}
-                     config={{dropdown: {background: '#f1f5f9'}}}
-                  >
-                     <MenuThree />
-                  </DropDown>
-               </div>
+               <DropDown
+                  label="Show Info"
+                  isMenu={false}
+                  config={{dropdown: {background: '#f1f5f9'}}}
+               >
+                  <MenuThree />
+               </DropDown>
             </section>
 
-            <section className="section-wrap sm:col-span-6 lg:col-span-4">
+            <section className="section sm:col-span-6 lg:col-span-4">
                <h3>Letter Navigation</h3>
-               <p className="text-sm border-b border-opacity-50 pb-4">
+               <p>
                   Place focus in the dropdown menu and use your keyboard to
                   search the menu items by first letter.
                </p>

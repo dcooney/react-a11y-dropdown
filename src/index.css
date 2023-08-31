@@ -19,20 +19,33 @@
       @apply text-lg;
    }
 
-   p {
+   p,
+   li {
       @apply text-slate-500 mb-4;
+   }
 
-      & a {
-         @apply font-medium;
-      }
+   p a {
+      @apply font-medium;
+   }
+
+   li {
+      @apply mb-0;
    }
 
    a {
       @apply text-slate-800 no-underline hover:underline focus:underline;
    }
 
-   .section-wrap {
+   .section {
       @apply p-5 bg-white border rounded-[3px];
+   }
+
+   .section h3 + p {
+      @apply text-sm border-b border-opacity-50 pb-4;
+   }
+
+   .dropdown-group {
+      @apply flex flex-wrap gap-2.5 w-full;
    }
 }
 
@@ -49,8 +62,4 @@ body {
 code {
    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
       monospace;
-}
-
-.prose {
-   max-width: none;
 }
