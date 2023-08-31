@@ -10,6 +10,7 @@ export const Container = styled.div`
 `
 
 const ButtonStyles = css`
+   display: ${(props) => getProp(props.styles.display)};
    background: ${(props) => getProp(props.styles.background)};
    border: ${(props) => getProp(props.styles.border)};
    border-color: ${(props) => getProp(props.styles.borderColor)};

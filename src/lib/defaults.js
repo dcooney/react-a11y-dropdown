@@ -3,12 +3,13 @@
  */
 export const defaults = {
    button: {
+      display: 'block',
       background: '#eef1f4',
       border: '1px solid #d6d9dc',
       borderRadius: '3px',
       color: '#494a4c',
       fontSize: '14px',
-      fontWeight: null,
+      fontWeight: '500',
       margin: '0',
       padding: '8px 12px',
       transition: null,

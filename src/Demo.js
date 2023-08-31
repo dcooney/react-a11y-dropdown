@@ -1,59 +1,52 @@
-import React, {useRef} from 'react'
-import Footer from './components/Footer'
-import Header from './components/Header'
-import MegaMenu from './components/MegaMenu'
-import MenuFour from './components/MenuFour'
-import MenuOne from './components/MenuOne'
-import MenuSearch from './components/MenuSearch'
-import MenuThree from './components/MenuThree'
-import MenuTwo from './components/MenuTwo'
+import {useRef} from 'react'
+import Footer from './demo/components/Footer'
+import Header from './demo/components/Header'
+import MegaMenu from './demo/menus/MegaMenu'
+import Menu from './demo/menus/Menu'
+import MixedContent from './demo/menus/MixedContent'
+import MenuSearch from './demo/menus/MenuSearch'
+import MenuThree from './demo/menus/MenuThree'
 import DropDown from './lib/DropDown'
 
 export default function Demo() {
-   const drop = useRef()
-
-   /**
-    * Close the custom dropmenu.
-    */
-   const handleClick = () => {
-      drop?.current?.close()
-   }
+   const megaMenuRef = useRef()
 
    return (
       <div className="container mx-auto px-5 text-slate-800">
          <Header />
-         <main className="grid sm:grid-cols-12 gap-2 bg-slate-50 p-5 border rounded-md">
-            <section className="p-6 md:p-8 bg-white sm:col-span-6 lg:col-span-6">
-               <h3 className="text-lg font-bold mb-2">Default</h3>
-               <p className="text-sm mb-5 border-b border-opacity-50 pb-5 text-slate-600">
+         <main className="grid sm:grid-cols-12 gap-2.5 bg-slate-50 p-2.5 border rounded-md">
+            <section className="section-wrap sm:col-span-6 lg:col-span-6">
+               <h3>Default Examples</h3>
+               <p className="text-sm border-b border-opacity-50 pb-4">
                   Basic component functionality without custom configuration or
                   styling.
                </p>
                <div className="flex flex-wrap items-center gap-3 lg:gap-2 self-start">
-                  <DropDown label="Example #1">
-                     <MenuOne />
+                  <DropDown label="Dropdown Menu">
+                     <Menu />
                   </DropDown>
-                  <DropDown label="Example #2" id="drop-2">
-                     <MenuTwo />
-                  </DropDown>
-                  <DropDown
-                     label="Hover with Link"
-                     onHover={true}
-                     href="https://google.com"
-                  >
-                     <MenuOne />
+                  <DropDown label="Mixed Content">
+                     <MixedContent />
                   </DropDown>
                </div>
             </section>
 
-            <section className="p-6 md:p-8 bg-white sm:col-span-6 lg:col-span-6">
-               <h3 className="text-lg font-bold mb-2">Custom Styling</h3>
-               <p className="text-sm mb-5 border-b border-opacity-50 pb-5 text-slate-600">
-                  Using the <span className="bg-blue-50 p-1">config</span> prop
+            <section className="section-wrap sm:col-span-6 lg:col-span-6">
+               <h3>Custom Styling</h3>
+               <p className="text-sm border-b border-opacity-50 pb-4">
+                  Using the{' '}
+                  <a
+                     href="https://github.com/dcooney/react-a11y-dropdown#config"
+                     target="_blank"
+                     rel="noreferrer"
+                  >
+                     config prop
+                  </a>{' '}
                   to style the button, menu and dropdown transitions.
                </p>
-               <div className="flex flex-wrap items-center gap-3 lg:gap-2 self-start">
+               <div className="flex flex-wrap gap-2.5">
                   <DropDown
+                     ref={megaMenuRef}
                      label="Mega Menu"
                      config={{
                         button: {
@@ -81,7 +74,7 @@ export default function Demo() {
                            transform: 'scale(0.95)',
                            transition:
                               'transform 0.25s cubic-bezier(0.24, 0.22, 0.015, 1.56), opacity 0.15s ease-in-out, visibility 0.15s ease-in-out',
-                           top: '110%',
+                           top: '105%',
                            left: '-20px',
                            active: {
                               top: '100%',
@@ -91,6 +84,14 @@ export default function Demo() {
                      }}
                   >
                      <MegaMenu />
+                     <div className="flex justify-end text-xs mt-2">
+                        <button
+                           className="text-slate-700 text-xs hover:underline px-1 mb-1"
+                           onClick={() => megaMenuRef?.current?.close()}
+                        >
+                           Close Menu
+                        </button>
+                     </div>
                   </DropDown>
                   <DropDown
                      label="Open Right <span>&rarr;</span>"
@@ -125,69 +126,14 @@ export default function Demo() {
                         }
                      }}
                   >
-                     <MenuOne />
-                  </DropDown>
-                  <DropDown
-                     ref={drop}
-                     id="my-dropdown"
-                     label="Menu Group"
-                     className="drop"
-                     buttonClassName="button"
-                     dropdownClassName="menu"
-                     config={{
-                        button: {
-                           background: '#f5f3ff',
-                           color: '#5b21b6',
-                           borderColor: '#7c3aed',
-                           width: '100%',
-                           borderRadius: '4px',
-                           hover: {
-                              background: '#7c3aed',
-                              borderColor: '#7c3aed',
-                              color: '#fff'
-                           },
-                           active: {
-                              background: '#6d28d9',
-                              borderColor: '#6d28d9',
-                              borderRadius: '4px 4px 0 0',
-                              color: '#fff'
-                           }
-                        },
-                        container: {
-                           width: '150px'
-                        },
-                        dropdown: {
-                           width: '100%',
-                           background: '#fff',
-                           borderColor: '#6d28d9',
-                           borderRadius: '0 0 4px 4px',
-                           padding: '5px',
-                           display: 'none',
-                           margin: '0',
-                           active: {
-                              display: 'block'
-                           }
-                        }
-                     }}
-                  >
-                     <div>
-                        <MenuFour />
-                        <div className="flex justify-end text-xs mt-2">
-                           <button
-                              className="text-slate-700 text-xs hover:underline px-1 mb-1"
-                              onClick={() => handleClick()}
-                           >
-                              Close
-                           </button>
-                        </div>
-                     </div>
+                     <Menu />
                   </DropDown>
                </div>
             </section>
 
-            <section className="p-6 md:p-8 bg-white sm:col-span-6 lg:col-span-4">
-               <h3 className="text-lg font-bold mb-2">Unstyled</h3>
-               <p className="text-sm mb-5 border-b border-opacity-50 pb-5 text-slate-600">
+            <section className="section-wrap sm:col-span-6 lg:col-span-4">
+               <h3>Unstyled</h3>
+               <p className="text-sm border-b border-opacity-50 pb-4">
                   Set the <span className="bg-blue-50 p-1">useStyles</span> prop
                   to <span className="bg-blue-50 p-1">false</span> and remove
                   almost all default component CSS (width, colors, backgrounds
@@ -198,13 +144,13 @@ export default function Demo() {
                   buttonClassName="font-semibold text-sm p-1"
                   useStyles={false}
                >
-                  <MenuOne />
+                  <Menu />
                </DropDown>
             </section>
 
-            <section className="p-6 md:p-8 bg-white sm:col-span-6 lg:col-span-4">
-               <h3 className="text-lg font-bold mb-2">Informational</h3>
-               <p className="text-sm mb-5 border-b border-opacity-50 pb-5 text-slate-600">
+            <section className="section-wrap sm:col-span-6 lg:col-span-4">
+               <h3>Informational</h3>
+               <p className="text-sm border-b border-opacity-50 pb-4">
                   Dropdowns without focusable or interactive elements can be
                   used for informational purposes.
                </p>
@@ -219,9 +165,9 @@ export default function Demo() {
                </div>
             </section>
 
-            <section className="p-6 md:p-8 bg-white sm:col-span-6 lg:col-span-4">
-               <h3 className="text-lg font-bold mb-2">Letter Navigation</h3>
-               <p className="text-sm mb-5 border-b border-opacity-50 pb-5 text-slate-600">
+            <section className="section-wrap sm:col-span-6 lg:col-span-4">
+               <h3>Letter Navigation</h3>
+               <p className="text-sm border-b border-opacity-50 pb-4">
                   Place focus in the dropdown menu and use your keyboard to
                   search the menu items by first letter.
                </p>

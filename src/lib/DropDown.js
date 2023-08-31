@@ -202,7 +202,7 @@ const DropDown = forwardRef((props, ref) => {
          document.removeEventListener('keyup', focusOutside)
          document.removeEventListener('keydown', keyboardControls)
       }
-   }, [])
+   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
    /**
     * Click handler to toggle the dropdown menu.
@@ -261,13 +261,6 @@ const DropDown = forwardRef((props, ref) => {
              */
             close() {
                setExpanded(false)
-            },
-
-            /**
-             * Exposed function to open the dropdown.
-             */
-            open() {
-               setExpanded(true)
             }
          }
       },

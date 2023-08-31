@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "An accessible and unopinionated dropdown component for React.",
   "homepage": "https://dcooney.github.io/react-a11y-dropdown/",
-  "source": "src/lib/index.js",
+  "source": "src/lib/DropDown.js",
   "main": "dist/index.js",
   "module": "dist/index.module.js",
   "unpkg": "dist/index.umd.js",
@@ -31,15 +31,15 @@
     "styled-components": "^5.3.11"
   },
   "devDependencies": {
-    "eslint": "^8.46.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-jest": "^27.2.3",
-    "eslint-plugin-prettier": "^5.0.0",
-    "eslint-plugin-react-hooks": "^4.6.0",
+    "autoprefixer": "^10.4.15",
     "microbundle": "^0.15.1",
+    "postcss": "^8.4.27",
+    "prettier": "^3.0.1",
+    "prettier-plugin-tailwindcss": "^0.4.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1"
+    "react-scripts": "5.0.1",
+    "tailwindcss": "^3.3.3"
   },
   "author": "Darren Cooney (darren.cooney@gmail.com)",
   "license": "MIT",

@@ -1,12 +1,12 @@
 # react-a11y-dropdown
 
+[![npm](https://img.shields.io/npm/v/react-a11y-dropdown)](https://www.npmjs.com/package/react-a11y-dropdown)
+
 An fully accessible and unopinionated dropdown component for [React](https://www.reactjs.org) with full keyboard support.
 
-The goal with **React A11y Dropdown** is to help build accessible dropdown menus by providing the required keyboard interactions and ARIA attributes to meet accessibilility best practices as determined by [w3.org Menu Button spec](https://www.w3.org/TR/wai-aria-practices/#menubutton).
+The goal with **React A11y Dropdown** is to help build accessible dropdown menus by providing the required functionality, keyboard interactions and ARIA attributes to meet accessibilility best practices as determined by [w3.org Menu Button spec](https://www.w3.org/TR/wai-aria-practices/#menubutton).
 
-&rarr; **[View the Examples](https://dcooney.github.io/react-a11y-dropdown/)**
-
-[![npm](https://img.shields.io/npm/v/react-a11y-dropdown)](https://www.npmjs.com/package/react-a11y-dropdown)
+&rarr; [View Examples](https://dcooney.github.io/react-a11y-dropdown/)
 
 ## Features
 
@@ -115,7 +115,7 @@ return (
          button: {
             background: '#fff',
             border: null,
-            color: "#ff0000',
+            color: '#ff0000',
             hover: {
                background: '#121212',
                color: "#fff',
@@ -130,17 +130,18 @@ return (
 
 ### Config Defaults
 
-The following default CSS properties are passed into the `DropDown` component and cann be modified using the `config` prop.
+The following default CSS properties are passed into the `DropDown` component and can be modified using the `config` prop.
 
 ```javascript
 {
-   button: {
+   button: { 
+      display: 'block',
       background: '#eef1f4',
       border: '1px solid #d6d9dc',
       borderRadius: '3px',
       color: '#494a4c',
       fontSize: '14px',
-      fontWeight: null,
+      fontWeight: '500',
       margin: '0',
       padding: '8px 12px',
       transition: null,
