@@ -1,5 +1,11 @@
 import cn from 'classnames'
-import React, {useEffect, useImperativeHandle, useRef, useState} from 'react'
+import {
+   forwardRef,
+   useEffect,
+   useImperativeHandle,
+   useRef,
+   useState
+} from 'react'
 import {defaults} from './defaults'
 import {Button, Container, Menu} from './styles'
 
@@ -24,7 +30,7 @@ import {Button, Container, Menu} from './styles'
  * @param {string}   props.href                    The link to attach to the button element.
  * @returns {Element}                              The DropDown component.
  */
-const DropDown = React.forwardRef((props, ref) => {
+const DropDown = forwardRef((props, ref) => {
    const {
       id,
       label,
@@ -244,16 +250,29 @@ const DropDown = React.forwardRef((props, ref) => {
 
    /**
     * Allow for setting the expanded state from parent components.
-    * @see https://reactjs.org/docs/hooks-reference.html#useimperativehandle
+    * @see https://react.dev/reference/react/useImperativeHandle
     */
-   useImperativeHandle(ref, () => ({
-      /**
-       * Exposed function to close the dropdown.
-       */
-      close() {
-         setExpanded(false)
-      }
-   }))
+   useImperativeHandle(
+      ref,
+      () => {
+         return {
+            /**
+             * Exposed function to close the dropdown.
+             */
+            close() {
+               setExpanded(false)
+            },
+
+            /**
+             * Exposed function to open the dropdown.
+             */
+            open() {
+               setExpanded(true)
+            }
+         }
+      },
+      []
+   )
 
    /**
     * Close menu when clicking outside.
