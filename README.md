@@ -118,7 +118,7 @@ return (
             color: '#ff0000',
             hover: {
                background: '#121212',
-               color: "#fff',
+               color: '#fff',
             }
          }
       }}
