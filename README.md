@@ -191,7 +191,7 @@ The following default CSS properties are passed into the `DropDown` component an
 }
 ```
 
-### Notes**
+### Notes
 
 - The `active` object properties are applied when the `DropDown` component is in an expanded state.
 - Setting a property to `null` will prevent the CSS property from being attached to the component.
