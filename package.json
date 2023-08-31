@@ -21,7 +21,7 @@
     "start": "react-scripts start",
     "dev": "microbundle watch",
     "build": "rm -rf dist && microbundle --no-compress --jsx React.createElement --jsxFragment React.Fragment --jsxImportSource react --globals react/jsx-runtime=jsx",
-    "build:demo": "BUILD_PATH='./docs' react-scripts build"
+    "build:docs": "BUILD_PATH='./docs' react-scripts build"
   },
   "peerDependencies": {
     "react": "^18.2.0"
