@@ -5,7 +5,7 @@ import MegaMenu from './demo/menus/MegaMenu'
 import Menu from './demo/menus/Menu'
 import MixedContent from './demo/menus/MixedContent'
 import MenuSearch from './demo/menus/MenuSearch'
-import MenuThree from './demo/menus/MenuThree'
+import InfoMenu from './demo/menus/InfoMenu'
 import DropDown from './lib/DropDown'
 
 export default function Demo() {
@@ -15,7 +15,7 @@ export default function Demo() {
       <div className="container mx-auto px-5 text-slate-800">
          <Header />
          <main className="grid sm:grid-cols-12 gap-2.5 bg-slate-50 p-2.5 border rounded-md">
-            <section className="section sm:col-span-6 lg:col-span-6">
+            <section className="section">
                <h3>Default Examples</h3>
                <p>
                   Basic component functionality without custom configuration or
@@ -31,18 +31,18 @@ export default function Demo() {
                </div>
             </section>
 
-            <section className="section sm:col-span-6 lg:col-span-6">
+            <section className="section">
                <h3>Custom Styling</h3>
                <p>
-                  Using the{' '}
+                  Using the <code>config</code> prop to style the button, menu
+                  and dropdown transitions.{' '}
                   <a
                      href="https://github.com/dcooney/react-a11y-dropdown#config"
                      target="_blank"
                      rel="noreferrer"
                   >
-                     config prop
-                  </a>{' '}
-                  to style the button, menu and dropdown transitions.
+                     Learn More
+                  </a>
                </p>
                <div className="flex flex-wrap gap-2.5">
                   <DropDown
@@ -131,24 +131,35 @@ export default function Demo() {
                </div>
             </section>
 
-            <section className="section sm:col-span-6 lg:col-span-4">
+            <section className="section">
                <h3>Unstyled</h3>
                <p>
-                  Set the <span className="bg-blue-50 p-1">useStyles</span> prop
-                  to <span className="bg-blue-50 p-1">false</span> and remove
-                  almost all default component CSS (width, colors, backgrounds
-                  etc.).
+                  Set <code>useStyles</code> to <code>false</code> to remove all
+                  default component CSS (width, colors, backgrounds etc.).
                </p>
                <DropDown
-                  label="Click Here"
-                  buttonClassName="font-semibold text-sm p-1"
+                  label="Open Menu"
+                  buttonClassName="font-medium text-sm p-1"
                   useStyles={false}
                >
                   <Menu />
                </DropDown>
             </section>
 
-            <section className="section sm:col-span-6 lg:col-span-4">
+            <section className="section">
+               <h3>On Hover</h3>
+               <p>
+                  Expand the dropdown on mouse hover and using keyboard
+                  interactions.
+               </p>
+               <div className="flex flex-wrap gap-2.5">
+                  <DropDown label="Hover Menu" onHover={true}>
+                     <Menu />
+                  </DropDown>
+               </div>
+            </section>
+
+            <section className="section">
                <h3>Informational</h3>
                <p>
                   Dropdowns without focusable or interactive elements can be
@@ -159,14 +170,14 @@ export default function Demo() {
                   isMenu={false}
                   config={{dropdown: {background: '#f1f5f9'}}}
                >
-                  <MenuThree />
+                  <InfoMenu />
                </DropDown>
             </section>
 
-            <section className="section sm:col-span-6 lg:col-span-4">
+            <section className="section">
                <h3>Letter Navigation</h3>
                <p>
-                  Place focus in the dropdown menu and use your keyboard to
+                  Place focus within the dropdown menu and use your keyboard to
                   search the menu items by first letter.
                </p>
                <DropDown label="Open Menu" search={true}>

@@ -36,12 +36,16 @@
       @apply text-slate-800 no-underline hover:underline focus:underline;
    }
 
+   a.link-style {
+      @apply my-0.5 block w-full text-left py-2 px-1 hover:underline hover:bg-gray-50 focus:bg-gray-50 transition-all rounded;
+   }
+
    .section {
-      @apply p-5 bg-white border rounded-[3px];
+      @apply p-5 bg-white border rounded-[3px] sm:col-span-6 lg:col-span-4;
    }
 
    .section h3 + p {
-      @apply text-sm border-b border-opacity-50 pb-4;
+      @apply text-sm border-b border-gray-100 pb-4;
    }
 
    .dropdown-group {
@@ -62,4 +66,6 @@ body {
 code {
    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
       monospace;
+   @apply bg-blue-50 px-[4px] py-0.5 rounded-sm inline-block text-slate-800;
+   font-size: 0.85em;
 }

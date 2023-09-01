@@ -1,13 +1,13 @@
 export default function Footer() {
    return (
-      <>
-         <p className="text-xs py-12 leading-5 p-12 text-center">
-            <strong className="bg-yellow-50 p-1">Note</strong>:{' '}
+      <div>
+         <p className="text-sm py-10 leading-5 p-12 text-center m-0">
+            <strong>Note</strong>:{' '}
             <a href="https://www.npmjs.com/package/react-a11y-dropdown">
                React A11y Dropdowns
             </a>{' '}
-            does not style the contents of dropdowns. It's a wrapper for your
-            existing components and will inherit application styling when
+            does not style the contents of dropdowns. It's simply a wrapper for
+            your existing components and will inherit application styling when
             required.
          </p>
          <footer className="pt-5 pb-20 border-t">
@@ -31,6 +31,6 @@ export default function Footer() {
                </li>
             </ul>
          </footer>
-      </>
+      </div>
    )
 }

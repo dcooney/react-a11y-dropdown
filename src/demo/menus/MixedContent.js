@@ -25,11 +25,8 @@ export default function MixedContent() {
          </p>
          <ul className="text-sm px-1">
             {links.map((link, index) => (
-               <li className="border-t" key={index}>
-                  <a
-                     href={link.href}
-                     className="block w-full text-left py-2 px-0.5 hover:underline"
-                  >
+               <li className="border-t py-0.5" key={index}>
+                  <a href={link.href} className="link-style">
                      {link.label}
                   </a>
                </li>

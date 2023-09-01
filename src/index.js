@@ -5,4 +5,8 @@ import './index.css'
 
 const domNode = document.getElementById('root')
 const root = createRoot(domNode)
-root.render(<Demo />)
+root.render(
+   <React.StrictMode>
+      <Demo />
+   </React.StrictMode>
+)

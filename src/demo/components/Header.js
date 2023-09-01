@@ -16,10 +16,10 @@ export default function Header() {
       <header className="py-5">
          <div className="block sm:flex justify-between items-center gap-2 pb-5">
             <div className="mb-2 sm:mb-0">
-               <h1>React A11y DropDown</h1>
+               <h1>React A11y Dropdown</h1>
                <p className="mb-0">
                   An accessible and unopinionated dropdown component for{' '}
-                  <a href="https://www.reactjs.org">React</a> with keyboard
+                  <a href="https://www.reactjs.org">React</a> with full keyboard
                   support.
                </p>
             </div>

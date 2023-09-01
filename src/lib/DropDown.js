@@ -50,7 +50,6 @@ const DropDown = forwardRef((props, ref) => {
    } = props
    const [expanded, setExpanded] = useState(false)
    const [theId] = useState(id ? id : generateId(10)) // Generate random ID if not specified.
-   const loaded = useRef(false)
    const containerRef = useRef()
    const menuRef = useRef()
    const buttonRef = useRef()
@@ -190,12 +189,9 @@ const DropDown = forwardRef((props, ref) => {
    useEffect(() => {
       setFocusable()
 
-      if (!loaded.current) {
-         document.addEventListener('click', clickOutside)
-         document.addEventListener('keyup', focusOutside)
-         document.addEventListener('keydown', keyboardControls)
-         loaded.current = true
-      }
+      document.addEventListener('click', clickOutside)
+      document.addEventListener('keyup', focusOutside)
+      document.addEventListener('keydown', keyboardControls)
 
       return () => {
          document.removeEventListener('click', clickOutside)
