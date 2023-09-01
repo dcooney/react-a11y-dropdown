@@ -1,5 +1,14 @@
 # CHANGELOG
 
+**1.0.0**
+
+- Adding microbundle for bundling component for npm distribution.
+- Adding Tailwind CSS for demo site setup.
+- Code cleanup.
+- Documentation updates.
+- Updated repository scaffolding.
+- Dependaency updates.
+
 **0.5.9**
 
 - UPDATE: Bumped required React versions.
