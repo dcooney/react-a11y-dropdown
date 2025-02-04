@@ -159,11 +159,13 @@ const DropDown = forwardRef((props, ref) => {
                break
 
             case 'Up':
-            case 'ArrowUp': // Up arrow.
+            case 'ArrowUp': {
+               // Up arrow.
                const prev = index === 0 ? length : index - 1
                elements[prev] && setFocus(elements[prev])
                event.preventDefault()
                break
+            }
 
             case 'Home':
             case 'PageUp': // Home.
@@ -198,7 +200,7 @@ const DropDown = forwardRef((props, ref) => {
          document.removeEventListener('keyup', focusOutside)
          document.removeEventListener('keydown', keyboardControls)
       }
-   }, []) // eslint-disable-line react-hooks/exhaustive-deps
+   }, [])
 
    /**
     * Click handler to toggle the dropdown menu.
@@ -248,20 +250,16 @@ const DropDown = forwardRef((props, ref) => {
     * Allow for setting the expanded state from parent components.
     * @see https://react.dev/reference/react/useImperativeHandle
     */
-   useImperativeHandle(
-      ref,
-      () => {
-         return {
-            /**
-             * Exposed function to close the dropdown.
-             */
-            close() {
-               setExpanded(false)
-            }
+   useImperativeHandle(ref, () => {
+      return {
+         /**
+          * Exposed function to close the dropdown.
+          */
+         close() {
+            setExpanded(false)
          }
-      },
-      []
-   )
+      }
+   }, [])
 
    /**
     * Close menu when clicking outside.
@@ -462,5 +460,7 @@ const DropDown = forwardRef((props, ref) => {
       </>
    )
 })
+
+DropDown.displayName = 'DropDown'
 
 export default DropDown

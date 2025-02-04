@@ -1,5 +1,10 @@
 # CHANGELOG
 
+**1.0.1**
+
+- UPDATE: Bumped required React versions.
+- NEW: Added ESLint config.
+
 **1.0.0**
 
 - Adding microbundle for bundling component for npm distribution.

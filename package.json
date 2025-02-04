@@ -1,6 +1,6 @@
 {
   "name": "react-a11y-dropdown",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An accessible and unopinionated dropdown component for React.",
   "homepage": "https://dcooney.github.io/react-a11y-dropdown/",
   "source": "src/lib/DropDown.js",
@@ -21,25 +21,32 @@
     "start": "react-scripts start",
     "dev": "microbundle watch",
     "build": "rm -rf dist && microbundle --no-compress --jsx React.createElement --jsxFragment React.Fragment --jsxImportSource react --globals react/jsx-runtime=jsx",
-    "build:docs": "BUILD_PATH='./docs' react-scripts build"
+    "build:docs": "BUILD_PATH='./docs' react-scripts build",
+    "lint": "npx eslint '**/*.js'"
   },
   "peerDependencies": {
-    "react": "^18.2.0"
+    "react": "^19.0.0"
   },
   "dependencies": {
-    "classnames": "^2.3.2",
-    "styled-components": "^5.3.11"
+    "classnames": "^2.5.1",
+    "styled-components": "^6.1.14"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.15",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@eslint/eslintrc": "^3.2.0",
+    "@eslint/js": "^9.18.0",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^9.18.0",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react-hooks": "^5.1.0",
     "microbundle": "^0.15.1",
-    "postcss": "^8.4.27",
-    "prettier": "^3.0.1",
-    "prettier-plugin-tailwindcss": "^0.4.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "postcss": "^8.5.1",
+    "prettier": "^3.4.2",
+    "prettier-plugin-tailwindcss": "^0.6.10",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "react-scripts": "5.0.1",
-    "tailwindcss": "^3.3.3"
+    "tailwindcss": "^3.4.17"
   },
   "author": "Darren Cooney (darren.cooney@gmail.com)",
   "license": "MIT",
